@@ -7,6 +7,8 @@ const app = express();
 
 const {getHomePage} = require('./routes/index');
 const {addPartPage, addPart, deletePart, editPart, editPartPage} = require('./routes/part');
+const {tableDoesExist, itemDoesExist} = require('./lib/lib');
+
 const port = 5000;
 
 // create connection to database
@@ -25,7 +27,18 @@ db.connect((err) => {
 		throw err;
 	}
 	console.log('Connected to database');
-	var tablecheckquery = "SHOW TABLES LIKE 'items';";
+	if(tableDoesExist(db,"items")) {
+		console.log("Table Already Exists.");
+	} else {
+		var query = "CREATE TABLE IF NOT EXISTS `items` ( `id` int(32) NOT NULL AUTO_INCREMENT, `station_id` varchar(255) NOT NULL, `status` varchar(255) NOT NULL, `qty` int(32) NOT NULL, `manufacturer` varchar(255) NOT NULL, `part_number` varchar(255) NOT NULL, `description` varchar(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
+		db.query(query, (err, result) => {
+			if (err) {
+			throw err;
+			}
+			console.log("Table Created.");
+		});
+	}
+/*	var tablecheckquery = "SHOW TABLES LIKE 'items';";
 	db.query(tablecheckquery, (err, result) => {
 		if (err) {
 			throw err;
@@ -42,7 +55,7 @@ db.connect((err) => {
 				});
 			}
 		}
-	});
+	});*/
 });
 global.db = db;
 
