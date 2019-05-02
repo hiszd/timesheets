@@ -9,7 +9,7 @@ const {getHomePage} = require('./routes/index');
 const {addPartPage, addPart, deletePart, editPart, editPartPage} = require('./routes/part');
 const {tableDoesExist, itemDoesExist} = require('./lib/lib');
 
-const port = 5000;
+const port = 3000;
 
 // create connection to database
 // the mysql.createConnection function takes in a configuration object which contains host, user, password and the database name.

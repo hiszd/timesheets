@@ -11,7 +11,7 @@ module.exports = {
 	addPart: (req, res) => {
 		let message = '';
 		let station_id = req.body.station_id;
-		let status = req.body.status;
+		let stats = req.body.status;
 		let qty = req.body.qty;
 		let manufacturer = req.body.manufacturer;
 		let part_number = req.body.part_number;
@@ -19,13 +19,13 @@ module.exports = {
 
 		if(itemDoesExist(db,"items","part_number",part_number)) {
 			message = 'Part already exists';
-			res.render('add-part.js', {
+			res.render('add-part.ejs', {
 				message,
 				title: 'Welcome to BizTracker | Add a new part'
 			});
 		} else {
-			let query = "INSERT INTO `items` (station_id, status, qty, manufacturer, part_number, description VALUES ('"+station_id+"', '"+status+"', '"+qty+"', '"+manufacturer+"', '"+part_number+"', '"+description+"')";
-			db.quert(query, (err,result) => {
+			let query = "INSERT INTO `items` (station_id, status, qty, manufacturer, part_number, description) VALUES ('"+station_id+"', '"+stats+"', '"+qty+"', '"+manufacturer+"', '"+part_number+"', '"+description+"')";
+			db.query(query, (err,result) => {
 				if(err) {return res.status(500).send(err);}
 				res.redirect('/');
 			});
@@ -73,13 +73,13 @@ module.exports = {
 	editPart: (req, res) => {
 		let id = req.params.id;
 		let station_id = req.body.station_id;
-		let status = req.body.status;
+		let stats = req.body.status;
 		let qty = req.body.qty;
 		let manufacturer = req.body.manufacturer;
 		let part_number = req.body.part_number;
 		let description = req.body.description;
 
-		let query = "UPDATE `items` SET `part_number` = '" + part_number + "', `station_id` = '" + station_id + "', `status` = '" + status + "', `qty` = '" + qty + "', `manufacturer` = '" + manufacturer + "' WHERE `items`.`id` = '" + id + "'";
+		let query = "UPDATE `items` SET `part_number` = '" + part_number + "', `station_id` = '" + station_id + "', `status` = '" + stats + "', `qty` = '" + qty + "', `manufacturer` = '" + manufacturer + "', `description` = '" + description + "' WHERE `items`.`id` = '" + id + "'";
 		db.query(query, (err, result) => {
 			if (err) {
 				return res.status(500).send(err);
