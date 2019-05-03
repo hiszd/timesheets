@@ -1,5 +1,5 @@
 const fs = require('fs');
-const {tableDoesExist, itemDoesExist} = require('../lib/lib');
+const {tableDoesExist, itemDoesExist, addItem} = require('../lib/lib');
 
 module.exports = {
 	addPartPage: (req, res) => {
