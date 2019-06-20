@@ -1,6 +1,6 @@
 module.exports = {
     getHomePage: (req, res) => {
-        let query = "SELECT * FROM `items` ORDER BY part_number ASC"; // query database to get all the players
+        let query = "SELECT * FROM `tasks` ORDER BY bucket ASC"; // query database to get all the players
 
         // execute query
         db.query(query, (err, result) => {
@@ -8,9 +8,9 @@ module.exports = {
                 res.redirect('/');
             }
             res.render('index.ejs', {
-                title: 'Welcome to BizTracker | View Parts'
-                ,parts: result
+                title: 'Welcome to SoliDesk | View Tasks'
+                ,tasks: result
             });
         });
-    },
+    }
 };

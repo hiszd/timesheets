@@ -6,7 +6,7 @@ const path = require('path');
 const app = express();
 
 const {getHomePage} = require('./routes/index');
-const {addPartPage, addPart, deletePart, editPart, editPartPage} = require('./routes/part');
+const {addTaskPage, addTask, deleteTask, editTask, editTaskPage} = require('./routes/task');
 const {tableDoesExist, itemDoesExist} = require('./lib/lib');
 
 const port = 3000;
@@ -17,7 +17,7 @@ const db = mysql.createConnection ({
 	host: "localhost",
 	user: "root",
 	password: "password",
-	database: "parts",
+	database: "solidesk1",
 	port: 3306
 });
 
@@ -27,10 +27,10 @@ db.connect((err) => {
 		throw err;
 	}
 	console.log('Connected to database');
-	if(tableDoesExist(db,"items")) {
+	if(tableDoesExist(db,"tasks")) {
 		console.log("Table Already Exists.");
 	} else {
-		var query = "CREATE TABLE IF NOT EXISTS `items` ( `id` int(32) NOT NULL AUTO_INCREMENT, `station_id` varchar(255) NOT NULL, `status` varchar(255) NOT NULL, `qty` int(32) NOT NULL, `manufacturer` varchar(255) NOT NULL, `part_number` varchar(255) NOT NULL, `description` varchar(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
+		var query = "CREATE TABLE IF NOT EXISTS `tasks` ( `id` int(32) NOT NULL AUTO_INCREMENT, `bucket` varchar(255) NOT NULL, `task` varchar(255) NOT NULL, `status` varchar(255) NOT NULL, `time` varchar(255) NOT NULL, `notes` varchar(255) NOT NULL, `description` varchar(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
 		db.query(query, (err, result) => {
 			if (err) {
 			throw err;
@@ -38,24 +38,6 @@ db.connect((err) => {
 			console.log("Table Created.");
 		});
 	}
-/*	var tablecheckquery = "SHOW TABLES LIKE 'items';";
-	db.query(tablecheckquery, (err, result) => {
-		if (err) {
-			throw err;
-		} else {
-			if(result!="") {
-				console.log("Table Already Exists.");
-			} else {
-				var query = "CREATE TABLE IF NOT EXISTS `items` ( `id` int(32) NOT NULL AUTO_INCREMENT, `station_id` varchar(255) NOT NULL, `status` varchar(255) NOT NULL, `qty` int(32) NOT NULL, `manufacturer` varchar(255) NOT NULL, `part_number` varchar(255) NOT NULL, `description` varchar(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
-				db.query(query, (err, result) => {
-					if (err) {
-					throw err;
-					}
-					console.log("Table Created.");
-				});
-			}
-		}
-	});*/
 });
 global.db = db;
 
@@ -66,15 +48,14 @@ app.set('view engine', 'ejs'); // configure template engine
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // parse form data client
 app.use(express.static(path.join(__dirname, 'public'))); // configure express to use public folder
-app.use(fileUpload()); // configure fileupload
 
 // routes for the app
 app.get('/', getHomePage);
-app.get('/add', addPartPage);
-app.get('/edit/:id', editPartPage);
-app.get('/delete/:id', deletePart);
-app.post('/add', addPart);
-app.post('/edit/:id', editPart);
+app.get('/edit/:id', editTaskPage);
+app.get('/add', addTaskPage);
+app.get('/delete/:id', deleteTask);
+app.post('/add', addTask);
+app.post('/edit/:id', editTask);
 
 // set the app to listen on the port
 app.listen(port, () => {
