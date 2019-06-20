@@ -27,17 +27,13 @@ db.connect((err) => {
 		throw err;
 	}
 	console.log('Connected to database');
-	if(tableDoesExist(db,"tasks")) {
-		console.log("Table Already Exists.");
-	} else {
-		var query = "CREATE TABLE IF NOT EXISTS `tasks` ( `id` int(32) NOT NULL AUTO_INCREMENT, `bucket` varchar(255) NOT NULL, `task` varchar(255) NOT NULL, `status` varchar(255) NOT NULL, `time` varchar(255) NOT NULL, `notes` varchar(255) NOT NULL, `description` varchar(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
-		db.query(query, (err, result) => {
-			if (err) {
-			throw err;
-			}
-			console.log("Table Created.");
-		});
-	}
+	var query = "CREATE TABLE IF NOT EXISTS `tasks` ( `id` int(32) NOT NULL AUTO_INCREMENT, `bucket` varchar(255) NOT NULL, `task` varchar(255) NOT NULL, `status` varchar(255) NOT NULL, `time` varchar(255) NOT NULL, `notes` varchar(255) NOT NULL, `description` varchar(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
+	db.query(query, (err, result) => {
+	    if (err) {
+		throw err;
+	    }
+	    console.log("Table Setup.");
+	});
 });
 global.db = db;
 
@@ -61,3 +57,20 @@ app.post('/edit/:id', editTask);
 app.listen(port, () => {
 	console.log(`Server running on port: ${port}`);
 });
+if(process.env.NODE_ENV !== 'production') {
+
+    process.once('uncaughtException', function(err) {
+
+	console.error('FATAL: Uncaught exception.');
+
+	console.error(err.stack||err);
+
+	setTimeout(function(){
+
+	    process.exit(1);
+
+	}, 100);
+
+    });
+
+}
