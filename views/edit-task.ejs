@@ -1,0 +1,50 @@
+<% include partials/header.ejs %>
+<div class="container">
+    <% if (message) { %>
+        <p class="text-center text-danger"><%= message %></p>
+    <% } %>
+
+    <% if (task) { %>
+        <form class="add-task-form" action="" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="bucket">Bucket</label>
+                    <input type="text" class="form-control" name="bucket" id="bucket" value="<%= task.bucket %>" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="task">Task</label>
+                    <input type="text" class="form-control" name="task" id="task" value="<%= task.task %>" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="time">Time</label>
+                    <input type="number" class="form-control" name="time" id="time" value="<%= task.time %>" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" name="description" id="description" placeholder="Description" value="<%= task.description %>" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="status">Status</label>
+                    <select id="status" name="status" class="form-control" required>
+                        <option selected><%= task.status %></option>
+                        <option>Open</option>
+                        <option>Closed</option>
+                    </select>
+                </div>
+		<div class="form-group col-md-6">
+		  <label for="notes">Notes</label>
+		  <input type="textarea" class="form-control" name="notes" id="notes" placeholder="Notes" value="<%= task.notes %>" required>
+		</div>
+            </div>
+            <button type="submit" class="btn btn-success float-right">Update Task</button>
+        </form>
+    <% } else { %>
+    <p class="text-center">Task Not Found. Go <a href="/add">here</a> to add tasks.</p>
+    <p class="text-center">Or go <a href="/">here</a> to view tasks.</p>
+    <% } %>
+</div>
+</div>
+</body>
+</html>
