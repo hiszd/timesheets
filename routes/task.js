@@ -24,7 +24,7 @@ module.exports = {
 				title: 'Welcome to Solidesk | Add a new task'
 			});
 		} else {
-			let query = "INSERT INTO `tasks` (bucket, task, status, time, notes, description) VALUES ('"+bucket+"', '"+task+"', '"+stats+"', '"+time+"', '"+notes+"', '"+description+"');";
+			let query = 'INSERT INTO `tasks` (bucket, task, status, time, notes, description) VALUES ("'+bucket+'", "'+task+'", "'+stats+'", "'+time+'", "'+notes+'", "'+description+'");';
 			db.query(query, (err,result) => {
 				if(err) {return res.status(500).send(err);}
 				res.redirect('/');
@@ -55,7 +55,7 @@ module.exports = {
 		let notes = req.body.notes;
 		let description = req.body.description;
 
-		let query = "UPDATE `tasks` SET `time` = '" + time + "', `bucket` = '" + bucket + "', `status` = '" + stats + "', `task` = '" + task + "', `notes` = '" + notes + "', `description` = '" + description + "' WHERE `tasks`.`id` = '" + id + "';";
+		let query = 'UPDATE `tasks` SET `time` = "' + time + '", `bucket` = "' + bucket + '", `status` = "' + stats + '", `task` = "' + task + '", `notes` = "' + notes + '", `description` = "' + description + '" WHERE `tasks`.`id` = "' + id + '";';
 		db.query(query, (err, result) => {
 			if (err) {
 				return res.status(500).send(err);
