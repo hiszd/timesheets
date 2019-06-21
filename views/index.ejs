@@ -1,5 +1,5 @@
 <% include partials/header.ejs %>
-<div class="index-wrapper container-fluid">
+<div class="index-wrapper container-fluid task-group">
   <div class="row justify-content-start">
     <% if (tasks) {%>
     <% if (tasks.length > 0) {%>
@@ -12,7 +12,7 @@
 	  <li class="list-group-item">Status: <%= task.status %></li>
 	  <li class="list-group-item">Time Req: <%= task.time %></li>
 	  <li class="list-group-item">Notes: <%= task.notes %></li>
-	  <li class="list-group-item">Desc: <%= task.description %></li>
+	  <li class="list-group-item desc">Desc: <%= task.description %></li>
 	</ul>
 	<a href="/edit/<%= task.id %>" rel="noopener" class="btn btn-sm btn-success">Edit</a>
 	<a href="/delete/<%= task.id %>" class="btn btn-sm btn-danger">Delete</a>
