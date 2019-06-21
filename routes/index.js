@@ -15,7 +15,6 @@ module.exports = {
                     title: 'Welcome to SoliDesk | View Tasks'
                     ,tasks: result
 		});
-		console.log("Tasks:"+result);
 	    }
 	    res.end();
         });
