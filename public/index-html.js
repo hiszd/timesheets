@@ -55,6 +55,8 @@ var getDat = function(dat) {
 	}
 }
 var arrange = function(oldi, newi) {
+	console.log(oldi);
+	console.log(newi);
 	var arr = [];
 	for(var i=0;i<newi.length;i++) {
 		for(var j=0;j<oldi.length;j++) {
@@ -63,17 +65,18 @@ var arrange = function(oldi, newi) {
 			}
 		}
 	}
-	console.log(arr);
 	return arr;
 }
 var sortb = function(a,b) {
 	const datA = a.bucket.toUpperCase();
 	const datB = b.bucket.toUpperCase();
 	let comparison = 0;
-	if (datA &gt; datB) {
+	if (datA > datB) {
 		comparison = 1;
-	} else if (datA &lt; datB) {
+	} else if (datA < datB) {
 		comparison = -1;
+	} else if (datA == datB) {
+		comparison = 0;
 	}
 	return comparison;
 }
@@ -81,10 +84,12 @@ var sortt = function(a,b) {
 	const datA = a.task.toUpperCase();
 	const datB = b.task.toUpperCase();
 	let comparison = 0;
-	if (datA &gt; datB) {
+	if (datA > datB) {
 		comparison = 1;
-	} else if (datA &lt; datB) {
+	} else if (datA < datB) {
 		comparison = -1;
+	} else if (datA == datB) {
+		comparison = 0;
 	}
 	return comparison;
 }
@@ -92,21 +97,24 @@ var sorts = function(a,b) {
 	const datA = a.status.toUpperCase();
 	const datB = b.status.toUpperCase();
 	let comparison = 0;
-	if (datA &gt; datB) {
+	if (datA > datB) {
 		comparison = 1;
-	} else if (datA &lt; datB) {
+	} else if (datA < datB) {
 		comparison = -1;
+	} else if (datA == datB) {
+		comparison = 0;
 	}
 	return comparison;
 }
 var sortti = function(a,b) {
 	const datA = a.time.toUpperCase();
 	const datB = b.time.toUpperCase();
-	let comparison = 0;
-	if (datA &gt; datB) {
+	if (datA > datB) {
 		comparison = 1;
-	} else if (datA &lt; datB) {
+	} else if (datA < datB) {
 		comparison = -1;
+	} else if (datA == datB) {
+		comparison = 0;
 	}
 	return comparison;
 }
@@ -114,10 +122,12 @@ var sortn = function(a,b) {
 	const datA = a.notes.toUpperCase();
 	const datB = b.notes.toUpperCase();
 	let comparison = 0;
-	if (datA &gt; datB) {
+	if (datA > datB) {
 		comparison = 1;
-	} else if (datA &lt; datB) {
+	} else if (datA < datB) {
 		comparison = -1;
+	} else if (datA == datB) {
+		comparison = 0;
 	}
 	return comparison;
 }
@@ -125,24 +135,26 @@ var sortd = function(a,b) {
 	const datA = a.description.toUpperCase();
 	const datB = b.description.toUpperCase();
 	let comparison = 0;
-	if (datA &gt; datB) {
+	if (datA > datB) {
 		comparison = 1;
-	} else if (datA &lt; datB) {
+	} else if (datA < datB) {
 		comparison = -1;
+	} else if (datA == datB) {
+		comparison = 0;
 	}
 	return comparison;
 }
 var sortCards = function(sort) {
 	switch(sort) {
 		case "bucketa":
-		var items = getDat();
-		var arr = arrange(items,items.sort(sortb));
-		return arr;
+		var itemso = getDat();
+		var itemsn = getDat().sort(sortb);
+		var arr = arrange(itemso,itemsn);
 		break;
 		case "bucketd":
-		var buckets = getDat();
-		var arr = arrange(items,items.sort(sortb).reverse());
-		return arr;
+		var itemso = getDat();
+		var itemsn = getDat().sort(sortb).reverse();
+		var arr = arrange(itemso,itemsn);
 		break;
 	}
 	var wrapper = document.getElementsByClassName("cont");
@@ -152,7 +164,7 @@ var sortCards = function(sort) {
 	arr.forEach(function(idx) {
 		elements.appendChild(items[idx].cloneNode(true));
 	});
-
 	wrapper[0].innerHTML = null;
 	wrapper[0].appendChild(elements);
+	return 1;
 }

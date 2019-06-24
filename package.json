@@ -15,5 +15,9 @@
     "express-fileupload": "^1.1.1-alpha.3",
     "mysql": "^2.16.0",
     "req-flash": "0.0.3"
-  }
+  },
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/hiszd/base-10.git"
+	}
 }
