@@ -4,7 +4,7 @@
 		<% if (tasks) {%>
 			<% if (tasks.length > 0) {%>
 				<% tasks.forEach((task, index) => { %>
-					<div class="card w-25 m-2" data-taskinfo='{"bucket": "<%= task.bucket %>", "task": "<%= task.task %>", "status": "<%= task.status %>", "time": "<%= task.time %>", "notes": "<%= task.notes %>", "description": "<%= task.description %>"}'>
+					<div class="card w-25 m-2" data-taskinfo='{"id": "<%= task.id %>", "bucket": "<%= task.bucket %>", "task": "<%= task.task %>", "status": "<%= task.status %>", "time": "<%= task.time %>", "notes": "<%= task.notes %>", "description": "<%= task.description %>"}'>
 						<div class="card-header"><%= task.bucket %></div>
 						<div class="card-body">
 							<h5 class="card-title"><%= task.task %></h5>
