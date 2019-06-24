@@ -29,10 +29,10 @@ db.connect((err) => {
 	console.log('Connected to database');
 	var query = "CREATE TABLE IF NOT EXISTS `tasks` ( `id` int(32) NOT NULL AUTO_INCREMENT, `bucket` varchar(255) NOT NULL, `task` varchar(255) NOT NULL, `status` varchar(255) NOT NULL, `time` varchar(255) NOT NULL, `notes` varchar(255) NOT NULL, `description` varchar(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
 	db.query(query, (err, result) => {
-	    if (err) {
-		throw err;
-	    }
-	    console.log("Table Setup.");
+		if (err) {
+			throw err;
+		}
+		console.log("Table Setup.");
 	});
 });
 global.db = db;
@@ -59,18 +59,18 @@ app.listen(port, () => {
 });
 if(process.env.NODE_ENV !== 'production') {
 
-    process.once('uncaughtException', function(err) {
+	process.once('uncaughtException', function(err) {
 
-	console.error('FATAL: Uncaught exception.');
+		console.error('FATAL: Uncaught exception.');
 
-	console.error(err.stack||err);
+		console.error(err.stack||err);
 
-	setTimeout(function(){
+		setTimeout(function(){
 
-	    process.exit(1);
+			process.exit(1);
 
-	}, 100);
+		}, 100);
 
-    });
+	});
 
 }
