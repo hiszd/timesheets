@@ -1,10 +1,10 @@
 <% include partials/header.ejs %>
 <div class="index-wrapper container-fluid task-group">
-	<div class="row justify-content-start cont">
+	<div class="row align-items-start cont">
 		<% if (tasks) {%>
 			<% if (tasks.length > 0) {%>
 				<% tasks.forEach((task, index) => { %>
-					<div class="card w-25 m-2" data-taskinfo='{"id": "<%= task.id %>", "bucket": "<%= task.bucket %>", "task": "<%= task.task %>", "status": "<%= task.status %>", "time": "<%= task.time %>", "notes": "<%= task.notes %>", "description": "<%= task.description %>"}'>
+					<div class="card m-2" data-taskinfo='{"id": "<%= task.id %>", "bucket": "<%= task.bucket %>", "task": "<%= task.task %>", "status": "<%= task.status %>", "time": "<%= task.time %>", "notes": "<%= task.notes %>", "description": "<%= task.description %>"}'>
 						<div class="card-header"><%= task.bucket %></div>
 						<div class="card-body">
 							<h5 class="card-title"><%= task.task %></h5>
@@ -12,7 +12,7 @@
 								<li class="list-group-item">Status: <%= task.status %></li>
 								<li class="list-group-item">Time Req: <%= task.time %></li>
 								<li class="list-group-item">Notes: <%= task.notes %></li>
-								<li class="list-group-item desc">Desc: <%= task.description %></li>
+								<li class="list-group-item wsn">Desc: <%= task.description %></li>
 							</ul>
 							<a href="/delete/<%= task.id %>" class="btn btn-sm btn-danger">Delete</a>
 							<a href="/edit/<%= task.id %>" rel="noopener" class="btn btn-sm btn-success">Edit</a>
@@ -26,6 +26,19 @@
 </div>
 </div>
 </div>
-<script type="text/javascript" src="index-html.js"></script>
+<script type="text/javascript" src="js/index-html.js"></script>
+<script type="text/javascript">
+	$(function() {
+
+		$("#cont").mousewheel(function(event, delta) {
+
+			this.scrollLeft -= (delta * 90);
+
+			event.preventDefault();
+
+		});
+
+	});
+</script>
 </body>
 </html>

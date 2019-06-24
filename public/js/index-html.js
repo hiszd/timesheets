@@ -145,18 +145,46 @@ var sortd = function(a,b) {
 	return comparison;
 }
 var sortCards = function(sort) {
+	itemso = getDat();
 	switch(sort) {
 		case "bucketa":
-		var itemso = getDat();
 		var itemsn = getDat().sort(sortb);
-		var arr = arrange(itemso,itemsn);
 		break;
 		case "bucketd":
-		var itemso = getDat();
 		var itemsn = getDat().sort(sortb).reverse();
-		var arr = arrange(itemso,itemsn);
+		break;
+		case "taska":
+		var itemsn = getDat().sort(sortt);
+		break;
+		case "taskd":
+		var itemsn = getDat().sort(sortt).reverse();
+		break;
+		case "statusa":
+		var itemsn = getDat().sort(sorts);
+		break;
+		case "statusd":
+		var itemsn = getDat().sort(sorts).reverse();
+		break;
+		case "timea":
+		var itemsn = getDat().sort(sortti);
+		break;
+		case "timed":
+		var itemsn = getDat().sort(sortti).reverse();
+		break;
+		case "notesa":
+		var itemsn = getDat().sort(sortn);
+		break;
+		case "notesd":
+		var itemsn = getDat().sort(sortn).reverse();
+		break;
+		case "desca":
+		var itemsn = getDat().sort(sortd);
+		break;
+		case "descd":
+		var itemsn = getDat().sort(sortd).reverse();
 		break;
 	}
+	var arr = arrange(itemso,itemsn);
 	var wrapper = document.getElementsByClassName("cont");
 	var items = wrapper[0].children;
 	var elements = document.createDocumentFragment();
