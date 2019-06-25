@@ -55,8 +55,6 @@ var getDat = function(dat) {
 	}
 }
 var arrange = function(oldi, newi) {
-	console.log(oldi);
-	console.log(newi);
 	var arr = [];
 	for(var i=0;i<newi.length;i++) {
 		for(var j=0;j<oldi.length;j++) {
@@ -195,4 +193,19 @@ var sortCards = function(sort) {
 	wrapper[0].innerHTML = null;
 	wrapper[0].appendChild(elements);
 	return 1;
+}
+var updateTask = function(id) {
+	$.ajax({
+		url: url,
+		type: 'get',
+		dataType: 'json',
+		async: false,
+		cache: false,
+		success: function(data) {
+			$("#"+data.id).child("#")
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			alert('error ' + textStatus + " " + errorThrown);
+		}
+	});
 }

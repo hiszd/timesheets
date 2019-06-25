@@ -50,6 +50,18 @@ module.exports = {
 			});
 		});
 	},
+	getTask: (req, res) => {
+		let id = req.params.id;
+		let query = "SELECT * FROM `tasks` WHERE id = '" + id + "' ";
+		db.query(query, (err, result) => {
+			if (err) {
+				return res.status(500).send(err);
+			}
+			res.writeHead(200, {'Content-Type': 'text/json'});
+			res.end(JSON.stringify(result[0]));
+			console.log(JSON.stringify(result[0]));
+		});
+	},
 	editTask: (req, res) => {
 		let id = conditionInput(req.params.id);
 		let bucket = conditionInput(req.body.bucket);
