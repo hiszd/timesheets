@@ -6,7 +6,7 @@ const path = require('path');
 const app = express();
 
 const {getHomePage} = require('./routes/index');
-const {addTaskPage, addTask, deleteTask, editTask, editTaskPage} = require('./routes/task');
+const {addTaskPage, addTask, deleteTask, editTask, editTaskPage, getTask} = require('./routes/task');
 const {tableDoesExist, itemDoesExist} = require('./lib/lib');
 
 const port = 3000;
@@ -50,6 +50,7 @@ app.get('/', getHomePage);
 app.get('/edit/:id', editTaskPage);
 app.get('/add', addTaskPage);
 app.get('/delete/:id', deleteTask);
+app.get('/get/:id', getTask);
 app.post('/add', addTask);
 app.post('/edit/:id', editTask);
 

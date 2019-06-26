@@ -63,17 +63,18 @@ var arrange = function(oldi, newi) {
 			}
 		}
 	}
-	console.log(arr);
 	return arr;
 }
 var sortb = function(a,b) {
 	const datA = a.bucket.toUpperCase();
 	const datB = b.bucket.toUpperCase();
 	let comparison = 0;
-	if (datA &gt; datB) {
+	if (datA > datB) {
 		comparison = 1;
-	} else if (datA &lt; datB) {
+	} else if (datA < datB) {
 		comparison = -1;
+	} else if (datA == datB) {
+		comparison = 0;
 	}
 	return comparison;
 }
@@ -81,10 +82,12 @@ var sortt = function(a,b) {
 	const datA = a.task.toUpperCase();
 	const datB = b.task.toUpperCase();
 	let comparison = 0;
-	if (datA &gt; datB) {
+	if (datA > datB) {
 		comparison = 1;
-	} else if (datA &lt; datB) {
+	} else if (datA < datB) {
 		comparison = -1;
+	} else if (datA == datB) {
+		comparison = 0;
 	}
 	return comparison;
 }
@@ -92,21 +95,24 @@ var sorts = function(a,b) {
 	const datA = a.status.toUpperCase();
 	const datB = b.status.toUpperCase();
 	let comparison = 0;
-	if (datA &gt; datB) {
+	if (datA > datB) {
 		comparison = 1;
-	} else if (datA &lt; datB) {
+	} else if (datA < datB) {
 		comparison = -1;
+	} else if (datA == datB) {
+		comparison = 0;
 	}
 	return comparison;
 }
 var sortti = function(a,b) {
 	const datA = a.time.toUpperCase();
 	const datB = b.time.toUpperCase();
-	let comparison = 0;
-	if (datA &gt; datB) {
+	if (datA > datB) {
 		comparison = 1;
-	} else if (datA &lt; datB) {
+	} else if (datA < datB) {
 		comparison = -1;
+	} else if (datA == datB) {
+		comparison = 0;
 	}
 	return comparison;
 }
@@ -114,10 +120,12 @@ var sortn = function(a,b) {
 	const datA = a.notes.toUpperCase();
 	const datB = b.notes.toUpperCase();
 	let comparison = 0;
-	if (datA &gt; datB) {
+	if (datA > datB) {
 		comparison = 1;
-	} else if (datA &lt; datB) {
+	} else if (datA < datB) {
 		comparison = -1;
+	} else if (datA == datB) {
+		comparison = 0;
 	}
 	return comparison;
 }
@@ -125,26 +133,56 @@ var sortd = function(a,b) {
 	const datA = a.description.toUpperCase();
 	const datB = b.description.toUpperCase();
 	let comparison = 0;
-	if (datA &gt; datB) {
+	if (datA > datB) {
 		comparison = 1;
-	} else if (datA &lt; datB) {
+	} else if (datA < datB) {
 		comparison = -1;
+	} else if (datA == datB) {
+		comparison = 0;
 	}
 	return comparison;
 }
 var sortCards = function(sort) {
+	itemso = getDat();
 	switch(sort) {
 		case "bucketa":
-		var items = getDat();
-		var arr = arrange(items,items.sort(sortb));
-		return arr;
+		var itemsn = getDat().sort(sortb);
 		break;
 		case "bucketd":
-		var buckets = getDat();
-		var arr = arrange(items,items.sort(sortb).reverse());
-		return arr;
+		var itemsn = getDat().sort(sortb).reverse();
+		break;
+		case "taska":
+		var itemsn = getDat().sort(sortt);
+		break;
+		case "taskd":
+		var itemsn = getDat().sort(sortt).reverse();
+		break;
+		case "statusa":
+		var itemsn = getDat().sort(sorts);
+		break;
+		case "statusd":
+		var itemsn = getDat().sort(sorts).reverse();
+		break;
+		case "timea":
+		var itemsn = getDat().sort(sortti);
+		break;
+		case "timed":
+		var itemsn = getDat().sort(sortti).reverse();
+		break;
+		case "notesa":
+		var itemsn = getDat().sort(sortn);
+		break;
+		case "notesd":
+		var itemsn = getDat().sort(sortn).reverse();
+		break;
+		case "desca":
+		var itemsn = getDat().sort(sortd);
+		break;
+		case "descd":
+		var itemsn = getDat().sort(sortd).reverse();
 		break;
 	}
+	var arr = arrange(itemso,itemsn);
 	var wrapper = document.getElementsByClassName("cont");
 	var items = wrapper[0].children;
 	var elements = document.createDocumentFragment();
@@ -152,7 +190,22 @@ var sortCards = function(sort) {
 	arr.forEach(function(idx) {
 		elements.appendChild(items[idx].cloneNode(true));
 	});
-
 	wrapper[0].innerHTML = null;
 	wrapper[0].appendChild(elements);
+	return 1;
+}
+var updateTask = function(id) {
+	$.ajax({
+		url: url,
+		type: 'get',
+		dataType: 'json',
+		async: false,
+		cache: false,
+		success: function(data) {
+			$("#"+data.id).child("#")
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			alert('error ' + textStatus + " " + errorThrown);
+		}
+	});
 }

@@ -1,18 +1,18 @@
 <% include partials/header.ejs %>
-<div class="index-wrapper container-fluid task-group">
-	<div class="row justify-content-start cont">
+<div class="index-wrapper mt-0 pr-4 container-fluid task-group bg-dark">
+	<div id="cont" class="row p-2 pb-0 align-items-start cont">
 		<% if (tasks) {%>
 			<% if (tasks.length > 0) {%>
 				<% tasks.forEach((task, index) => { %>
-					<div class="card w-25 m-2" data-taskinfo='{"id": "<%= task.id %>", "bucket": "<%= task.bucket %>", "task": "<%= task.task %>", "status": "<%= task.status %>", "time": "<%= task.time %>", "notes": "<%= task.notes %>", "description": "<%= task.description %>"}'>
-						<div class="card-header"><%= task.bucket %></div>
+					<div id="<%= task.id %>" class="card mr-3" data-taskinfo='{"id": "<%= task.id %>", "bucket": "<%= task.bucket %>", "task": "<%= task.task %>", "status": "<%= task.status %>", "time": "<%= task.time %>", "notes": "<%= task.notes %>", "description": "<%= task.description %>"}'>
+						<div id="bucket" class="card-header"><%= task.bucket %></div>
 						<div class="card-body">
-							<h5 class="card-title"><%= task.task %></h5>
+							<h5 id="task" class="card-title"><%= task.task %></h5>
 							<ul class="list-group list-group-flush mb-3">
-								<li class="list-group-item">Status: <%= task.status %></li>
-								<li class="list-group-item">Time Req: <%= task.time %></li>
-								<li class="list-group-item">Notes: <%= task.notes %></li>
-								<li class="list-group-item desc">Desc: <%= task.description %></li>
+								<li class="list-group-item">Status: <em id="status"><%= task.status %></em></li>
+								<li class="list-group-item">Time Req: <em id="time"><%= task.time %></em></li>
+								<li class="list-group-item">Notes: <em id="notes"><%= task.notes %></em></li>
+								<li class="list-group-item wsn">Desc: <em id="desc"><%= task.description %></em></li>
 							</ul>
 							<a href="/delete/<%= task.id %>" class="btn btn-sm btn-danger">Delete</a>
 							<a href="/edit/<%= task.id %>" rel="noopener" class="btn btn-sm btn-success">Edit</a>
@@ -26,6 +26,25 @@
 </div>
 </div>
 </div>
-<script type="text/javascript" src="index-html.js"></script>
+<script type="application/x-javascript" src="js/index-html.js"></script>
+<script type="text/javascript">
+	(function() {
+		function scrollHorizontally(e) {
+			e = window.event || e;
+			var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+			document.getElementById('cont').scrollLeft -= (delta*40); // Multiplied by 40
+			e.preventDefault();
+		}
+		if (document.getElementById('cont').addEventListener) {
+			// IE9, Chrome, Safari, Opera
+			document.getElementById('cont').addEventListener("mousewheel", scrollHorizontally, false);
+			// Firefox
+			document.getElementById('cont').addEventListener("DOMMouseScroll", scrollHorizontally, false);
+		} else {
+			// IE 6/7/8
+			document.getElementById('cont').attachEvent("onmousewheel", scrollHorizontally);
+		}
+	})();
+</script>
 </body>
 </html>
