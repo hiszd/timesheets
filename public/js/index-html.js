@@ -196,16 +196,81 @@ var sortCards = function(sort) {
 }
 var updateTask = function(id) {
 	$.ajax({
-		url: url,
+		url: "http://localhost:3000/get/"+id,
 		type: 'get',
 		dataType: 'json',
-		async: false,
+		async: true,
 		cache: false,
 		success: function(data) {
-			$("#"+data.id).child("#")
+			var card = $("#"+data.id);
+			card.attr("data-taskinfo", JSON.stringify(data));
+			card.find("#bucket").html(data.bucket);
+			card.find("#task").html(data.task);
+			card.find("#status").html(data.status);
+			card.find("#time").html(data.time);
+			card.find("#notes").html(data.notes);
+			card.find("#desc").html(data.description);
 		},
 		error: function(jqXHR, textStatus, errorThrown) {
 			alert('error ' + textStatus + " " + errorThrown);
 		}
 	});
 }
+$(document).ready(function(){
+	sortCards($("#sort").val());
+	$("#editModal").on("show.bs.modal", function(event){
+		var button = $(event.relatedTarget);
+
+		var card = $("#"+button.data("id"));
+		$(this).attr("data-id", button.data("id"));
+		$(this).find(".modal-title").text("Edit \""+card.find("#task").text()+"\"");
+		$(this).find("#task").val(card.find("#task").text());
+		$(this).find("#bucket").val(card.find("#bucket").text());
+		$(this).find("#status").val(card.find("#status").text());
+		$(this).find("#description").val(card.find("#desc").text());
+		$(this).find("#time").val(card.find("#time").text());
+		$(this).find("#notes").val(card.find("#notes").text());
+	});
+	$("#editModal").find("#submit").on("click", function(event){
+		console.log("Clicked");
+		$("#editModal").find("form").submit();
+	});
+	function sendData() {
+		console.log("Sending Data");
+		var XHR = new XMLHttpRequest();
+
+		// Bind the FormData object and the form element
+		//var FD = new FormData($("#edit-task").get(0));
+		var params = $("#edit-task").serializeArray();
+		formData = {};
+		$.each(params, function(i, val) {
+			formData[val.name] = val.value;
+		});
+		var FD = JSON.stringify(formData)
+
+		// Define what happens on successful data submission
+		XHR.addEventListener("load", function(event) {
+			console.log("Success");
+		});
+
+		// Define what happens in case of error
+		XHR.addEventListener("error", function(event) {
+			alert('Oops! Something went wrong.');
+		});
+
+		// Set up our request
+		XHR.open("POST", "http://localhost:3000/edit/"+$("#editModal").data("id"));
+		XHR.setRequestHeader('Content-Type', 'application/json')
+		// The data sent is what the user provided in the form
+		console.log(FD);
+		XHR.send(FD);
+	}
+
+	$("#edit-task").on("submit", function (event) {
+		event.preventDefault();
+
+		sendData();
+		updateTask($("#editModal").data("id"));
+		$("#editModal").modal("hide");
+	});
+});

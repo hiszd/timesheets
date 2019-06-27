@@ -59,7 +59,6 @@ module.exports = {
 			}
 			res.writeHead(200, {'Content-Type': 'text/json'});
 			res.end(JSON.stringify(result[0]));
-			console.log(JSON.stringify(result[0]));
 		});
 	},
 	editTask: (req, res) => {
