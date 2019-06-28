@@ -12,6 +12,12 @@
 	<title><%= title %></title>
 </head>
 <style>
+.page-wrapper {
+	display: none;
+}
+.page-wrapper > nav {
+	caret-color: transparent;
+}
 .table-wrapper {
 	margin-top: 50px;
 }
@@ -39,6 +45,7 @@
 	width: 400px;
 	height: min-content;
 	flex-shrink: 0;
+	caret-color: transparent;
 }
 .wsn {
 	white-space: normal;
@@ -54,9 +61,56 @@
 	height: auto;
 	width: auto;
 }
+#page {
+	display: none;
+}
+#loader {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 10000;
+	width: 500px;
+	height: 500px;
+	margin: -75px 0 0 -75px;
+}
+.fadeinout {
+	-webkit-animation: fadeinout 1s linear infinite;
+	animation: fadeinout 1s linear infinite;
+}
+@-webkit-keyframes fadeinout {
+	from{opacity:1 }
+	to{opacity:0.1 }
+}
+
+@keyframes fadeinout {
+	from{opacity:1 }
+	to{opacity:0.1 }
+}
+/* Add animation to "page content" */
+.animate-bottom {
+	position: relative;
+	-webkit-animation-name: animatebottom;
+	-webkit-animation-duration: 1s;
+	animation-name: animatebottom;
+	animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+	from { bottom:-100px; opacity:0 }
+	to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+	from{ bottom:-100px; opacity:0 }
+	to{ bottom:0; opacity:1 }
+}
 </style>
 <body>
-	<div class="page-wrapper">
+	<div id="loader" class="text-dark row">
+		<p class="lead inline-block fadeinout">Loading...</p>
+		<div class="spinner-border text-dark"></div>
+	</div>
+	<div class="page-wrapper animate-bottom">
 		<nav class="navbar navbar-light bg-light mb-0">
 			<span class="navbar-brand mb-0 h1" ><a href="/"><strong>Soli</strong><strong style="color: red">Desk</strong> <em>Tasks</em></a></span>
 			<span class="m-0 float-right">

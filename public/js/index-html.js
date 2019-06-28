@@ -186,10 +186,28 @@ var sortCards = function(sort) {
 	var wrapper = document.getElementsByClassName("cont");
 	var items = wrapper[0].children;
 	var elements = document.createDocumentFragment();
+	var groups = { };
+	itemsn.forEach(function(item){
+		var list = groups[item.bucket];
 
-	arr.forEach(function(idx) {
-		elements.appendChild(items[idx].cloneNode(true));
+		if(list){
+			list.push(item);
+		} else{
+			groups[item.bucket] = [item];
+		}
 	});
+	console.log(groups);
+	groups.forEach(function(idx) {
+		var cont = $([
+			"<div class='bg-secondary'>",
+			"</div>"
+		].join("\n"));
+		cont.appendChild(items[idx].cloneNode(true));
+		elements.appendChild(cont);
+	});
+	//arr.forEach(function(idx) {
+	//	elements.appendChild(items[idx].cloneNode(true));
+	//});
 	wrapper[0].innerHTML = null;
 	wrapper[0].appendChild(elements);
 	return 1;
@@ -273,4 +291,10 @@ $(document).ready(function(){
 		updateTask($("#editModal").data("id"));
 		$("#editModal").modal("hide");
 	});
+	setTimeout(showPage,1000);
 });
+var showPage = function() {
+	$("#loader").hide();
+	$(".page-wrapper").show();
+	$("#page").show();
+}
