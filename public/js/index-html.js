@@ -1,3 +1,18 @@
+class task {
+	constructor(selector) {
+		this._element = document.getElementById(selector);
+	}
+
+	// Functions
+
+	colorMe() {
+		this._element.style.backgroundColor = "red";
+	}
+
+	moveMe(x) {
+		this._element.style.marginTop = x;
+	}
+}
 var getDat = function(dat) {
 	var wrapper = document.getElementsByClassName("cont")[0];
 	var item = [];
@@ -196,7 +211,7 @@ var sortCards = function(sort) {
 			groups[item.bucket] = [item];
 		}
 	});
-	console.log(groups);
+	console.log(groups);/*
 	groups.forEach(function(idx) {
 		var cont = $([
 			"<div class='bg-secondary'>",
@@ -204,10 +219,10 @@ var sortCards = function(sort) {
 		].join("\n"));
 		cont.appendChild(items[idx].cloneNode(true));
 		elements.appendChild(cont);
+	});*/
+	arr.forEach(function(idx) {
+		elements.appendChild(items[idx].cloneNode(true));
 	});
-	//arr.forEach(function(idx) {
-	//	elements.appendChild(items[idx].cloneNode(true));
-	//});
 	wrapper[0].innerHTML = null;
 	wrapper[0].appendChild(elements);
 	return 1;
