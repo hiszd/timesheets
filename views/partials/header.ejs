@@ -35,7 +35,7 @@
 	background-color: rgba(40,40,40,1);
 }
 .bg-red {
-	background-color: rgba(60,0,0,1);
+	background-color: rgba(40,0,0,1);
 }
 .page-wrapper {
 	display: none;
@@ -86,17 +86,26 @@
 	height: auto;
 	width: auto;
 }
+.vh-100 {
+	height: 100vh;
+}
+.vw-100 {
+	width: 100vw;
+}
+.text-1-5 {
+	font-size: 1.5rem;
+}
 #page {
 	display: none;
 }
 #loader {
 	position: absolute;
-	left: 50%;
-	top: 50%;
+	padding-left: 50%;
+	padding-top: 25%;
 	z-index: 10000;
-	width: 500px;
-	height: 500px;
-	margin: -75px 0 0 -75px;
+	width: 100vw;
+	height: 100vh;
+	margin: 0px;
 }
 .fadeinout {
 	-webkit-animation: fadeinout 1s linear infinite;
@@ -130,17 +139,17 @@
 	to{ bottom:0; opacity:1 }
 }
 </style>
-<body>
-	<div id="loader" class="text-dark row">
+<body class="bg-dark">
+	<div id="loader" class="text-dark bg-light vh-100 vw-100 row">
 		<p class="lead inline-block fadeinout">Loading...</p>
 		<div class="spinner-border text-dark"></div>
 	</div>
 	<div class="page-wrapper animate-bottom">
-		<nav class="navbar navbar-light bg-light mb-0">
+		<nav class="navbar navbar-dark bg-dark mb-0">
 			<span class="navbar-brand mb-0 h1" ><a href="/"><strong>Soli</strong><strong style="color: red">Desk</strong> <em>Tasks</em></a></span>
 			<span class="m-0 float-right">
 			<p class="align-middle text-dark d-inline">Sort: </p>
-			<select id="sort" class="form-control mr-2 align-middle d-inline-block hw-normal" onchange="sortCards(this.options[this.selectedIndex].value)">
+			<select id="sort" class="form-control bg-dark text-light mr-2 align-middle d-inline-block hw-normal" onchange="sortCards(this.options[this.selectedIndex].value)">
 				<option value="bucketa">Bucket ASC</option>
 				<option value="bucketd">Bucket DES</option>
 				<option value="taska">Task ASC</option>
