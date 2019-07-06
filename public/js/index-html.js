@@ -1,18 +1,3 @@
-class task {
-	constructor(selector) {
-		this._element = document.getElementById(selector);
-	}
-
-	// Functions
-
-	colorMe() {
-		this._element.style.backgroundColor = "red";
-	}
-
-	moveMe(x) {
-		this._element.style.marginTop = x;
-	}
-}
 var getDat = function(dat) {
 	var wrapper = document.getElementsByClassName("cont")[0];
 	var item = [];
@@ -307,6 +292,7 @@ $(document).ready(function(){
 		$("#editModal").modal("hide");
 	});
 	setTimeout(showPage,1000);
+	var task1 = new task('27');
 });
 var showPage = function() {
 	$("#loader").hide();
