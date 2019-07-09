@@ -1,0 +1,126 @@
+.border-top-bottom-gray {
+	border-top: solid 1px rgba(100,100,100,1) !important;
+	border-bottom: solid 1px rgba(100,100,100,1) !important;
+}
+.border-top-gray {
+	border-top: solid 1px rgba(100,100,100,1) !important;
+}
+.border-gray {
+	border-color: rgba(100,100,100,1) !important;
+}
+.border-1-gray {
+	border: 1px solid rgba(100,100,100,1);
+}
+.text-black {
+	color: black;
+}
+.bg-light-gray {
+	background-color: rgba(70,70,70,1);
+}
+.bg-gray {
+	background-color: rgba(40,40,40,1);
+}
+.bg-red {
+	background-color: rgba(40,0,0,1);
+}
+.page-wrapper {
+	display: none;
+}
+.page-wrapper > nav {
+	caret-color: transparent;
+}
+.table-wrapper {
+	margin-top: 50px;
+}
+
+.add-part-form {
+	margin-top: 50px;
+}
+.index-wrapper {
+	margin-top: 10px;
+	height: 93vh;
+}
+.task-group > .row {
+	overflow: scroll;
+	overflow-x: auto;
+	overflow-y: hidden;
+	white-space: nowrap;
+	flex-wrap: nowrap;
+	height: 100%;
+}
+.task-group > .row > .card {
+	display: inline-block;
+	float: none;
+	overflow-x: hidden;
+	box-sizing: content-box;
+	width: 400px;
+	height: min-content;
+	flex-shrink: 0;
+	caret-color: transparent;
+}
+.wsn {
+	white-space: normal;
+}
+.rounded-lg {
+	border-radius: 0.5rem !important;
+}
+.rounded-left-lg {
+	border-top-left-radius: 0.5rem !important;
+	border-bottom-left-radius: 0.5rem !important;
+}
+.hw-normal {
+	height: auto;
+	width: auto;
+}
+.vh-100 {
+	height: 100vh;
+}
+.vw-100 {
+	width: 100vw;
+}
+.text-1-5 {
+	font-size: 1.5rem;
+}
+#page {
+	display: none;
+}
+#loader {
+	position: absolute;
+	padding-left: 50%;
+	padding-top: 25%;
+	z-index: 10000;
+	width: 100vw;
+	height: 100vh;
+	margin: 0px;
+}
+.fadeinout {
+	-webkit-animation: fadeinout 1s linear infinite;
+	animation: fadeinout 1s linear infinite;
+}
+@-webkit-keyframes fadeinout {
+	from{opacity:1 }
+	to{opacity:0.1 }
+}
+
+@keyframes fadeinout {
+	from{opacity:1 }
+	to{opacity:0.1 }
+}
+/* Add animation to "page content" */
+.animate-bottom {
+	position: relative;
+	-webkit-animation-name: animatebottom;
+	-webkit-animation-duration: 1s;
+	animation-name: animatebottom;
+	animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+	from { bottom:-100px; opacity:0 }
+	to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+	from{ bottom:-100px; opacity:0 }
+	to{ bottom:0; opacity:1 }
+}
