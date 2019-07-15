@@ -1,9 +1,11 @@
 var getDat = function(dat) {
 	var wrapper = document.getElementsByClassName("cont")[0];
 	var item = [];
-	for(var i=0;i<wrapper.children.length;i++) {
-		var datr = JSON.parse(wrapper.children[i].dataset.taskinfo);
-		item[i] = datr;
+	if(wrapper.children.length>0) {
+		for(var i=0;i<wrapper.children.length;i++) {
+			var datr = JSON.parse(wrapper.children[i].dataset.taskinfo);
+			item[i] = datr;
+		}
 	}
 
 	switch(dat) {
@@ -214,7 +216,7 @@ var sortCards = function(sort) {
 }
 var updateTask = function(id) {
 	$.ajax({
-		url: "http://localhost:3000/get/"+id,
+		url: "http://"+window.location.hostname+":3000/get/"+id,
 		type: 'get',
 		dataType: 'json',
 		async: true,
@@ -277,7 +279,7 @@ $(document).ready(function(){
 		});
 
 		// Set up our request
-		XHR.open("POST", "http://localhost:3000/edit/"+$("#editModal").data("id"));
+		XHR.open("POST", "http://"+window.location.hostname+":3000/edit/"+$("#editModal").data("id"));
 		XHR.setRequestHeader('Content-Type', 'application/json')
 		// The data sent is what the user provided in the form
 		console.log(FD);
@@ -292,7 +294,6 @@ $(document).ready(function(){
 		$("#editModal").modal("hide");
 	});
 	setTimeout(showPage,1000);
-	var task1 = new task('27');
 });
 var showPage = function() {
 	$("#loader").hide();
