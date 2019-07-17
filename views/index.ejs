@@ -62,11 +62,11 @@
 						<div id="bucket" class="card-header bg-gray text-white text-1-5"><%= task.bucket %></div>
 						<div class="card-body bg-dark">
 							<h5 id="task" class="card-title bg-gray text-white p-2 text-center rounded-lg"><%= task.task %></h5>
-							<ul class="list-group list-group-flush mb-3">
+							<ul class="list-group list-group-flush mb-3 wsn">
 								<li class="list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg"><label class="m-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg p-1 text-white" for="status">Status:</label><em id="status" class="pl-1"><%= task.status %></em></li>
 								<li class="list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg"><label class="m-0 text-right border-dark w-25 border bg-light-gray rounded-left-lg p-1 text-white" for="time">Time Req:</label><em id="time" class="pl-1"><%= task.time %></em></li>
-								<li class="list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg wsn"><label class="m-0 text-right border-dark w-25 border bg-light-gray rounded-left-lg p-1 text-white" for="notes">Notes:</label><em id="notes" class="pl-1"><%= task.notes %></em></li>
-								<li class="list-group-item bg-dark p-0 text-light align-middle border-top-bottom-gray rounded-lg wsn"><label class="m-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg p-1 text-white" for="desc">Desc:</label><em id="desc" class="pl-1"><%= task.description %></em></li>
+								<li class="list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg"><label class="m-0 text-right border-dark w-25 border bg-light-gray rounded-left-lg p-1 text-white" for="notes">Notes:</label><em id="notes" class="pl-1"><%= task.notes %></em></li>
+								<li class="list-group-item bg-dark p-0 text-light align-middle border-top-bottom-gray rounded-lg"><label class="m-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg p-1 text-white" for="desc">Desc:</label><em id="desc" class="pl-1"><%= task.description %></em></li>
 							</ul>
 							<a href="/delete/<%= task.id %>" class="btn btn-sm btn-danger border border-dark">Delete</a>
 							<!--<a href="/edit/<%= task.id %>" rel="noopener" class="btn btn-sm btn-success border border-dark">Edit</a>-->
