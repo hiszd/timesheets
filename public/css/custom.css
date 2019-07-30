@@ -92,11 +92,11 @@
 }
 .wsn > .list-group-item {
 	white-space: normal !important;
-	max-height: 2em !important;
+	max-height: 2em;
 	overflow: hidden;
 	transition: max-height 0.5s ease;
 }
-.wsn > .list-group-item:hover {
+.overhover {
 	max-height: 6em !important;
 }
 .wsn > .list-group-item > em {
@@ -108,14 +108,12 @@
 .hovergrow {
 	box-shadow: 5px 5px 2px rgba(60,60,60,1);
 	margin-top: 0px;
-	-webkit-transition: box-shadow 0.25s;
-	transition: box-shadow 0.25s;
-	-webkit-transition: margin-top 0.25s;
-	transition: margin-top 0.25s;
+	transition: box-shadow 0.25s ease, margin-top 0.25s 750ms ease;
 }
 .hovergrow:hover {
 	box-shadow: 10px 10px 2px rgba(50,50,50,1);
 	margin-top: 10px;
+	transition: box-shadow 0.25s ease, margin-top 0.25s 0s ease;
 }
 .fadeinout {
 	-webkit-animation: fadeinout 1s linear infinite;

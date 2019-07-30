@@ -236,7 +236,17 @@ var updateTask = function(id) {
 		}
 	});
 }
+var isOverflown = function(parent, child) {
+	return parent.scrollHeight > child.scrollHeight || parent.scrollWidth > child.clientWidth;
+}
 $(document).ready(function(){
+	$(".list-group-item").hover(function() {
+		if(isOverflown(this,$(this).children("em"))) {
+			$(this).addClass("overhover");
+		}
+	}, function() {
+		$(this).removeClass("overhover");
+	})
 	sortCards($("#sort").val());
 	$("#editModal").on("show.bs.modal", function(event){
 		var button = $(event.relatedTarget);
