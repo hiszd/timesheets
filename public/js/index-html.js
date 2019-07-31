@@ -232,14 +232,25 @@ var updateTask = function (id) {
     }
   });
 };
-var addTask = function (id) {
+var addTask = function () {
   $.ajax({
-    url: "http://" + window.location.hostname + ":3000/get/" + id,
+    url: "http://" + window.location.hostname + ":3000/get/",
     type: 'get',
     dataType: 'json',
     async: true,
     cache: false,
-    success: function (data) {
+    success: function (dat) {
+      var data;
+      if(Array.isArray(dat)) {
+        dat.forEach(function(itm) {
+          if(!$("#"+itm.id).length) {
+            data = itm;
+            console.log(itm);
+          } else {
+            console.log("Nope");
+          }
+        })
+      }
       var card = $("#" + data.id);
       card.attr("data-taskinfo", JSON.stringify(data));
       card.find("#bucket").html(data.bucket);

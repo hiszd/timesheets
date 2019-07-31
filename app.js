@@ -14,7 +14,8 @@ const {
   deleteTask,
   editTask,
   editTaskPage,
-  getTask
+  getTask,
+  getTasks
 } = require('./routes/task');
 const {
   tableDoesExist,
@@ -65,6 +66,7 @@ app.get('/edit/:id', editTaskPage);
 app.get('/add', addTaskPage);
 app.get('/delete/:id', deleteTask);
 app.get('/get/:id', getTask);
+app.get('/get/', getTasks);
 app.post('/add', addTask);
 app.post('/edit/:id', editTask);
 

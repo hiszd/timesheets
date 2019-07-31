@@ -61,6 +61,16 @@ module.exports = {
 			res.end(JSON.stringify(result[0]));
 		});
 	},
+	getTasks: (req, res) => {
+		let query = "SELECT * FROM `tasks`;";
+		db.query(query, (err, result) => {
+			if (err) {
+				return res.status(500).send(err);
+			}
+			res.writeHead(200, {'Content-Type': 'text/json'});
+			res.end(JSON.stringify(result));
+		});
+	},
 	editTask: (req, res) => {
 		let id = conditionInput(req.params.id);
 		let bucket = conditionInput(req.body.bucket);
