@@ -17,6 +17,114 @@
     <p class="lead inline-block fadeinout">Loading...</p>
     <div class="spinner-border text-dark"></div>
   </div>
+	<div id="addModal" class="modal fade" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Add</h5>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<form id="add-task" class="add-task-form">
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label for="bucket">Bucket</label>
+								<input type="text" class="form-control" name="bucket" id="bucket" value="" required>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label for="task">Task</label>
+								<input type="text" class="form-control" name="task" id="task" value="" required>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="status">Status</label>
+								<select id="status" name="status" class="form-control" required>
+									<option selected></option>
+									<option>Open</option>
+									<option>Closed</option>
+								</select>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="time">Time</label>
+								<input type="number" class="form-control" name="time" id="time" value="" required>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="description">Description</label>
+								<input type="text" class="form-control" name="description" id="description" placeholder="Description" value="" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="notes">Notes</label>
+								<input type="textarea" class="form-control" name="notes" id="notes" placeholder="Notes" value="" required>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					<button id="submit" type="button" class="btn btn-success">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="editModal" class="modal fade" tabindex="-1">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">Edit</h5>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+	      <div class="modal-body">
+	        <form id="edit-task" class="add-task-form">
+	          <div class="form-row">
+	            <div class="form-group col-md-12">
+	              <label for="bucket">Bucket</label>
+	              <input type="text" class="form-control" name="bucket" id="bucket" value="" required>
+	            </div>
+	          </div>
+	          <div class="form-row">
+	            <div class="form-group col-md-12">
+	              <label for="task">Task</label>
+	              <input type="text" class="form-control" name="task" id="task" value="" required>
+	            </div>
+	          </div>
+	          <div class="form-row">
+	            <div class="form-group col-md-6">
+	              <label for="status">Status</label>
+	              <select id="status" name="status" class="form-control" required>
+	                <option selected></option>
+	                <option>Open</option>
+	                <option>Closed</option>
+	              </select>
+	            </div>
+	            <div class="form-group col-md-6">
+	              <label for="time">Time</label>
+	              <input type="number" class="form-control" name="time" id="time" value="" required>
+	            </div>
+	          </div>
+	          <div class="form-row">
+	            <div class="form-group col-md-6">
+	              <label for="description">Description</label>
+	              <input type="text" class="form-control" name="description" id="description" placeholder="Description" value="" required>
+	            </div>
+	            <div class="form-group col-md-6">
+	              <label for="notes">Notes</label>
+	              <input type="textarea" class="form-control" name="notes" id="notes" placeholder="Notes" value="" required>
+	            </div>
+	          </div>
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+	        <button id="submit" type="button" class="btn btn-success">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
   <div class="page-wrapper animate-bottom">
     <nav class="navbar navbar-dark bg-dark mb-0 bottom-shadow">
       <span class="navbar-brand mb-0 h1"><a href="/"><strong>Soli</strong><strong style="color: red">Desk</strong> <em>Tasks</em></a></span>

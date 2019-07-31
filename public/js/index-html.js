@@ -232,22 +232,43 @@ var updateTask = function (id) {
     }
   });
 };
-var isOverflown = function (parent, child) {
-  return parent.scrollHeight > child.scrollHeight || parent.scrollWidth > child.scrollWidth;
+var addTask = function (id) {
+  $.ajax({
+    url: "http://" + window.location.hostname + ":3000/get/" + id,
+    type: 'get',
+    dataType: 'json',
+    async: true,
+    cache: false,
+    success: function (data) {
+      var card = $("#" + data.id);
+      card.attr("data-taskinfo", JSON.stringify(data));
+      card.find("#bucket").html(data.bucket);
+      card.find("#task").html(data.task);
+      card.find("#status").html(data.status);
+      card.find("#time").html(data.time);
+      card.find("#notes").html(data.notes);
+      card.find("#desc").html(data.description);
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      alert('error ' + textStatus + " " + errorThrown);
+    }
+  });
 };
-$(document).ready(function () {
+var isOverflown = function (element) {
+  return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
+};
+var overflow = function () {
 	$(".list-group-item").on("mouseenter mouseleave",function () {
 		if(!$(this).hasClass("overhover")) {
 			if (isOverflown(this, $(this).children("em"))) {
-				console.log("over");
 				$(this).addClass("overhover");
-			} else {
-				console.log("not over");
 			}
 		} else {
 			$(this).removeClass("overhover");
 		}
 	});
+}
+$(document).ready(function () {
   if ($("#cont").find("#noitem").length==0) {
     sortCards($("#sort").val());
   }
@@ -268,6 +289,10 @@ $(document).ready(function () {
     console.log("Clicked");
     $("#editModal").find("form").submit();
   });
+	$("#addModal").find("#submit").on("click", function () {
+		console.log("Clicked");
+		$("#addModal").find("form").submit();
+	});
 
   function sendData(type) {
     console.log("Sending Data");
@@ -323,9 +348,17 @@ $(document).ready(function () {
     updateTask($("#editModal").data("id"));
     $("#editModal").modal("hide");
   });
+	$("#add-task").on("submit", function (event) {
+		event.preventDefault();
+
+		sendData("add");
+		addTask();
+		$("#editModal").modal("hide");
+	});
   $(".page-wrapper").show();
   $("#page").show();
   setTimeout(showPage, 800);
+	setTimeout(overflow, 100);
 });
 var showPage = function () {
   $("#loader").animate({"opacity": "0"}, 400, function() {
