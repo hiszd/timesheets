@@ -1,6 +1,6 @@
 var getDat = function (dat) {
   var wrapper = document.getElementsByClassName("cont")[0],
-    item = [];
+  item = [];
   if (wrapper.children.length > 0) {
     for (var i = 0; i < wrapper.children.length; i++) {
       var datr = JSON.parse(wrapper.children[i].dataset.taskinfo);
@@ -10,43 +10,43 @@ var getDat = function (dat) {
 
   switch (dat) {
     case "bucket":
-      var buckets = [];
-      for (i = 0; i < item.length; i++) {
-        buckets[i] = item[i].bucket;
-      }
-      return buckets;
+    var buckets = [];
+    for (i = 0; i < item.length; i++) {
+      buckets[i] = item[i].bucket;
+    }
+    return buckets;
     case "task":
-      var tasks = [];
-      for (i = 0; i < item.length; i++) {
-        tasks[i] = item[i].task;
-      }
-      return tasks;
+    var tasks = [];
+    for (i = 0; i < item.length; i++) {
+      tasks[i] = item[i].task;
+    }
+    return tasks;
     case "status":
-      var status = [];
-      for (i = 0; i < item.length; i++) {
-        status[i] = item[i].status;
-      }
-      return status;
+    var status = [];
+    for (i = 0; i < item.length; i++) {
+      status[i] = item[i].status;
+    }
+    return status;
     case "time":
-      var times = [];
-      for (i = 0; i < item.length; i++) {
-        times[i] = item[i].times;
-      }
-      return times;
+    var times = [];
+    for (i = 0; i < item.length; i++) {
+      times[i] = item[i].times;
+    }
+    return times;
     case "notes":
-      var notes = [];
-      for (i = 0; i < item.length; i++) {
-        notes[i] = item[i].notes;
-      }
-      return notes;
+    var notes = [];
+    for (i = 0; i < item.length; i++) {
+      notes[i] = item[i].notes;
+    }
+    return notes;
     case "desc":
-      var descs = [];
-      for (i = 0; i < item.length; i++) {
-        descs[i] = item[i].description;
-      }
-      return descs;
+    var descs = [];
+    for (i = 0; i < item.length; i++) {
+      descs[i] = item[i].description;
+    }
+    return descs;
     default:
-      return item;
+    return item;
   }
 };
 var arrange = function (oldi, newi) {
@@ -140,44 +140,44 @@ var sortd = function (a, b) {
 };
 var sortCards = function (sort) {
   var itemso = getDat(),
-    itemsn;
+  itemsn;
   switch (sort) {
     case "bucketa":
-      itemsn = getDat().sort(sortb);
-      break;
+    itemsn = getDat().sort(sortb);
+    break;
     case "bucketd":
-      itemsn = getDat().sort(sortb).reverse();
-      break;
+    itemsn = getDat().sort(sortb).reverse();
+    break;
     case "taska":
-      itemsn = getDat().sort(sortt);
-      break;
+    itemsn = getDat().sort(sortt);
+    break;
     case "taskd":
-      itemsn = getDat().sort(sortt).reverse();
-      break;
+    itemsn = getDat().sort(sortt).reverse();
+    break;
     case "statusa":
-      itemsn = getDat().sort(sorts);
-      break;
+    itemsn = getDat().sort(sorts);
+    break;
     case "statusd":
-      itemsn = getDat().sort(sorts).reverse();
-      break;
+    itemsn = getDat().sort(sorts).reverse();
+    break;
     case "timea":
-      itemsn = getDat().sort(sortti);
-      break;
+    itemsn = getDat().sort(sortti);
+    break;
     case "timed":
-      itemsn = getDat().sort(sortti).reverse();
-      break;
+    itemsn = getDat().sort(sortti).reverse();
+    break;
     case "notesa":
-      itemsn = getDat().sort(sortn);
-      break;
+    itemsn = getDat().sort(sortn);
+    break;
     case "notesd":
-      itemsn = getDat().sort(sortn).reverse();
-      break;
+    itemsn = getDat().sort(sortn).reverse();
+    break;
     case "desca":
-      itemsn = getDat().sort(sortd);
-      break;
+    itemsn = getDat().sort(sortd);
+    break;
     case "descd":
-      itemsn = getDat().sort(sortd).reverse();
-      break;
+    itemsn = getDat().sort(sortd).reverse();
+    break;
   }
   var arr = arrange(itemso, itemsn);
   var wrapper = document.getElementsByClassName("cont");
@@ -195,20 +195,20 @@ var sortCards = function (sort) {
   });
   console.log(groups);
   /*
-  	groups.forEach(function(idx) {
-  		var cont = $([
-  			"<div class='bg-secondary'>",
-  			"</div>"
-  		].join("\n"));
-  		cont.appendChild(items[idx].cloneNode(true));
-  		elements.appendChild(cont);
-  	});*/
-  arr.forEach(function (idx) {
-    elements.appendChild(items[idx].cloneNode(true));
-  });
-  wrapper[0].innerHTML = null;
-  wrapper[0].appendChild(elements);
-  return 1;
+  groups.forEach(function(idx) {
+  var cont = $([
+  "<div class='bg-secondary'>",
+  "</div>"
+].join("\n"));
+cont.appendChild(items[idx].cloneNode(true));
+elements.appendChild(cont);
+});*/
+arr.forEach(function (idx) {
+  elements.appendChild(items[idx].cloneNode(true));
+});
+wrapper[0].innerHTML = null;
+wrapper[0].appendChild(elements);
+return 1;
 };
 var updateTask = function (id) {
   $.ajax({
@@ -238,7 +238,10 @@ var isOverflown = function (parent, child) {
 $(document).ready(function () {
   $(".list-group-item").hover(function () {
     if (isOverflown(this, $(this).children("em"))) {
+      console.log("over");
       $(this).addClass("overhover");
+    } else {
+      console.log("not over");
     }
   }, function () {
     $(this).removeClass("overhover");
@@ -264,18 +267,34 @@ $(document).ready(function () {
     $("#editModal").find("form").submit();
   });
 
-  function sendData() {
+  function sendData(type) {
     console.log("Sending Data");
     var XHR = new XMLHttpRequest();
 
     // Bind the FormData object and the form element
     //var FD = new FormData($("#edit-task").get(0));
-    var params = $("#edit-task").serializeArray();
-    var formData = {};
-    $.each(params, function (i, val) {
-      formData[val.name] = val.value;
-    });
-    var FD = JSON.stringify(formData);
+    var params, formData = {}, FD, url, id;
+    if(type =="edit") {
+      params = $("#edit-task").serializeArray();
+      formData = {};
+      $.each(params, function (i, val) {
+        formData[val.name] = val.value;
+      });
+      FD = JSON.stringify(formData);
+      url = ":3000/edit/";
+      id = $("#editModal").data("id");
+    } else if(type=="add") {
+      params = $("#add-task").serializeArray();
+      formData = {};
+      $.each(params, function (i, val) {
+        formData[val.name] = val.value;
+      });
+      FD = JSON.stringify(formData);
+      url = ":3000/add/";
+      id = $("#addModal").data("id");
+    } else {
+      return;
+    }
 
     // Define what happens on successful data submission
     XHR.addEventListener("load", function () {
@@ -288,7 +307,7 @@ $(document).ready(function () {
     });
 
     // Set up our request
-    XHR.open("POST", "http://" + window.location.hostname + ":3000/edit/" + $("#editModal").data("id"));
+    XHR.open("POST", "http://" + window.location.hostname + url + id);
     XHR.setRequestHeader('Content-Type', 'application/json');
     // The data sent is what the user provided in the form
     console.log(FD);
@@ -298,7 +317,7 @@ $(document).ready(function () {
   $("#edit-task").on("submit", function (event) {
     event.preventDefault();
 
-    sendData();
+    sendData("edit");
     updateTask($("#editModal").data("id"));
     $("#editModal").modal("hide");
   });
