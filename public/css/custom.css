@@ -120,7 +120,7 @@
 }
 
 .bottom-shadow {
-  box-shadow: 0px 5px 3px rgba(60, 60, 60, 1);
+  box-shadow: 0 5px 3px rgba(60, 60, 60, 1);
 }
 
 .hovergrow {
@@ -142,21 +142,21 @@
 
 @-webkit-keyframes fadeinout {
   from {
-    opacity: 1
+    opacity: 1;
   }
 
   to {
-    opacity: 0.1
+    opacity: 0.1;
   }
 }
 
 @keyframes fadeinout {
   from {
-    opacity: 1
+    opacity: 1;
   }
 
   to {
-    opacity: 0.1
+    opacity: 0.1;
   }
 }
 

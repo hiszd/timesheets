@@ -1,4 +1,3 @@
-/* jshint funcscope: true */
 var getDat = function (dat) {
   var wrapper = document.getElementsByClassName("cont")[0],
     item = [];
@@ -308,5 +307,7 @@ $(document).ready(function () {
   setTimeout(showPage, 800);
 });
 var showPage = function () {
-  $("#loader").animate({"opacity": "0"}, 400);
+  $("#loader").animate({"opacity": "0"}, 400, function() {
+    $(this).css("display","none");
+  });
 };
