@@ -16,8 +16,27 @@
     "mysql": "^2.16.0",
     "req-flash": "0.0.3"
   },
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/hiszd/base-10.git"
-	}
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hiszd/base-10.git"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "globals": {
+      "$": "readonly"
+    }
+  },
+  "jshintConfig": {
+    "undef": true,
+    "unused": true,
+    "funcscope": true,
+    "globals": {
+      "$": "readonly",
+      "document": "readonly",
+      "window": "readonly"
+    }
+  }
 }
