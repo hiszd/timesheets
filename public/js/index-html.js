@@ -233,19 +233,21 @@ var updateTask = function (id) {
   });
 };
 var isOverflown = function (parent, child) {
-  return parent.scrollHeight > child.scrollHeight || parent.scrollWidth > child.clientWidth;
+  return parent.scrollHeight > child.scrollHeight || parent.scrollWidth > child.scrollWidth;
 };
 $(document).ready(function () {
-  $(".list-group-item").hover(function () {
-    if (isOverflown(this, $(this).children("em"))) {
-      console.log("over");
-      $(this).addClass("overhover");
-    } else {
-      console.log("not over");
-    }
-  }, function () {
-    $(this).removeClass("overhover");
-  });
+	$(".list-group-item").on("mouseenter mouseleave",function () {
+		if(!$(this).hasClass("overhover")) {
+			if (isOverflown(this, $(this).children("em"))) {
+				console.log("over");
+				$(this).addClass("overhover");
+			} else {
+				console.log("not over");
+			}
+		} else {
+			$(this).removeClass("overhover");
+		}
+	});
   if ($("#cont").find("#noitem").length==0) {
     sortCards($("#sort").val());
   }
