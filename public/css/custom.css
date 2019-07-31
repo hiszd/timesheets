@@ -31,10 +31,6 @@
   background-color: rgba(40, 0, 0, 1);
 }
 
-.page-wrapper {
-  display: none;
-}
-
 .page-wrapper > nav {
   caret-color: transparent;
 }
@@ -96,10 +92,6 @@
 
 .text-1-5 {
   font-size: 1.5rem;
-}
-
-#page {
-  display: none;
 }
 
 #loader {
@@ -170,33 +162,62 @@
 
 /* Add animation to "page content" */
 .animate-bottom {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s
+  transform: translate(0, -3em);
+  -moz-animation: animatebottom 700ms linear 1s forwards;
+  -webkit-animation: animatebottom 700ms linear 1s forwards;
+  animation: animatebottom 700ms linear 1s forwards;
+}
+
+@-moz-keyframes animatebottom {
+  0% {
+    transform: translate(0, -3em);
+  }
+
+  60% {
+    transform: translate(0, 1em);
+  }
+
+  75% {
+    transform: translate(0, 1.5em);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
 @-webkit-keyframes animatebottom {
-  from {
-    bottom: -100px;
-    opacity: 0
+  0% {
+    transform: translate(0, -3em);
   }
 
-  to {
-    bottom: none;
-    opacity: 1
+  60% {
+    transform: translate(0, 1em);
+  }
+
+  75% {
+    transform: translate(0, 1.5em);
+  }
+
+  100% {
+    transform: translate(0, 0);
   }
 }
 
 @keyframes animatebottom {
-  from {
-    bottom: -100px;
-    opacity: 0
+  0% {
+    transform: translate(0, -3em);
   }
 
-  to {
-    bottom: none;
-    opacity: 1
+  60% {
+    transform: translate(0, 1em);
+  }
+
+  75% {
+    transform: translate(0, 1.5em);
+  }
+
+  100% {
+    transform: translate(0, 0);
   }
 }

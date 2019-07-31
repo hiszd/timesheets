@@ -244,7 +244,9 @@ $(document).ready(function () {
   }, function () {
     $(this).removeClass("overhover");
   });
-  sortCards($("#sort").val());
+  if ($("#cont").find("#noitem").length==0) {
+    sortCards($("#sort").val());
+  }
   $("#editModal").on("show.bs.modal", function (event) {
     var button = $(event.relatedTarget);
 
@@ -301,10 +303,10 @@ $(document).ready(function () {
     updateTask($("#editModal").data("id"));
     $("#editModal").modal("hide");
   });
-  setTimeout(showPage, 1000);
-});
-var showPage = function () {
-  $("#loader").hide();
   $(".page-wrapper").show();
   $("#page").show();
+  setTimeout(showPage, 800);
+});
+var showPage = function () {
+  $("#loader").animate({"opacity": "0"}, 400);
 };
