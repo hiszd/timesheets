@@ -15,6 +15,7 @@ class task {
 			this._notes = $(this._element).data('taskinfo').notes;
 			this._descel = $(this._element).find('#desc');
 			this._desc = $(this._element).data('taskinfo').description;
+			return this._element;
 		} else if(argmap.object) {
 			var obj = JSON.parse(argmap.object);
 			this._frag = document.createDocumentFragment();
@@ -43,7 +44,7 @@ class task {
 			$(this._bodyel).append(jQuery('<button/>', {"type": 'button', "class": 'btn btn-sm btn-warning border border-dark', "data-toggle": 'modal', "data-target": '#editModal', "data-id": obj.id}).html("Edit"));
 			$(this._element).append(this._bodyel);
 			$(this._frag).append(this._element);
-			$("#cont").append(this._frag);
+			return this._frag;
 		}
 	}
 
