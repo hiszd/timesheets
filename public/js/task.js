@@ -1,7 +1,7 @@
 class task {
 	constructor(argmap) {
 		if(argmap.selector) {
-			this._element = document.getElementById(argmap.selector);
+			this._element = $(argmap.selector);
 			this._id = $(this._element).data('taskinfo').id;
 			this._bucketel = $(this._element).find('#bucket');
 			this._bucket = $(this._element).data('taskinfo').bucket;
@@ -16,23 +16,34 @@ class task {
 			this._descel = $(this._element).find('#desc');
 			this._desc = $(this._element).data('taskinfo').description;
 		} else if(argmap.object) {
+			var obj = JSON.parse(argmap.object);
 			this._frag = document.createDocumentFragment();
-			this._element = jQuery('<div/>', {id: argmap.object.id,"class": 'card hovergrow mr-3 border-1-gray',"data-daskinfo": JSON.stringify(argmap.object)}).appendTo(this._frag);
-			this._bucketel = jQuery('<div/>', {id: "bucket","class": 'card-header bg-gray text-white text-1-5'}).append(argmap.object.bucket).appendTo(this._element);
-			this._bucket = $(this._element).data('taskinfo').bucket;
-			this._bodyel = jQuery('<div/>', {id: "body","class": 'card-body bg-dark'}).appendTo(this._element);
-			this._taskel = jQuery('<h5/>', {id: "task","class": 'card-title bg-gray text-white p-2 text-center rounded-lg'}).append(argmap.object.task).appendTo(this._bodyel);
+			this._id = obj.id;
+			this._element = jQuery('<div/>', {id: obj.id,"class": 'card hovergrow mr-3 border-1-gray',"data-taskinfo": JSON.stringify(obj)});
+			this._bucketel = jQuery('<div/>', {id: "bucket","class": 'card-header bg-gray text-white text-1-5'}).html(obj.bucket).appendTo(this._element);
+			this._bucket = obj.bucket;
+			this._bodyel = jQuery('<div/>', {id: "body","class": 'card-body bg-dark'});
+			this._taskel = jQuery('<h5/>', {id: "task","class": 'card-title bg-gray text-white p-2 text-center rounded-lg'}).html(obj.task).appendTo(this._bodyel);
+			this._task = obj.task;
 			this._groupel = jQuery('<ul/>', {id: "group","class": 'list-group list-group-flush mb-3 wsn'});
-			this._statusel = jQuery('<em/>', {id: "status","class": 'pl-1'});
-			this._timeel = jQuery('<em/>', {id: "time","class": 'pl-1'});
-			this._notesel = jQuery('<em/>', {id: "notes","class": 'pl-1'});
-			this._descel = jQuery('<em/>', {id: "desc","class": 'pl-1'});
-			$(this._groupel).append(jQuery('<li/>', {class": 'list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg'}).append(jQuery('<label/>', {"class": 'm-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg text-white', "for": 'status'}).html("Status:")).append(this._statusel));
-			$(this._groupel).append(jQuery('<li/>', {class": 'list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg'}).append(jQuery('<label/>', {"class": 'm-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg text-white', "for": 'time'}).html("Time Req:")).append(this._timeel));
-			$(this._groupel).append(jQuery('<li/>', {class": 'list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg'}).append(jQuery('<label/>', {"class": 'm-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg text-white', "for": 'notes'}).html("Notes:")).append(this._notesel));
-			$(this._groupel).append(jQuery('<li/>', {class": 'list-group-item bg-dark p-0 text-light align-middle border-top-bottom-gray rounded-lg'}).append(jQuery('<label/>', {"class": 'm-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg text-white', "for": 'desc'}).html("Desc:")).append(this._descel));
+			this._statusel = jQuery('<em/>', {id: "status","class": 'pl-1'}).html(obj.status);
+			this._status = obj.status;
+			this._timeel = jQuery('<em/>', {id: "time","class": 'pl-1'}).html(obj.time);
+			this._time = obj.time;
+			this._notesel = jQuery('<em/>', {id: "notes","class": 'pl-1'}).html(obj.notes);
+			this._notes = obj.notes;
+			this._descel = jQuery('<em/>', {id: "desc","class": 'pl-1'}).html(obj.description);
+			this._desc = obj.description;
+			$(this._groupel).append(jQuery('<li/>', {"class": 'list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg'}).append(jQuery('<label/>', {"class": 'm-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg text-white', "for": 'status'}).html("Status:")).append(this._statusel));
+			$(this._groupel).append(jQuery('<li/>', {"class": 'list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg'}).append(jQuery('<label/>', {"class": 'm-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg text-white', "for": 'time'}).html("Time Req:")).append(this._timeel));
+			$(this._groupel).append(jQuery('<li/>', {"class": 'list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg'}).append(jQuery('<label/>', {"class": 'm-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg text-white', "for": 'notes'}).html("Notes:")).append(this._notesel));
+			$(this._groupel).append(jQuery('<li/>', {"class": 'list-group-item bg-dark p-0 text-light align-middle border-top-bottom-gray rounded-lg'}).append(jQuery('<label/>', {"class": 'm-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg text-white', "for": 'desc'}).html("Desc:")).append(this._descel));
 			$(this._groupel).appendTo(this._bodyel);
-			$(this._bodyel).append(jQuery('<a/>', {"href": '/delete/'+argmap.object.id, "class": 'btn btn-sm btn-danger border border-dark'}).html("Delete"));
+			$(this._bodyel).append(jQuery('<a/>', {"href": '/delete/'+obj.id, "class": 'btn btn-sm btn-danger border border-dark'}).html("Delete"));
+			$(this._bodyel).append(jQuery('<button/>', {"type": 'button', "class": 'btn btn-sm btn-warning border border-dark', "data-toggle": 'modal', "data-target": '#editModal', "data-id": obj.id}).html("Edit"));
+			$(this._element).append(this._bodyel);
+			$(this._frag).append(this._element);
+			$("#cont").append(this._frag);
 		}
 	}
 

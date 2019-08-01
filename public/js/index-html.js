@@ -370,6 +370,7 @@ $(document).ready(function () {
   $("#page").show();
   setTimeout(showPage, 800);
 	setTimeout(overflow, 100);
+  var t1 = new task({"object": '{"id": "5","bucket": "6157","task": "Add safety relay for E-Stop","status": "Closed","time": "1","notes": "Allen Bradley or Pilz","description": "Add safety relay for E-Stop circuit"}'});
 });
 var showPage = function () {
   $("#loader").animate({"opacity": "0"}, 400, function() {
