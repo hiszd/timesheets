@@ -244,21 +244,11 @@ var updateTask = function (id) {
 	});
 };
 var addTask = function () {
-	$.ajax({
-		url: "http://" + window.location.hostname + ":3000/get/",
-		type: 'get',
-		dataType: 'json',
-		async: true,
-		cache: false,
-		success: function (dat) {
-			var data = grabForm("#add-task");
-			var card = new task({"object": data});
-			$(document).append(card);
-		},
-		error: function (jqXHR, textStatus, errorThrown) {
-			alert('error ' + textStatus + " " + errorThrown);
-		}
-	});
+	var data = grabForm("#add-task");
+	var card = new task({"object": data});
+	console.log(card);
+	$("#cont").append(card);
+	document.getElementById("add-task").reset();
 };
 var isOverflown = function (element) {
 	return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
@@ -300,24 +290,15 @@ $(document).ready(function () {
 		$("#addModal").find("form").submit();
 	});
 
-	function sendData(type) {
+	function sendEditData() {
 		console.log("Sending Data");
 		var XHR = new XMLHttpRequest();
 
 		// Bind the FormData object and the form element
 		//var FD = new FormData($("#edit-task").get(0));
-		var FD, url, id;
-		if(type =="edit") {
-			FD = grabForm("#edit-task");
-			url = ":3000/edit/";
-			id = $("#editModal").data("id");
-		} else if(type=="add") {
-			FD = grabForm("#add-task");
-			url = ":3000/add/";
-			id = $("#addModal").data("id");
-		} else {
-			return;
-		}
+		var FD, id;
+		FD = grabForm("#edit-task");
+		id = $("#editModal").data("id");
 
 		// Define what happens on successful data submission
 		XHR.addEventListener("load", function () {
@@ -330,27 +311,54 @@ $(document).ready(function () {
 		});
 
 		// Set up our request
-		XHR.open("POST", "http://" + window.location.hostname + url + id);
+		XHR.open("POST", "http://" + window.location.hostname + ":3000/edit" + id);
 		XHR.setRequestHeader('Content-Type', 'application/json');
 		// The data sent is what the user provided in the form
 		console.log(FD);
 		XHR.send(FD);
 	}
 
+	function sendAddData() {
+		console.log("Sending Add Data");
+		var XHR = new XMLHttpRequest();
+
+		// Bind the FormData object and the form element
+		//var FD = new FormData($("#edit-task").get(0));
+		var FD, id;
+		FD = grabForm("#add-task");
+
+		// Define what happens on successful data submission
+		XHR.addEventListener("load", function () {
+			console.log("Success");
+		});
+
+		// Define what happens in case of error
+		XHR.addEventListener("error", function () {
+			alert('Oops! Something went wrong.');
+		});
+
+		// Set up our request
+		XHR.open("POST", "http://" + window.location.hostname + ":3000/add");
+		XHR.setRequestHeader('Content-Type', 'application/json');
+		// The data sent is what the user provided in the form
+		console.log(FD);
+		XHR.send(FD);
+	}
+
+
 	$("#edit-task").on("submit", function (event) {
 		event.preventDefault();
 
-		sendData("edit");
+		sendEditData("edit");
 		updateTask($("#editModal").data("id"));
 		$("#editModal").modal("hide");
 	});
 	$("#add-task").on("submit", function (event) {
 		event.preventDefault();
 
-		sendData("add");
+		sendAddData();
 		addTask();
 		$("#addModal").modal("hide");
-		setTimeout(document.getElementById("add-task").reset(),1000);
 	});
 	$('#myModal').on('hidden.bs.modal', function () {
 		setTimeout(document.getElementById("add-task").reset(),700);
