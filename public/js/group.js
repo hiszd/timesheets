@@ -1,6 +1,5 @@
 class group {
 	constructor(type, id, tasks) {
-		var group = document.createDocumentFragment();
 		this._id = id;
 		this._type = type;
 		this._tasks = tasks;
@@ -8,7 +7,7 @@ class group {
 		tasks.forEach(function(idx){
 			this._element.appendChild(tasks[idx]).cloneNode(true);
 		});
-		this._element.class = "bg-dark";
+		this._element.class = "bg-light-gray";
 	}
 
 	updateInfo(info) {

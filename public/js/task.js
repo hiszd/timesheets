@@ -18,7 +18,6 @@ class task {
 			return this._element;
 		} else if(argmap.object) {
 			var obj = JSON.parse(argmap.object);
-			console.log(obj);
 			this._frag = document.createDocumentFragment();
 			this._id = obj.id;
 			this._element = jQuery('<div/>', {id: obj.id,"class": 'card hovergrow mr-3 border-1-gray',"data-taskinfo": JSON.stringify(obj)});
@@ -45,7 +44,7 @@ class task {
 			$(this._bodyel).append(jQuery('<button/>', {"type": 'button', "class": 'btn btn-sm btn-warning border border-dark', "data-toggle": 'modal', "data-target": '#editModal', "data-id": obj.id}).html("Edit"));
 			$(this._element).append(this._bodyel);
 			$(this._frag).append(this._element);
-			return this._frag;
+			return this._element;
 		}
 	}
 

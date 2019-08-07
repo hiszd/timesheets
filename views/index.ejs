@@ -31,26 +31,6 @@
 </div>
 <script src="js/group.js" type="application/x-javascript"></script>
 <script type="application/x-javascript" src="js/index-html.js"></script>
-<script type="text/javascript">
-  (function() {
-    function scrollHorizontally(e) {
-      e = window.event || e;
-      var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-      document.getElementById('cont').scrollLeft -= (delta * 40); // Multiplied by 40
-      e.preventDefault();
-    }
-    if (document.getElementById('cont').addEventListener) {
-      // IE9, Chrome, Safari, Opera
-      document.getElementById('cont').addEventListener("mousewheel", scrollHorizontally, false);
-      // Firefox
-      document.getElementById('cont').addEventListener("DOMMouseScroll", scrollHorizontally, false);
-    } else {
-      // IE 6/7/8
-      document.getElementById('cont').attachEvent("onmousewheel", scrollHorizontally);
-    }
-  })();
-
-</script>
 <script type="application/x-javascript" src="js/task.js"></script>
 </body>
 

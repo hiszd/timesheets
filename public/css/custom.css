@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth; }
+
 .border-top-bottom-gray {
   border-top: solid 1px #646464 !important;
   border-bottom: solid 1px #646464 !important; }
@@ -41,15 +44,28 @@
   flex-wrap: nowrap;
   height: 100%; }
 
-.task-group > .row > .card {
-  display: inline-block;
+.card {
+  display: block;
   float: none;
   overflow-x: hidden;
   box-sizing: content-box;
   width: 400px;
   height: min-content;
   flex-shrink: 0;
-  caret-color: transparent; }
+  caret-color: transparent;
+  margin-top: 1rem; }
+
+.group, .group:last-child {
+  max-width: 500px;
+  max-height: 90vh;
+  min-height: none;
+  overflow: hidden;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  border-left: solid 1px black; }
+
+.group:last-child {
+  border-right: solid 1px black; }
 
 .rounded-lg {
   border-radius: 0.5rem !important; }
@@ -97,13 +113,15 @@
 
 .hovergrow {
   box-shadow: 5px 5px 2px #3c3c3c;
-  margin-top: none;
-  transition: box-shadow 0.25s ease, margin-top 0.25s 750ms ease; }
+  transform: none;
+  z-index: 1;
+  transition: box-shadow 0.25s 750ms ease, transform 0.25s 750ms ease, z-index 0.25s 750ms ease; }
 
 .hovergrow:hover {
   box-shadow: 10px 10px 2px #323232;
-  margin-top: 10px;
-  transition: box-shadow 0.25s ease, margin-top 0.25s 0s ease; }
+  transform: scale(1.05);
+  z-index: 9999;
+  transition: box-shadow 0.25s 0s ease, transform 0.25s 0s ease, z-index 0.25s 0s ease; }
 
 .fadeinout {
   -moz-animation: fadeinout 1s linear infinite none;
