@@ -4,7 +4,7 @@
     <% if (tasks) {%>
     <% if (tasks.length > 0) {%>
     <% tasks.forEach((task, index) => { %>
-    <div id="<%= task.id %>" class="card hovergrow mr-3 border-1-gray" data-taskinfo='{"id": "<%= task.id %>", "bucket": "<%= task.bucket %>", "task": "<%= task.task %>", "status": "<%= task.status %>", "time": "<%= task.time %>", "notes": "<%= task.notes %>", "description": "<%= task.description %>"}'>
+    <div id="<%= task.id %>" class="card hovergrow mr-3" data-taskinfo='{"id": "<%= task.id %>", "bucket": "<%= task.bucket %>", "task": "<%= task.task %>", "status": "<%= task.status %>", "time": "<%= task.time %>", "notes": "<%= task.notes %>", "description": "<%= task.description %>"}'>
       <div id="bucket" class="card-header bg-gray text-white text-1-5"><%= task.bucket %></div>
       <div class="card-body bg-dark">
         <h5 id="task" class="card-title bg-gray text-white p-2 text-center rounded-lg"><%= task.task %></h5>
@@ -30,8 +30,8 @@
 </div>
 </div>
 <script src="js/group.js" type="application/x-javascript"></script>
-<script type="application/x-javascript" src="js/index-html.js"></script>
 <script type="application/x-javascript" src="js/task.js"></script>
+<script type="application/x-javascript" src="js/index-html.js"></script>
 </body>
 
 </html>

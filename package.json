@@ -20,8 +20,12 @@
     "type": "git",
     "url": "https://github.com/hiszd/base-10.git"
   },
+  "stylelint": {
+    "extends": "stylelint-config-recommended-scss"
+  },
   "eslintConfig": {
     "env": {
+      "es6": true,
       "browser": true,
       "node": true
     },
@@ -38,5 +42,10 @@
       "document": "readonly",
       "window": "readonly"
     }
+  },
+  "devDependencies": {
+    "stylelint": "^10.1.0",
+    "stylelint-config-recommended-scss": "^3.3.0",
+    "stylelint-scss": "^3.9.3"
   }
 }

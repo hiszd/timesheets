@@ -195,17 +195,14 @@ var sortCards = function (sort) {
 	});
 	wrapper[0].innerHTML = null;
 	Object.keys(groups).forEach(function(itm, idx) {
-    var cont = jQuery('<div/>', {id: itm,"class": 'bg-secondary group'});
-    groups[itm].forEach(function(itm,idx) {
-      $(cont).append(new task({"object": JSON.stringify(itm)}));
-    });
+    var cont = new TaskGroup({"tasks": JSON.stringify(groups[itm]), "id": itm});
     $("#cont").append(cont);
   });/*
 	arr.forEach(function (idx) {
 		elements.appendChild(items[idx].cloneNode(true));
 	});
-	wrapper[0].innerHTML = null;*/
-	wrapper[0].appendChild(elements);
+	wrapper[0].innerHTML = null;
+	wrapper[0].appendChild(elements);*/
 	return 1;
 };
 
@@ -243,7 +240,7 @@ var updateTask = function (id) {
 };
 var addTask = function () {
 	var data = grabForm("#add-task");
-	var card = new task({"object": data});
+	var card = new Task({"object": data});
 	console.log(card);
 	$("#cont").append(card);
 	document.getElementById("add-task").reset();
@@ -275,7 +272,7 @@ function scrollVertically(e) {
   var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
   var changescroll = this.scrollTop;
   changescroll += (delta * 80); // Multiplied by 40
-  this.scrollBy({top: ((delta * 80)*-1), left: 0, behavior: 'smooth'}); 
+  this.scrollBy({top: ((delta * 80)*-1), left: 0, behavior: 'smooth'});
   e.preventDefault();
 }
 $(document).ready(function () {
@@ -363,7 +360,7 @@ $(document).ready(function () {
 	$("#edit-task").on("submit", function (event) {
 		event.preventDefault();
 
-		sendEditData("edit");
+		sendEditData();
 		updateTask($("#editModal").data("id"));
 		$("#editModal").modal("hide");
 	});
@@ -396,7 +393,7 @@ $(document).ready(function () {
       element.attachEvent("onmousewheel", scrollVertically);
     }
   }
-  
+
   if (document.getElementById('cont').addEventListener) {
     // IE9, Chrome, Safari, Opera
     document.getElementById('cont').addEventListener("mousewheel", scrollHorizontally, false);

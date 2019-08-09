@@ -2,8 +2,8 @@ html {
   scroll-behavior: smooth; }
 
 .border-top-bottom-gray {
-  border-top: solid 1px #646464 !important;
-  border-bottom: solid 1px #646464 !important; }
+  border-bottom: solid 1px #646464 !important;
+  border-top: solid 1px #646464 !important; }
 
 .border-top-gray {
   border-top: solid 1px #646464 !important; }
@@ -12,10 +12,14 @@ html {
   border-color: #646464 !important; }
 
 .border-1-gray {
-  border: 1px solid #646464; }
+  border: 2px solid #646464; }
+  .border-1-gray:active {
+    border: 2px solid #646464; }
+  .border-1-gray:hover {
+    border: 2px solid #646464; }
 
 .text-black {
-  color: black; }
+  color: #000; }
 
 .bg-light-gray {
   background-color: #464646; }
@@ -33,46 +37,49 @@ html {
   margin-top: 50px; }
 
 .index-wrapper {
-  margin-top: 10px;
-  height: 93vh; }
+  height: 93vh;
+  margin-top: 10px; }
 
 .task-group > .row {
+  flex-wrap: nowrap;
+  height: 100%;
   overflow: scroll;
   overflow-x: auto;
   overflow-y: hidden;
-  white-space: nowrap;
-  flex-wrap: nowrap;
-  height: 100%; }
+  white-space: nowrap; }
 
 .card {
-  display: block;
-  float: none;
-  overflow-x: hidden;
   box-sizing: content-box;
-  width: 400px;
-  height: min-content;
-  flex-shrink: 0;
   caret-color: transparent;
-  margin-top: 1rem; }
+  display: block;
+  flex-shrink: 0;
+  float: none;
+  height: min-content;
+  margin-top: 1rem;
+  overflow-x: hidden;
+  width: 400px; }
 
 .group, .group:last-child {
-  max-width: 500px;
+  border-left: solid 1px #000;
+  box-shadow: 5px 5px 2px #3c3c3c;
+  margin-right: 1rem;
   max-height: 90vh;
+  max-width: 500px;
   min-height: none;
   overflow: hidden;
-  padding-left: 1rem;
   padding-bottom: 1rem;
-  border-left: solid 1px black; }
+  padding-left: 1rem; }
 
 .group:last-child {
-  border-right: solid 1px black; }
+  border-right: solid 1px #000;
+  margin-right: none; }
 
 .rounded-lg {
-  border-radius: 0.5rem !important; }
+  border-radius: .5rem !important; }
 
 .rounded-left-lg {
-  border-top-left-radius: 0.5rem !important;
-  border-bottom-left-radius: 0.5rem !important; }
+  border-bottom-left-radius: .5rem !important;
+  border-top-left-radius: .5rem !important; }
 
 .hw-normal {
   height: auto;
@@ -88,19 +95,19 @@ html {
   font-size: 1.5rem; }
 
 #loader {
-  position: absolute;
+  height: 100vh;
+  margin: none;
   padding-left: 50%;
   padding-top: 25%;
-  z-index: 10000;
+  position: absolute;
   width: 100vw;
-  height: 100vh;
-  margin: none; }
+  z-index: 10000; }
 
 .wsn > .list-group-item {
-  white-space: normal !important;
   max-height: 1.75em;
   overflow: hidden;
-  transition: max-height 0.5s ease; }
+  transition: max-height .5s ease;
+  white-space: normal !important; }
 
 .overhover {
   max-height: 6em !important; }
@@ -113,51 +120,48 @@ html {
 
 .hovergrow {
   box-shadow: 5px 5px 2px #3c3c3c;
-  transform: none;
-  z-index: 1;
-  transition: box-shadow 0.25s 750ms ease, transform 0.25s 750ms ease, z-index 0.25s 750ms ease; }
-
-.hovergrow:hover {
-  box-shadow: 10px 10px 2px #323232;
-  transform: scale(1.05);
-  z-index: 9999;
-  transition: box-shadow 0.25s 0s ease, transform 0.25s 0s ease, z-index 0.25s 0s ease; }
+  transform: translate(0, 0);
+  transition: box-shadow .15s 200ms ease, transform .15s 200ms ease; }
+  .hovergrow:hover {
+    box-shadow: 10px 10px 2px #323232;
+    transform: translate(0, -1em);
+    transition: box-shadow .35s 0s ease, transform .35s 0s ease; }
 
 .fadeinout {
   -moz-animation: fadeinout 1s linear infinite none;
-  -webkit-animation: fadeinout 1s linear infinite none;
   -ms-animation: fadeinout 1s linear infinite none;
+  -webkit-animation: fadeinout 1s linear infinite none;
   animation: fadeinout 1s linear infinite none; }
 
 @-webkit-keyframes fadeinout {
   from {
     opacity: 1; }
   to {
-    opacity: 0.1; } }
+    opacity: .1; } }
 @-moz-keyframes fadeinout {
   from {
     opacity: 1; }
   to {
-    opacity: 0.1; } }
+    opacity: .1; } }
 @-ms-keyframes fadeinout {
   from {
     opacity: 1; }
   to {
-    opacity: 0.1; } }
+    opacity: .1; } }
 @keyframes fadeinout {
   from {
     opacity: 1; }
   to {
-    opacity: 0.1; } }
+    opacity: .1; } }
 /* Add animation to "page content" */
 .animate-bottom {
-  -webkit-transform: translate(0, -3em);
   -moz-transform: translate(0, -3em);
   -ms-transform: translate(0, -3em);
+  -webkit-transform: translate(0, -3em);
   transform: translate(0, -3em);
   -moz-animation: animatebottom 700ms linear 1s forwards;
-  -webkit-animation: animatebottom 700ms linear 1s forwards;
   -ms-animation: animatebottom 700ms linear 1s forwards;
+  -webkit-animation: animatebottom 700ms linear 1s forwards;
   animation: animatebottom 700ms linear 1s forwards; }
 
 @-webkit-keyframes animatebottom {

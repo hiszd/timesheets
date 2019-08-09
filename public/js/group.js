@@ -1,13 +1,27 @@
-class group {
-	constructor(type, id, tasks) {
-		this._id = id;
-		this._type = type;
-		this._tasks = tasks;
-		this._element = document.createElement('div');
-		tasks.forEach(function(idx){
-			this._element.appendChild(tasks[idx]).cloneNode(true);
-		});
-		this._element.class = "bg-light-gray";
+class TaskGroup {
+	constructor(argmap) {
+		if (argmap.selector) {
+			//			this._id = id;
+			//			this._type = type;
+			this._element = $(argmap.selector);
+			this._tasks = [];
+			this._groupinfo = [];
+			this._element.children().forEach(function(itm, idx) {
+				this._groupinfo.push(itm);
+				var task1 = new task({ "selector": itm.id });
+				this._tasks.push(task1);
+			});
+			return this._element;
+		} if (argmap.tasks && argmap.id) {
+			var tasks = JSON.parse(argmap.tasks);
+			this._groupInfo = tasks;
+			var ele = jQuery('<div/>', { id: argmap.id, "class": 'bg-secondary group' });
+			tasks.forEach(function(itm, idx) {
+				$(ele).append(new Task({ "object": JSON.stringify(itm) }));
+			});
+			this._element = ele;
+			return this._element;
+		}
 	}
 
 	updateInfo(info) {
