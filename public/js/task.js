@@ -21,11 +21,15 @@ class Task{
 			this._frag = document.createDocumentFragment();
 			this._id = obj.id;
 			this._element = jQuery('<div/>', { id: obj.id, "class": 'card hovergrow mr-3 border-1-gray', "data-taskinfo": JSON.stringify(obj) });
-			this._bucketel = jQuery('<div/>', { id: "bucket", "class": 'card-header bg-gray text-white text-1-5' }).html(obj.bucket).appendTo(this._element);
+			this._taskel = jQuery('<div/>', { id: "task", "class": 'card-header bg-gray text-white text-1-5' })
+			$(this._taskel).append(jQuery('<span/>', { "class": 'task-text' }).html(obj.task));
+			this._completeel = jQuery('<button/>', { id: 'complete', "class":  'closeButton close'}).html('&#10004;').appendTo(this._taskel);
+			$(this._taskel).appendTo(this._element);
+			this._task = obj.task;
 			this._bucket = obj.bucket;
 			this._bodyel = jQuery('<div/>', { id: "body", "class": 'card-body bg-dark' });
-			this._taskel = jQuery('<h5/>', { id: "task", "class": 'card-title bg-gray text-white p-2 text-center rounded-lg' }).html(obj.task).appendTo(this._bodyel);
-			this._task = obj.task;
+			this._descel = jQuery('<h5/>', { id: "desc", "class": 'card-title bg-gray text-white p-2 text-center rounded-lg' }).html(obj.description).appendTo(this._bodyel);
+			this._desc = obj.description;
 			this._groupel = jQuery('<ul/>', { id: "group", "class": 'list-group list-group-flush mb-3 wsn' });
 			this._statusel = jQuery('<em/>', { id: "status", "class": 'pl-1' }).html(obj.status);
 			this._status = obj.status;
@@ -33,12 +37,9 @@ class Task{
 			this._time = obj.time;
 			this._notesel = jQuery('<em/>', { id: "notes", "class": 'pl-1' }).html(obj.notes);
 			this._notes = obj.notes;
-			this._descel = jQuery('<em/>', { id: "desc", "class": 'pl-1' }).html(obj.description);
-			this._desc = obj.description;
 			$(this._groupel).append(jQuery('<li/>', { "class": 'list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg' }).append(jQuery('<label/>', { "class": 'm-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg text-white', "for": 'status' }).html("Status:")).append(this._statusel));
 			$(this._groupel).append(jQuery('<li/>', { "class": 'list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg' }).append(jQuery('<label/>', { "class": 'm-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg text-white', "for": 'time' }).html("Time Req:")).append(this._timeel));
-			$(this._groupel).append(jQuery('<li/>', { "class": 'list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg' }).append(jQuery('<label/>', { "class": 'm-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg text-white', "for": 'notes' }).html("Notes:")).append(this._notesel));
-			$(this._groupel).append(jQuery('<li/>', { "class": 'list-group-item bg-dark p-0 text-light align-middle border-top-bottom-gray rounded-lg' }).append(jQuery('<label/>', { "class": 'm-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg text-white', "for": 'desc' }).html("Desc:")).append(this._descel));
+			$(this._groupel).append(jQuery('<li/>', { "class": 'list-group-item bg-dark p-0 text-light align-middle border-top-bottom-gray rounded-lg' }).append(jQuery('<label/>', { "class": 'm-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg text-white', "for": 'desc' }).html("Notes:")).append(this._notesel));
 			$(this._groupel).appendTo(this._bodyel);
 			$(this._bodyel).append(jQuery('<a/>', { "href": '/delete/' + obj.id, "class": 'btn btn-sm btn-danger border border-dark' }).html("Delete"));
 			$(this._bodyel).append(jQuery('<button/>', { "type": 'button', "class": 'btn btn-sm btn-warning border border-dark', "data-toggle": 'modal', "data-target": '#editModal', "data-id": obj.id }).html("Edit"));
@@ -105,5 +106,6 @@ class Task{
 	}
 
 	set desc(no) {
-		this._desc=no;this._descel.text(no);let info=$(this._element).data('taskinfo');info.description=no;this.updateInfo(info);}
+		this._desc=no;this._descel.text(no);let info=$(this._element).data('taskinfo');info.description=no;this.updateInfo(info);
+	}
 }

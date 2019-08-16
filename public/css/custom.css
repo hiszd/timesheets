@@ -57,7 +57,45 @@ html {
   height: min-content;
   margin-top: 1rem;
   overflow-x: hidden;
-  width: 400px; }
+  width: 400px;
+  margin-left: 1rem; }
+
+.card > .card-body > #desc {
+  overflow: hidden; }
+
+.card > #task {
+  overflow: hidden; }
+
+.task-text {
+  overflow: hidden;
+  width: 88%;
+  color: #fff;
+  display: inline-block; }
+
+.closeButton {
+  border-radius: .5rem !important;
+  opacity: 1;
+  padding: 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 1px 0 #fff;
+  color: #aaa;
+  width: 10%;
+  margin-left: 5px;
+  margin-top: 0.3rem;
+  border: 2px solid #999 !important;
+  transition: color .2s linear, text-decoration .2s linear, opacity .2s linear, background-color .1s linear, border 0.15s linear; }
+  .closeButton:hover {
+    background-color: #7b7;
+    text-decoration: none;
+    opacity: 0.75;
+    border: none !important; }
 
 .group, .group:last-child {
   border-left: solid 1px #000;
@@ -68,11 +106,18 @@ html {
   min-height: none;
   overflow: hidden;
   padding-bottom: 1rem;
-  padding-left: 1rem; }
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0; }
 
 .group:last-child {
   border-right: solid 1px #000;
   margin-right: none; }
+
+.group-header {
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+  padding: .75rem 1.25rem;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
 
 .rounded-lg {
   border-radius: .5rem !important; }
@@ -119,11 +164,11 @@ html {
   box-shadow: 0 5px 3px #3c3c3c; }
 
 .hovergrow {
-  box-shadow: 5px 5px 2px #3c3c3c;
+  box-shadow: 3px 5px 2px #3c3c3c;
   transform: translate(0, 0);
   transition: box-shadow .15s 200ms ease, transform .15s 200ms ease; }
   .hovergrow:hover {
-    box-shadow: 10px 10px 2px #323232;
+    box-shadow: 6px 1em 2px rgba(50, 50, 50, 0.5);
     transform: translate(0, -1em);
     transition: box-shadow .35s 0s ease, transform .35s 0s ease; }
 

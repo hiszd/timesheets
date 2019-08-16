@@ -16,6 +16,7 @@ class TaskGroup {
 			var tasks = JSON.parse(argmap.tasks);
 			this._groupInfo = tasks;
 			var ele = jQuery('<div/>', { id: argmap.id, "class": 'bg-secondary group' });
+			this._header = jQuery('<div/>', { id: 'head', "class": 'group-header' }).html(argmap.id).appendTo(ele);
 			tasks.forEach(function(itm, idx) {
 				$(ele).append(new Task({ "object": JSON.stringify(itm) }));
 			});

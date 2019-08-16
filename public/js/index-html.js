@@ -272,7 +272,7 @@ function scrollVertically(e) {
   var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
   var changescroll = this.scrollTop;
   changescroll += (delta * 80); // Multiplied by 40
-  this.scrollBy({top: ((delta * 80)*-1), left: 0, behavior: 'smooth'});
+  this.scrollBy({top: ((delta * 100)*-1), left: 0, behavior: 'smooth'});
   e.preventDefault();
 }
 $(document).ready(function () {
