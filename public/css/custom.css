@@ -72,7 +72,7 @@ html {
   color: #fff;
   display: inline-block; }
 
-.closeButton {
+.closebutton {
   border-radius: .5rem !important;
   opacity: 1;
   padding: 0;
@@ -91,7 +91,7 @@ html {
   margin-top: 0.3rem;
   border: 2px solid #999 !important;
   transition: color .2s linear, text-decoration .2s linear, opacity .2s linear, background-color .1s linear, border 0.15s linear; }
-  .closeButton:hover {
+  .closebutton:hover {
     background-color: #7b7;
     text-decoration: none;
     opacity: 0.75;
@@ -106,7 +106,8 @@ html {
   min-height: none;
   overflow: hidden;
   padding-bottom: 1rem;
-  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0; }
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+  position: relative; }
 
 .group:last-child {
   border-right: solid 1px #000;
@@ -118,6 +119,18 @@ html {
   margin: 0;
   background-color: rgba(0, 0, 0, 0.3);
   border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
+
+.bookend {
+  background-color: rgba(200, 200, 200, 0.8);
+  min-height: 1rem;
+  min-width: 100%;
+  padding: 0;
+  margin: 0;
+  bottom: 0;
+  line-height: 2rem;
+  font-size: 2rem;
+  position: absolute;
+  text-align: center; }
 
 .rounded-lg {
   border-radius: .5rem !important; }

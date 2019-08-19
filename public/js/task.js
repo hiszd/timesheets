@@ -23,7 +23,7 @@ class Task{
 			this._element = jQuery('<div/>', { id: obj.id, "class": 'card hovergrow mr-3 border-1-gray', "data-taskinfo": JSON.stringify(obj) });
 			this._taskel = jQuery('<div/>', { id: "task", "class": 'card-header bg-gray text-white text-1-5' })
 			$(this._taskel).append(jQuery('<span/>', { "class": 'task-text' }).html(obj.task));
-			this._completeel = jQuery('<button/>', { id: 'complete', "class":  'closeButton close'}).html('&#10004;').appendTo(this._taskel);
+			this._completeel = jQuery('<button/>', { id: 'complete', "class":  'closebutton close'}).html('&#10004;').appendTo(this._taskel);
 			$(this._taskel).appendTo(this._element);
 			this._task = obj.task;
 			this._bucket = obj.bucket;
