@@ -20,8 +20,9 @@ class TaskGroup {
 			tasks.forEach(function(itm, idx) {
 				$(ele).append(new Task({ "object": JSON.stringify(itm) }));
 			});
-			var bookend = jQuery('<div/>', { "class": 'bookend' }).html("&#8615;");
-			ele.append();
+			var bookend = jQuery('<div/>', { "class": 'bookend' });
+			bookend.append(jQuery('<span/>', { id: 'arrow', "class": 'bookend-arrow' }).html("&#8615;"))
+			ele.append(bookend);
 			this._element = ele;
 			return this._element;
 		}

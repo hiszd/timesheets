@@ -1,6 +1,8 @@
 $b-gray: rgba(100, 100, 100, 1);
 $dark-gray: rgba(40, 40, 40, 1);
 $light-gray: rgba(70, 70, 70, 1);
+$bookend-bg: rgba(200,200,200, 0.7);
+$bookend-fg: rgba(200,200,200, 1);
 
 @mixin keyframes($name) {
 	@-webkit-keyframes #{$name} {
@@ -187,8 +189,8 @@ html {
 
 .bookend {
 	//display: none;
-	background-color: rgba(200,200,200,0.8);
-	min-height: 1rem;
+	background-color: $bookend-bg;
+	min-height: 4rem;
 	min-width: 100%;
 	padding: 0;
 	margin: 0;
@@ -197,6 +199,13 @@ html {
 	font-size: 2rem;
 	position: absolute;
 	text-align: center;
+}
+
+.bookend-arrow {
+	padding: 1.5rem;
+	border-radius: 50%;
+	background-color: $bookend-fg;
+	position: relative;
 }
 
 .rounded-lg {

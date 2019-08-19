@@ -121,8 +121,8 @@ html {
   border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
 
 .bookend {
-  background-color: rgba(200, 200, 200, 0.8);
-  min-height: 1rem;
+  background-color: rgba(200, 200, 200, 0.7);
+  min-height: 4rem;
   min-width: 100%;
   padding: 0;
   margin: 0;
@@ -131,6 +131,12 @@ html {
   font-size: 2rem;
   position: absolute;
   text-align: center; }
+
+.bookend-arrow {
+  padding: 1.5rem;
+  border-radius: 50%;
+  background-color: #c8c8c8;
+  position: relative; }
 
 .rounded-lg {
   border-radius: .5rem !important; }
