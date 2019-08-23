@@ -3,4 +3,4 @@ trap "exit" INT TERM ERR
 trap "kill 0" EXIT
 
 sass --watch sass/custom.scss:public/css/custom.css &>/dev/null &
-node app.js
+nodemon --inspect app.js

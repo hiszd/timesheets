@@ -1,6 +1,6 @@
 var getDat = function (dat) {
 	var wrapper = document.getElementsByClassName("cont")[0],
-	item = [];
+		item = [];
 	if (wrapper.children.length > 0) {
 		for (var i = 0; i < wrapper.children.length; i++) {
 			var datr = JSON.parse(wrapper.children[i].dataset.taskinfo);
@@ -10,43 +10,43 @@ var getDat = function (dat) {
 
 	switch (dat) {
 		case "bucket":
-		var buckets = [];
-		for (i = 0; i < item.length; i++) {
-			buckets[i] = item[i].bucket;
-		}
-		return buckets;
+			var buckets = [];
+			for (i = 0; i < item.length; i++) {
+				buckets[i] = item[i].bucket;
+			}
+			return buckets;
 		case "task":
-		var tasks = [];
-		for (i = 0; i < item.length; i++) {
-			tasks[i] = item[i].task;
-		}
-		return tasks;
+			var tasks = [];
+			for (i = 0; i < item.length; i++) {
+				tasks[i] = item[i].task;
+			}
+			return tasks;
 		case "status":
-		var status = [];
-		for (i = 0; i < item.length; i++) {
-			status[i] = item[i].status;
-		}
-		return status;
+			var status = [];
+			for (i = 0; i < item.length; i++) {
+				status[i] = item[i].status;
+			}
+			return status;
 		case "time":
-		var times = [];
-		for (i = 0; i < item.length; i++) {
-			times[i] = item[i].times;
-		}
-		return times;
+			var times = [];
+			for (i = 0; i < item.length; i++) {
+				times[i] = item[i].times;
+			}
+			return times;
 		case "notes":
-		var notes = [];
-		for (i = 0; i < item.length; i++) {
-			notes[i] = item[i].notes;
-		}
-		return notes;
+			var notes = [];
+			for (i = 0; i < item.length; i++) {
+				notes[i] = item[i].notes;
+			}
+			return notes;
 		case "desc":
-		var descs = [];
-		for (i = 0; i < item.length; i++) {
-			descs[i] = item[i].description;
-		}
-		return descs;
+			var descs = [];
+			for (i = 0; i < item.length; i++) {
+				descs[i] = item[i].description;
+			}
+			return descs;
 		default:
-		return item;
+			return item;
 	}
 };
 var arrange = function (oldi, newi) {
@@ -140,44 +140,44 @@ var sortd = function (a, b) {
 };
 var sortCards = function (sort) {
 	var itemso = getDat(),
-	itemsn;
+		itemsn;
 	switch (sort) {
 		case "bucketa":
-		itemsn = getDat().sort(sortb);
-		break;
+			itemsn = getDat().sort(sortb);
+			break;
 		case "bucketd":
-		itemsn = getDat().sort(sortb).reverse();
-		break;
+			itemsn = getDat().sort(sortb).reverse();
+			break;
 		case "taska":
-		itemsn = getDat().sort(sortt);
-		break;
+			itemsn = getDat().sort(sortt);
+			break;
 		case "taskd":
-		itemsn = getDat().sort(sortt).reverse();
-		break;
+			itemsn = getDat().sort(sortt).reverse();
+			break;
 		case "statusa":
-		itemsn = getDat().sort(sorts);
-		break;
+			itemsn = getDat().sort(sorts);
+			break;
 		case "statusd":
-		itemsn = getDat().sort(sorts).reverse();
-		break;
+			itemsn = getDat().sort(sorts).reverse();
+			break;
 		case "timea":
-		itemsn = getDat().sort(sortti);
-		break;
+			itemsn = getDat().sort(sortti);
+			break;
 		case "timed":
-		itemsn = getDat().sort(sortti).reverse();
-		break;
+			itemsn = getDat().sort(sortti).reverse();
+			break;
 		case "notesa":
-		itemsn = getDat().sort(sortn);
-		break;
+			itemsn = getDat().sort(sortn);
+			break;
 		case "notesd":
-		itemsn = getDat().sort(sortn).reverse();
-		break;
+			itemsn = getDat().sort(sortn).reverse();
+			break;
 		case "desca":
-		itemsn = getDat().sort(sortd);
-		break;
+			itemsn = getDat().sort(sortd);
+			break;
 		case "descd":
-		itemsn = getDat().sort(sortd).reverse();
-		break;
+			itemsn = getDat().sort(sortd).reverse();
+			break;
 	}
 	var arr = arrange(itemso, itemsn);
 	var wrapper = document.getElementsByClassName("cont");
@@ -194,10 +194,10 @@ var sortCards = function (sort) {
 		}
 	});
 	wrapper[0].innerHTML = null;
-	Object.keys(groups).forEach(function(itm, idx) {
-    var cont = new TaskGroup({"tasks": JSON.stringify(groups[itm]), "id": itm});
-    $("#cont").append(cont);
-  });/*
+	Object.keys(groups).forEach(function (itm, idx) {
+		var cont = new TaskGroup({ "tasks": JSON.stringify(groups[itm]), "id": itm });
+		$("#cont").append(cont);
+	});/*
 	arr.forEach(function (idx) {
 		elements.appendChild(items[idx].cloneNode(true));
 	});
@@ -240,7 +240,7 @@ var updateTask = function (id) {
 };
 var addTask = function () {
 	var data = grabForm("#add-task");
-	var card = new Task({"object": data});
+	var card = new Task({ "object": data });
 	console.log(card);
 	$("#cont").append(card);
 	document.getElementById("add-task").reset();
@@ -249,8 +249,8 @@ var isOverflown = function (element) {
 	return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
 };
 var overflow = function () {
-	$(".list-group-item").on("mouseenter mouseleave",function () {
-		if(!$(this).hasClass("overhover")) {
+	$(".list-group-item").on("mouseenter mouseleave", function () {
+		if (!$(this).hasClass("overhover")) {
 			if (isOverflown(this, $(this).children("em"))) {
 				$(this).addClass("overhover");
 			}
@@ -260,25 +260,48 @@ var overflow = function () {
 	});
 }
 function scrollHorizontally(e) {
-  e = window.event || e;
-  var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-//  document.getElementById('cont').scrollLeft -= (delta * 40); // Multiplied by 40
-  this.scrollBy({top: ((delta * 40)*-1), left: 0, behavior: 'smooth'});
-  e.preventDefault();
+	e = window.event || e;
+	var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+	//  document.getElementById('cont').scrollLeft -= (delta * 40); // Multiplied by 40
+	this.scrollBy({ top: ((delta * 40) * -1), left: 0, behavior: 'smooth' });
+	e.preventDefault();
 }
 
 function scrollVertically(e) {
-  e = window.event || e;
-  var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-  var changescroll = this.scrollTop;
-  changescroll += (delta * 80); // Multiplied by 40
-  this.scrollBy({top: ((delta * 100)*-1), left: 0, behavior: 'smooth'});
-  e.preventDefault();
+	e = window.event || e;
+	var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+	var changescroll = this.scrollTop;
+	changescroll += (delta * 80); // Multiplied by 80
+	this.scrollBy({ top: ((delta * 100) * -1), left: 0, behavior: 'smooth' });
+	e.preventDefault();
+}
+function scrollVerticallyDown() {
+	var self = this.parentElement;
+	console.log(self);
+	var offset = 80, distancePerSec = 500;
+	var delta = (self.scrollTop + offset);
+	console.log(delta + "|" + self.clientHeight + "|" + body.clientHeight + "|" + this.clientHeight);
+	var animationDuration = (delta / distancePerSec) * 1000;
+
+	$(self).animate({ scrollTop: delta }, animationDuration, 'linear');
+	// self.scrollBy({top: delta, left: 0, behavior: 'smooth'});
 }
 $(document).ready(function () {
-	if ($("#cont").find("#noitem").length==0) {
+	if ($("#cont").find("#noitem").length == 0) {
 		sortCards($("#sort").val());
 	}
+
+	$(".group").each(function (idx, val) {
+		if (isOverflown(this)) {
+			console.log("Done: " + this.id);
+			$(this).find(".bookend").css("display", "inherit");
+		}
+	});
+	// $(".bookend").hover(scrollVerticallyDown, function() {$(this.parentElement).stop();console.log("Stopped "+ this.parentElement.id)});
+	// $(".bookend").bind("mouseenter",function() {this.parentElement.iid = setInterval(scrollVerticallyDown(this),10);});
+	// $(".bookend").bind("mouseleave",function() {this.parentElement.iid && clearInterval(this.parentElement.iid);console.log("Stopped "+this.parentElement.id)});
+	$(".bookend").on('click', scrollVerticallyDown);
+
 	$("#editModal").on("show.bs.modal", function (event) {
 		var button = $(event.relatedTarget);
 
@@ -372,41 +395,41 @@ $(document).ready(function () {
 		$("#addModal").modal("hide");
 	});
 	$('#myModal').on('hidden.bs.modal', function () {
-		setTimeout(document.getElementById("add-task").reset(),700);
+		setTimeout(document.getElementById("add-task").reset(), 700);
 	});
 	$(".page-wrapper").show();
 	$("#page").show();
 	setTimeout(showPage, 800);
 	setTimeout(overflow, 100);
-  if (document.querySelector('.group').addEventListener) {
-    var elements = document.querySelectorAll('.group');
-    for (const element of elements) {
-      // IE9, Chrome, Safari, Opera
-      element.addEventListener("mousewheel", scrollVertically, false)
-      // Firefox
-      element.addEventListener("DOMMouseScroll", scrollVertically, false);
-    }
-  } else {
-    var elements = document.querySelectorAll('.group');
-    // IE 6/7/8
-    for (const element of elements) {
-      element.attachEvent("onmousewheel", scrollVertically);
-    }
-  }
+	if (document.querySelector('.group').addEventListener) {
+		var elements = document.querySelectorAll('.group');
+		for (const element of elements) {
+			// IE9, Chrome, Safari, Opera
+			element.addEventListener("mousewheel", scrollVertically, false)
+			// Firefox
+			element.addEventListener("DOMMouseScroll", scrollVertically, false);
+		}
+	} else {
+		var elements = document.querySelectorAll('.group');
+		// IE 6/7/8
+		for (const element of elements) {
+			element.attachEvent("onmousewheel", scrollVertically);
+		}
+	}
 
-  if (document.getElementById('cont').addEventListener) {
-    // IE9, Chrome, Safari, Opera
-    document.getElementById('cont').addEventListener("mousewheel", scrollHorizontally, false);
-    // Firefox
-    document.getElementById('cont').addEventListener("DOMMouseScroll", scrollHorizontally, false);
-  } else {
-    // IE 6/7/8
-    document.getElementById('cont').attachEvent("onmousewheel", scrollHorizontally);
-  }
+	if (document.getElementById('cont').addEventListener) {
+		// IE9, Chrome, Safari, Opera
+		document.getElementById('cont').addEventListener("mousewheel", scrollHorizontally, false);
+		// Firefox
+		document.getElementById('cont').addEventListener("DOMMouseScroll", scrollHorizontally, false);
+	} else {
+		// IE 6/7/8
+		document.getElementById('cont').attachEvent("onmousewheel", scrollHorizontally);
+	}
 });
 
 var showPage = function () {
-	$("#loader").animate({"opacity": "0"}, 400, function() {
-		$(this).css("display","none");
+	$("#loader").animate({ "opacity": "0" }, 400, function () {
+		$(this).css("display", "none");
 	});
 };

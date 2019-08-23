@@ -1,37 +1,100 @@
 <% include partials/header.ejs %>
 <div id="page" class="index-wrapper mt-0 pr-4 container-fluid task-group bg-light-gray">
-  <div id="cont" class="row p-2 pb-0 align-items-start cont">
-    <% if (tasks) {%>
-    <% if (tasks.length > 0) {%>
-    <% tasks.forEach((task, index) => { %>
-    <div id="<%= task.id %>" class="card hovergrow mr-3" data-taskinfo='{"id": "<%= task.id %>", "bucket": "<%= task.bucket %>", "task": "<%= task.task %>", "status": "<%= task.status %>", "time": "<%= task.time %>", "notes": "<%= task.notes %>", "description": "<%= task.description %>"}'>
-      <div id="bucket" class="card-header bg-gray text-white text-1-5"><%= task.bucket %></div>
-      <div class="card-body bg-dark">
-        <h5 id="task" class="card-title bg-gray text-white p-2 text-center rounded-lg"><%= task.task %></h5>
-        <ul class="list-group list-group-flush mb-3 wsn">
-          <li class="list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg"><label class="m-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg text-white" for="status">Status:</label><em id="status" class="pl-1"><%= task.status %></em></li>
-          <li class="list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg"><label class="m-0 text-right border-dark w-25 border bg-light-gray rounded-left-lg text-white" for="time">Time Req:</label><em id="time" class="pl-1"><%= task.time %></em></li>
-          <li class="list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg"><label class="m-0 text-right border-dark w-25 border bg-light-gray rounded-left-lg text-white" for="notes">Notes:</label><em id="notes" class="pl-1"><%= task.notes %></em></li>
-          <li class="list-group-item bg-dark p-0 text-light align-middle border-top-bottom-gray rounded-lg"><label class="m-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg text-white" for="desc">Desc:</label><em id="desc" class="pl-1"><%= task.description %></em></li>
-        </ul>
-        <a href="/delete/<%= task.id %>" class="btn btn-sm btn-danger border border-dark">Delete</a>
-        <!--<a href="/edit/<%= task.id %>" rel="noopener" class="btn btn-sm btn-success border border-dark">Edit</a>-->
-        <button type="button" class="btn btn-sm btn-warning border border-dark" data-toggle="modal" data-target="#editModal" data-id="<%= task.id %>">Edit</button>
-      </div>
-    </div>
-    <% }) %>
-    <% } else { %>
-    <div id="noitem" class="vw-100 align-items-center">
-      <p class="text-center text-white">No tasks found. Go <a href="/add">here</a> to add tasks.</p>
-    </div>
-    <% } %>
-    <% } %>
-  </div>
+	<div id="cont" class="row p-2 pb-0 align-items-start cont">
+		<% if (tasks) {%>
+		<% if (tasks.length > 0) {%>
+		<% tasks.forEach((task, index) => { %>
+		<div id="<%= task.id %>" class="card hovergrow mr-3"
+			data-taskinfo='{"id": "<%= task.id %>", "bucket": "<%= task.bucket %>", "task": "<%= task.task %>", "status": "<%= task.status %>", "time": "<%= task.time %>", "notes": "<%= task.notes %>", "description": "<%= task.description %>"}'>
+			<div id="bucket" class="card-header bg-gray text-white text-1-5"><%= task.bucket %></div>
+			<div class="card-body bg-dark">
+				<h5 id="task" class="card-title bg-gray text-white p-2 text-center rounded-lg"><%= task.task %></h5>
+				<ul class="list-group list-group-flush mb-3 wsn">
+					<li class="list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg"><label
+							class="m-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg text-white"
+							for="status">Status:</label><em id="status" class="pl-1"><%= task.status %></em></li>
+					<li class="list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg"><label
+							class="m-0 text-right border-dark w-25 border bg-light-gray rounded-left-lg text-white" for="time">Time
+							Req:</label><em id="time" class="pl-1"><%= task.time %></em></li>
+					<li class="list-group-item bg-dark p-0 text-light align-middle border-top-gray rounded-lg"><label
+							class="m-0 text-right border-dark w-25 border bg-light-gray rounded-left-lg text-white"
+							for="notes">Notes:</label><em id="notes" class="pl-1"><%= task.notes %></em></li>
+					<li class="list-group-item bg-dark p-0 text-light align-middle border-top-bottom-gray rounded-lg"><label
+							class="m-0 w-25 text-right border-dark border bg-light-gray rounded-left-lg text-white"
+							for="desc">Desc:</label><em id="desc" class="pl-1"><%= task.description %></em></li>
+				</ul>
+				<a href="/delete/<%= task.id %>" class="btn btn-sm btn-danger border border-dark">Delete</a>
+				<!--<a href="/edit/<%= task.id %>" rel="noopener" class="btn btn-sm btn-success border border-dark">Edit</a>-->
+				<button type="button" class="btn btn-sm btn-warning border border-dark" data-toggle="modal"
+					data-target="#editModal" data-id="<%= task.id %>">Edit</button>
+			</div>
+		</div>
+		<% }) %>
+		<% } else { %>
+		<div id="noitem" class="vw-100 align-items-center">
+			<p class="text-center text-white">No tasks found. Go <a href="/add">here</a> to add tasks.</p>
+		</div>
+		<% } %>
+		<% } %>
+	</div>
 </div>
 </div>
 <script src="js/group.js" type="application/x-javascript"></script>
 <script type="application/x-javascript" src="js/task.js"></script>
 <script type="application/x-javascript" src="js/index-html.js"></script>
+<svg id="arow-temp" style="display: none" width="100%" height="100%" version="1.1" viewBox="0 0 44 44"
+	xmlns="http://www.w3.org/2000/svg">
+	<style>
+		#arrow {
+			fill: #ccc;
+			stroke: #000;
+			stroke-width: 0.5;
+		}
+
+		#outline {
+			stroke: none;
+			fill: none;
+			color: none;
+		}
+
+		.outline {
+			stroke-width: 0.8;
+			stroke: #333;
+			stroke-linejoin: round;
+			stroke-linecap: round;
+			stroke-dasharray: 1000;
+			stroke-dashoffset: 1000;
+			animation-name: border;
+			animation-duration: 4s;
+			animation-iteration-count: infinite;
+		}
+
+		#background {
+			fill: red;
+			paint-order: fill stroke markers;
+		}
+
+		@keyframes border {
+			0% {
+				stroke-dashoffset: 1000;
+			}
+
+			50% {
+				stroke-dashoffset: 0;
+			}
+
+			100% {
+				stroke-dashoffset: 1000;
+			}
+		}
+	</style>
+	<g>
+		<circle id="background" transform="rotate(90)" class="outline" cx="21" cy="-21" r="20" />
+		<path id="arrow" d="m12.027 15.75-0.8412 5.5495 9.344 7.3629 9.6034-6.9903-1.6846-5.7743-7.9193 5.764z" />
+	</g>
+	<path id="outline"
+		d="m40.703 20.352c0-11.236-9.1158-20.352-20.352-20.352-11.236 0-20.352 9.1158-20.352 20.352 0 11.236 9.1158 20.352 20.352 20.352 11.236 0 20.352-9.1158 20.352-20.352zm-0.70312 0c0 10.856-8.7928 19.648-19.648 19.648-10.856 0-19.648-8.7928-19.648-19.648 0-10.856 8.7929-19.648 19.648-19.648 10.856 0 19.648 8.7928 19.648 19.648z" />
+</svg>
 </body>
 
 </html>

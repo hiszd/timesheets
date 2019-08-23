@@ -48,7 +48,7 @@ html {
   overflow-y: hidden;
   white-space: nowrap; }
 
-.card {
+.card, .card:last-child {
   box-sizing: content-box;
   caret-color: transparent;
   display: block;
@@ -59,6 +59,9 @@ html {
   overflow-x: hidden;
   width: 400px;
   margin-left: 1rem; }
+
+.card:last-child {
+  margin-bottom: 1rem; }
 
 .card > .card-body > #desc {
   overflow: hidden; }
@@ -88,14 +91,14 @@ html {
   color: #aaa;
   width: 10%;
   margin-left: 5px;
-  margin-top: 0.3rem;
+  margin-top: .3rem;
   border: 2px solid #999 !important;
-  transition: color .2s linear, text-decoration .2s linear, opacity .2s linear, background-color .1s linear, border 0.15s linear; }
+  transition: color .2s linear, text-decoration .2s linear, opacity .2s linear, background-color .1s linear, border .15s linear; }
   .closebutton:hover {
     background-color: #7b7;
     text-decoration: none;
-    opacity: 0.75;
-    border: none !important; }
+    opacity: .75;
+    border: 0 !important; }
 
 .group, .group:last-child {
   border-left: solid 1px #000;
@@ -105,9 +108,9 @@ html {
   max-width: 500px;
   min-height: none;
   overflow: hidden;
-  padding-bottom: 1rem;
   border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
-  position: relative; }
+  position: relative;
+  caret-color: transparent; }
 
 .group:last-child {
   border-right: solid 1px #000;
@@ -121,21 +124,40 @@ html {
   border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
 
 .bookend {
-  background-color: rgba(200, 200, 200, 0.7);
-  min-height: 4rem;
+  display: none;
+  background-color: transparent;
+  min-height: 2.5rem;
+  max-height: 2.5rem;
   min-width: 100%;
   padding: 0;
+  padding-top: .75rem;
   margin: 0;
   bottom: 0;
-  line-height: 2rem;
-  font-size: 2rem;
-  position: absolute;
-  text-align: center; }
+  position: sticky; }
+
+.bookend-cont {
+  display: flex;
+  margin: 0 !important;
+  background-color: rgba(200, 200, 200, 0.7);
+  height: 2.5rem;
+  min-width: 100%;
+  position: relative;
+  transition: height .15s ease;
+  width: 100%;
+  bottom: 0;
+  position: absolute; }
+
+.bookend:hover > .bookend-cont {
+  height: 1.5rem; }
 
 .bookend-arrow {
-  padding: 1.5rem;
-  border-radius: 50%;
-  background-color: #c8c8c8;
+  transform: translate(0, -1em);
+  margin: 0 auto !important;
+  display: flex;
+  align-items: center !important;
+  width: 3rem;
+  height: 3rem;
+  background-color: transparent;
   position: relative; }
 
 .rounded-lg {
