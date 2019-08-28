@@ -3,6 +3,12 @@ $dark-gray: rgba(40, 40, 40, 1);
 $light-gray: rgba(70, 70, 70, 1);
 $bookend-bg: rgba(200,200,200, .7);
 $bookend-fg: rgba(200,200,200, 1);
+$arrow-fg:rgba(100,100,100, 1);
+// $arrow-fill:rgba(200,200,250, 1);
+$arrow-fill: #343a40;
+$arrow-bg:rgba(200,200,200, 1);
+$arrow-stroke1:rgba(0,0,0, 0.5);
+$arrow-stroke2:rgba(70,70,70, 1);
 
 @mixin keyframes($name) {
 	@-webkit-keyframes #{$name} {
@@ -32,6 +38,8 @@ $bookend-fg: rgba(200,200,200, 1);
 	-webkit-animation: $name $speed $easing $delay $direction;
 	animation: $name $speed $easing $delay $direction;
 }
+
+@import "svg";
 
 html {
 	scroll-behavior: smooth;
@@ -151,7 +159,7 @@ html {
 	width: 10%;
 	margin-left: 5px;
 	margin-top: .3rem;
-	border: 2px solid #999 !important;
+	//border: 2px solid #999 !important;
 	transition: color .2s linear, text-decoration .2s linear, opacity .2s linear, background-color .1s linear, border .15s linear;
 	&:hover {
 		background-color: #7b7;

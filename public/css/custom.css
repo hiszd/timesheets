@@ -1,3 +1,60 @@
+svg #arrow {
+  fill: #343a40;
+  stroke: #464646;
+  stroke-width: 1; }
+
+svg #outline {
+  stroke: none;
+  fill: none;
+  color: none; }
+
+svg .outline {
+  stroke-width: 0.8;
+  stroke: rgba(0, 0, 0, 0.5);
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000; }
+
+svg #background {
+  fill: #c8c8c8;
+  paint-order: fill stroke markers;
+  box-shadow: 2px 1px 1px black; }
+
+@keyframes border {
+  0% {
+    stroke-dashoffset: 1000; }
+  50% {
+    stroke-dashoffset: 0; }
+  100% {
+    stroke-dashoffset: 1000; } }
+#checkbox {
+  height: 1.5rem;
+  width: 2em; }
+  #checkbox #ic_check_box_24px, #checkbox #ic_check_box_outline_blank_24px, #checkbox #ic_indeterminate_check_box_24px {
+    stroke-width: .26458; }
+  #checkbox #background {
+    fill: #646464;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: .65914;
+    stroke: #fff; }
+  #checkbox #checkfill {
+    display: none;
+    fill: #2a2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: .26458;
+    stroke: #646464; }
+  #checkbox #checkout {
+    fill: #000000;
+    display: none; }
+  #checkbox #unchecked {
+    fill: #000; }
+  #checkbox #disabled {
+    fill: #000;
+    display: none; }
+
 html {
   scroll-behavior: smooth; }
 
@@ -92,7 +149,6 @@ html {
   width: 10%;
   margin-left: 5px;
   margin-top: .3rem;
-  border: 2px solid #999 !important;
   transition: color .2s linear, text-decoration .2s linear, opacity .2s linear, background-color .1s linear, border .15s linear; }
   .closebutton:hover {
     background-color: #7b7;

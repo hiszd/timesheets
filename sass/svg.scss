@@ -1,0 +1,81 @@
+//*********************
+//		Arrow styles
+//*********************
+
+svg #arrow {
+	fill: $arrow-fill;
+	stroke: $arrow-stroke2;
+	stroke-width: 1;
+}
+
+svg #outline {
+	stroke: none;
+	fill: none;
+	color: none;
+}
+
+svg .outline {
+	stroke-width: 0.8;
+	stroke: $arrow-stroke1;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+	stroke-dasharray: 1000;
+	stroke-dashoffset: 1000;
+	//animation-name: border;
+	// animation-duration: 4s;
+	// animation-iteration-count: infinite;
+}
+
+svg #background {
+	fill: $arrow-bg;
+	paint-order: fill stroke markers;
+	box-shadow: 2px 1px 1px black;
+}
+
+@keyframes border { //TODO: Remove animation
+	0% {
+		stroke-dashoffset: 1000;
+	}
+
+	50% {
+		stroke-dashoffset: 0;
+	}
+
+	100% {
+		stroke-dashoffset: 1000;
+	}
+}
+
+//*********************
+//		Checkbox styles
+//*********************
+
+#checkbox {
+	height: 1.5rem;
+	width: 2em;
+	& #ic_check_box_24px,& #ic_check_box_outline_blank_24px,& #ic_indeterminate_check_box_24px {
+		stroke-width: .26458;
+	}	& #background {
+		fill: #646464;
+		stroke-linecap:round;
+		stroke-linejoin:round;
+		stroke-width:.65914;
+		//stroke:#646464;
+		stroke: #fff;
+	}	& #checkfill {
+		display: none;
+		fill:#2a2;
+		stroke-linecap:round;
+		stroke-linejoin:round;
+		stroke-width:.26458;
+		stroke:#646464;
+	}	& #checkout {
+		fill:#000000;
+		display: none;
+	} & #unchecked {
+		fill: #000;
+	} & #disabled {
+		fill: #000;
+		display: none;
+	}
+}

@@ -1,4 +1,4 @@
-class Task{
+class Task {
 	constructor(argmap) {
 		if (argmap.selector) {
 			this._element = $(argmap.selector);
@@ -15,15 +15,18 @@ class Task{
 			this._notes = $(this._element).data('taskinfo').notes;
 			this._descel = $(this._element).find('#desc');
 			this._desc = $(this._element).data('taskinfo').description;
-			return this._element;
+			return this;
 		} else if (argmap.object) {
 			var obj = JSON.parse(argmap.object);
-			this._frag = document.createDocumentFragment();
 			this._id = obj.id;
 			this._element = jQuery('<div/>', { id: obj.id, "class": 'card hovergrow mr-3 border-1-gray', "data-taskinfo": JSON.stringify(obj) });
 			this._taskel = jQuery('<div/>', { id: "task", "class": 'card-header bg-gray text-white text-1-5' })
 			$(this._taskel).append(jQuery('<span/>', { "class": 'task-text' }).html(obj.task));
-			this._completeel = jQuery('<button/>', { id: 'complete', "class":  'closebutton close'}).html('&#10004;').appendTo(this._taskel);
+			this._completeel = jQuery('<button/>', { id: 'complete', "class": 'closebutton close' }).append(document.querySelector("#checkbox-temp").cloneNode(true));
+			$(this._completeel).children("#checkbox-temp").removeAttr("style").attr("id", "checkbox")
+			var state = { "#background": { "fill": "#fff", "stroke": "#646464" }, "#checkout": { "display": "inherit" } };
+			this._svg = new SVG({ "element": $(this._completeel).find("svg"), "clickToggle": 1, "clickState": state, "clickTime": [1000] });
+			$(this._taskel).append(this._completeel);
 			$(this._taskel).appendTo(this._element);
 			this._task = obj.task;
 			this._bucket = obj.bucket;
@@ -44,8 +47,7 @@ class Task{
 			$(this._bodyel).append(jQuery('<a/>', { "href": '/delete/' + obj.id, "class": 'btn btn-sm btn-danger border border-dark' }).html("Delete"));
 			$(this._bodyel).append(jQuery('<button/>', { "type": 'button', "class": 'btn btn-sm btn-warning border border-dark', "data-toggle": 'modal', "data-target": '#editModal', "data-id": obj.id }).html("Edit"));
 			$(this._element).append(this._bodyel);
-			$(this._frag).append(this._element);
-			return this._element;
+			return this;
 		}
 	}
 
@@ -53,12 +55,16 @@ class Task{
 		$(this._element).attr('data-taskinfo', JSON.stringify(info));
 	}
 
+	get element() {
+		return this._element;
+	}
+
 	get id() {
 		return this._id;
 	}
 
 	set id(no) {
-		this._id=no;$(this._element).attr('id',no);$(this._element).data('taskinfo').id=no;
+		this._id = no; $(this._element).attr('id', no); $(this._element).data('taskinfo').id = no;
 	}
 
 	get bucket() {
@@ -66,7 +72,7 @@ class Task{
 	}
 
 	set bucket(no) {
-		this._bucket=no;this._bucketel.text(no);$(this._element).data('taskinfo').bucket=no;
+		this._bucket = no; this._bucketel.text(no); $(this._element).data('taskinfo').bucket = no;
 	}
 
 	get task() {
@@ -74,7 +80,7 @@ class Task{
 	}
 
 	set task(no) {
-		this._task=no;$(this._taskel).text(no);let info=$(this._element).data('taskinfo');info.task=no;this.updateInfo(info);console.log(info);
+		this._task = no; $(this._taskel).text(no); let info = $(this._element).data('taskinfo'); info.task = no; this.updateInfo(info); console.log(info);
 	}
 
 	get status() {
@@ -82,7 +88,7 @@ class Task{
 	}
 
 	set status(no) {
-		this._status=no;this._statusel.text(no);let info=$(this._element).data('taskinfo');info.status=no;this.updateInfo(info);
+		this._status = no; this._statusel.text(no); let info = $(this._element).data('taskinfo'); info.status = no; this.updateInfo(info);
 	}
 
 	get time() {
@@ -90,7 +96,7 @@ class Task{
 	}
 
 	set time(no) {
-		this._time=no;this._timeel.text(no);let info=$(this._element).data('taskinfo');info.time=no;this.updateInfo(info);
+		this._time = no; this._timeel.text(no); let info = $(this._element).data('taskinfo'); info.time = no; this.updateInfo(info);
 	}
 
 	get notes() {
@@ -98,7 +104,7 @@ class Task{
 	}
 
 	set notes(no) {
-		this._notes=no;this._notesel.text(no);let info=$(this._element).data('taskinfo');info.notes=no;this.updateInfo(info);
+		this._notes = no; this._notesel.text(no); let info = $(this._element).data('taskinfo'); info.notes = no; this.updateInfo(info);
 	}
 
 	get desc() {
@@ -106,6 +112,6 @@ class Task{
 	}
 
 	set desc(no) {
-		this._desc=no;this._descel.text(no);let info=$(this._element).data('taskinfo');info.description=no;this.updateInfo(info);
+		this._desc = no; this._descel.text(no); let info = $(this._element).data('taskinfo'); info.description = no; this.updateInfo(info);
 	}
 }

@@ -39,61 +39,46 @@
 	</div>
 </div>
 </div>
+<script type="application/x-javascript" src="js/svg.js"></script>
 <script src="js/group.js" type="application/x-javascript"></script>
 <script type="application/x-javascript" src="js/task.js"></script>
 <script type="application/x-javascript" src="js/index-html.js"></script>
 <svg id="arow-temp" style="display: none" width="100%" height="100%" version="1.1" viewBox="0 0 44 44"
 	xmlns="http://www.w3.org/2000/svg">
-	<style>
-		#arrow {
-			fill: #ccc;
-			stroke: #000;
-			stroke-width: 0.5;
-		}
-
-		#outline {
-			stroke: none;
-			fill: none;
-			color: none;
-		}
-
-		.outline {
-			stroke-width: 0.8;
-			stroke: #333;
-			stroke-linejoin: round;
-			stroke-linecap: round;
-			stroke-dasharray: 1000;
-			stroke-dashoffset: 1000;
-			animation-name: border;
-			animation-duration: 4s;
-			animation-iteration-count: infinite;
-		}
-
-		#background {
-			fill: red;
-			paint-order: fill stroke markers;
-		}
-
-		@keyframes border {
-			0% {
-				stroke-dashoffset: 1000;
-			}
-
-			50% {
-				stroke-dashoffset: 0;
-			}
-
-			100% {
-				stroke-dashoffset: 1000;
-			}
-		}
-	</style>
 	<g>
 		<circle id="background" transform="rotate(90)" class="outline" cx="21" cy="-21" r="20" />
 		<path id="arrow" d="m12.027 15.75-0.8412 5.5495 9.344 7.3629 9.6034-6.9903-1.6846-5.7743-7.9193 5.764z" />
 	</g>
 	<path id="outline"
 		d="m40.703 20.352c0-11.236-9.1158-20.352-20.352-20.352-11.236 0-20.352 9.1158-20.352 20.352 0 11.236 9.1158 20.352 20.352 20.352 11.236 0 20.352-9.1158 20.352-20.352zm-0.70312 0c0 10.856-8.7928 19.648-19.648 19.648-10.856 0-19.648-8.7928-19.648-19.648 0-10.856 8.7929-19.648 19.648-19.648 10.856 0 19.648 8.7928 19.648 19.648z" />
+</svg>
+
+<svg id="checkbox-temp" style="display: none" version="1.1" viewBox="0 0 25 15" xmlns="http://www.w3.org/2000/svg"
+	xmlns:osb="http://www.openswatchbook.org/uri/2009/osb" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs>
+		<symbol id="ic_check_box_24px">
+			<path
+				d="m5.0271 0.79375h-3.7042a0.52917 0.52917 0 0 0-0.52917 0.52917v3.7042a0.52917 0.52917 0 0 0 0.52917 0.52917h3.7042a0.52917 0.52917 0 0 0 0.52917-0.52917v-3.7042a0.52917 0.52917 0 0 0-0.52917-0.52917zm-2.3812 3.7042-1.3229-1.3229 0.37306-0.37306 0.94985 0.94721 2.0082-2.0082 0.37306 0.37571z" />
+		</symbol>
+		<symbol id="ic_check_box_outline_blank_24px">
+			<path
+				d="m5.0271 1.3229v3.7042h-3.7042v-3.7042h3.7042m0-0.52917h-3.7042c-0.29104 0-0.52917 0.23812-0.52917 0.52917v3.7042c0 0.29104 0.23812 0.52917 0.52917 0.52917h3.7042c0.29104 0 0.52917-0.23812 0.52917-0.52917v-3.7042c0-0.29104-0.23812-0.52917-0.52917-0.52917z" />
+		</symbol>
+		<symbol id="ic_indeterminate_check_box_24px">
+			<path
+				d="m5.0271 0.79375h-3.7042c-0.29104 0-0.52917 0.23812-0.52917 0.52917v3.7042c0 0.29104 0.23812 0.52917 0.52917 0.52917h3.7042c0.29104 0 0.52917-0.23812 0.52917-0.52917v-3.7042c0-0.29104-0.23812-0.52917-0.52917-0.52917zm-0.52917 2.6458h-2.6458v-0.52917h2.6458z" />
+		</symbol>
+	</defs>
+	<g>
+		<rect id="background" x=".32957" y=".32957" width="24.341" height="14.341" ry="3.9748" />
+	</g>
+	<rect id="checkfill" x="8.1297" y="3.46" width="8.7407" height="8.0792" ry=".070868" />
+	<use id="checkout" transform="matrix(2.0997 0 0 2.0997 5.8333 .77394)" width="100%" height="100%"
+		xlink:href="#ic_check_box_24px" />
+	<use id="unchecked" transform="matrix(2.0997 0 0 2.0997 5.8333 .83335)" width="100%" height="100%"
+		xlink:href="#ic_check_box_outline_blank_24px" />
+	<use id="disabled" transform="matrix(2.0997 0 0 2.0997 5.8333 .83335)" width="100%" height="100%"
+		xlink:href="#ic_indeterminate_check_box_24px" />
 </svg>
 </body>
 

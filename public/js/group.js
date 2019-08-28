@@ -21,7 +21,8 @@ class TaskGroup {
 			var ele = jQuery('<div/>', { id: argmap.id, "class": 'bg-secondary group' });
 			this._header = jQuery('<div/>', { id: 'head', "class": 'group-header' }).html(argmap.id).appendTo(ele);
 			tasks.forEach(function (itm, idx) {
-				$(ele).append(new Task({ "object": JSON.stringify(itm) }));
+				var task = new Task({ "object": JSON.stringify(itm) })
+				$(ele).append(task.element);
 			});
 			this._bookend = jQuery('<div/>', { "class": 'bookend align-items-center' });
 			this._cont = jQuery('<div/>', { "class": 'bookend-cont align-items-center row' });
