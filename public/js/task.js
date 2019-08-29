@@ -24,8 +24,18 @@ class Task {
 			$(this._taskel).append(jQuery('<span/>', { "class": 'task-text' }).html(obj.task));
 			this._completeel = jQuery('<button/>', { id: 'complete', "class": 'closebutton close' }).append(document.querySelector("#checkbox-temp").cloneNode(true));
 			$(this._completeel).children("#checkbox-temp").removeAttr("style").attr("id", "checkbox")
-			var state = { "#background": { "fill": "#fff", "stroke": "#646464" }, "#checkout": { "display": "inherit" } };
-			this._svg = new SVG({ "element": $(this._completeel).find("svg"), "clickToggle": 1, "clickState": state, "clickTime": [1000] });
+			var state = { "#background": { "fill": "#fff", "stroke": "#646464" }, "#checkout": { "display": "inherit" }, "#checkfill": { "height": "0.5rem" } };
+			var preclk = (itm) => {
+				if (itm._clickedState == 1) {
+					itm._element.find("#checkfill").css("display", "none");
+				}
+			}
+			var postclk = (itm) => {
+				if (itm._clickedState == 1) {
+					itm._element.find("#checkfill").css("display", "inherit");
+				}
+			}
+			this._svg = new SVG({ "element": $(this._completeel).find("svg"), "clickToggle": 1, "clickStyle": state, "preClick": preclk, "postClick": postclk });
 			$(this._taskel).append(this._completeel);
 			$(this._taskel).appendTo(this._element);
 			this._task = obj.task;

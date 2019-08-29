@@ -38,23 +38,71 @@ svg #background {
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: .65914;
-    stroke: #fff; }
+    stroke: #fff;
+    -moz-transition: fill .5s ease, stroke .5s ease;
+    -ms-transition: fill .5s ease, stroke .5s ease;
+    -webkit-transition: fill .5s ease, stroke .5s ease;
+    transition: fill .5s ease, stroke .5s ease; }
   #checkbox #checkfill {
-    display: none;
+    height: 0;
     fill: #2a2;
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: .26458;
-    stroke: #646464; }
+    stroke: #646464;
+    -moz-transition: fill .5s ease, stroke .5s ease, height 1s .25s ease-out;
+    -ms-transition: fill .5s ease, stroke .5s ease, height 1s .25s ease-out;
+    -webkit-transition: fill .5s ease, stroke .5s ease, height 1s .25s ease-out;
+    transition: fill .5s ease, stroke .5s ease, height 1s .25s ease-out; }
   #checkbox #checkout {
     fill: #000000;
-    display: none; }
+    display: none;
+    -moz-transition: fill .5s ease, stroke .5s ease, display .5s ease;
+    -ms-transition: fill .5s ease, stroke .5s ease, display .5s ease;
+    -webkit-transition: fill .5s ease, stroke .5s ease, display .5s ease;
+    transition: fill .5s ease, stroke .5s ease, display .5s ease; }
   #checkbox #unchecked {
-    fill: #000; }
+    fill: #000;
+    -moz-transition: fill .5s ease, stroke .5s ease, display .5s ease;
+    -ms-transition: fill .5s ease, stroke .5s ease, display .5s ease;
+    -webkit-transition: fill .5s ease, stroke .5s ease, display .5s ease;
+    transition: fill .5s ease, stroke .5s ease, display .5s ease; }
   #checkbox #disabled {
     fill: #000;
-    display: none; }
+    display: none;
+    -moz-transition: fill .5s ease, stroke .5s ease, display .5s ease;
+    -ms-transition: fill .5s ease, stroke .5s ease, display .5s ease;
+    -webkit-transition: fill .5s ease, stroke .5s ease, display .5s ease;
+    transition: fill .5s ease, stroke .5s ease, display .5s ease; }
 
+@-webkit-keyframes click {
+  0% {
+    transform: scale(1); }
+  50% {
+    transform: scale(1.2); }
+  100% {
+    transform: scale(1); } }
+@-moz-keyframes click {
+  0% {
+    transform: scale(1); }
+  50% {
+    transform: scale(1.2); }
+  100% {
+    transform: scale(1); } }
+@-ms-keyframes click {
+  0% {
+    transform: scale(1); }
+  50% {
+    transform: scale(1.2); }
+  100% {
+    transform: scale(1); } }
+@keyframes click {
+  0% {
+    transform: scale(1); }
+  50% {
+    transform: scale(1.2); }
+  100% {
+    transform: scale(1); } }
 html {
   scroll-behavior: smooth; }
 
@@ -262,11 +310,20 @@ html {
 
 .hovergrow {
   box-shadow: 3px 5px 2px #3c3c3c;
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
   transform: translate(0, 0);
   transition: box-shadow .15s 200ms ease, transform .15s 200ms ease; }
   .hovergrow:hover {
     box-shadow: 6px 1em 2px rgba(50, 50, 50, 0.5);
+    -moz-transform: translate(0, -1em);
+    -ms-transform: translate(0, -1em);
+    -webkit-transform: translate(0, -1em);
     transform: translate(0, -1em);
+    -moz-transition: box-shadow .35s 0s ease, transform .35s 0s ease;
+    -ms-transition: box-shadow .35s 0s ease, transform .35s 0s ease;
+    -webkit-transition: box-shadow .35s 0s ease, transform .35s 0s ease;
     transition: box-shadow .35s 0s ease, transform .35s 0s ease; }
 
 .fadeinout {

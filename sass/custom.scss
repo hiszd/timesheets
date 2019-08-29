@@ -71,12 +71,12 @@ html {
 		border: 2px solid $b-gray;
 	}
 	&:hover {
-		border: 2px solid $b-gray;transition: color .2s linear, text-decoration .2s linear
-	}transition: color .2s linear, text-decoration .2s linear
-}transition: color .2s linear, text-decoration .2s linear
-transition: color .2s linear, text-decoration .2s linear
-.text-black {transition: color .2s linear, text-decoration .2s linear
-	color: #000;transition: color .2s linear, text-decoration .2s linear
+		border: 2px solid $b-gray;
+	}
+}
+
+.text-black {
+	color: #000;
 }
 
 .bg-light-gray {
@@ -313,7 +313,7 @@ transition: color .2s linear, text-decoration .2s linear
 	&:hover {
 		box-shadow: 6px 1em 2px rgba(50, 50, 50, .5);
 		@include transform(translate(0,-1em));
-		@include transition(box-shadow .35s 0s ease, transform .35s 0s ease);
+		@include transition("box-shadow .35s 0s ease, transform .35s 0s ease");
 	}
 }
 

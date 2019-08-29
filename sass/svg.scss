@@ -62,25 +62,41 @@ svg #background {
 		stroke-width:.65914;
 		//stroke:#646464;
 		stroke: #fff;
-		@include transition(fill .2s ease, stroke .2s ease);
+		@include transition("fill .5s ease, stroke .5s ease");
 	}	& #checkfill {
-		display: none;
+		height: 0;
 		fill:#2a2;
 		stroke-linecap:round;
 		stroke-linejoin:round;
 		stroke-width:.26458;
 		stroke:#646464;
-		@include transition(fill .2s ease, stroke .2s ease, display .2s ease);
+		@include transition("fill .5s ease, stroke .5s ease, height 1s .25s ease-out");
 	}	& #checkout {
 		fill:#000000;
 		display: none;
-		@include transition(fill .2s ease, stroke .2s ease, display .2s ease);
+		@include transition("fill .5s ease, stroke .5s ease, display .5s ease");
 	} & #unchecked {
 		fill: #000;
-		@include transition(fill .2s ease, stroke .2s ease, display .2s ease);
+		@include transition("fill .5s ease, stroke .5s ease, display .5s ease");
 	} & #disabled {
 		fill: #000;
 		display: none;
-		@include transition(fill .2s ease, stroke .2s ease, display .2s ease);
+		@include transition("fill .5s ease, stroke .5s ease, display .5s ease");
+	}
+}
+
+
+
+@include keyframes(click) {
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.2);
+	}
+
+	100% {
+		transform: scale(1);
 	}
 }
