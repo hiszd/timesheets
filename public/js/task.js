@@ -22,7 +22,7 @@ class Task {
 			this._element = jQuery('<div/>', { id: obj.id, "class": 'card hovergrow mr-3 border-1-gray', "data-taskinfo": JSON.stringify(obj) });
 			this._taskel = jQuery('<div/>', { id: "task", "class": 'card-header bg-gray text-white text-1-5' })
 			$(this._taskel).append(jQuery('<span/>', { "class": 'task-text' }).html(obj.task));
-			this._completeel = jQuery('<button/>', { id: 'complete', "class": 'closebutton close' }).append(document.querySelector("#checkbox-temp").cloneNode(true));
+			this._completeel = jQuery('<button/>', { id: 'complete', "class": 'closebutton' }).append(document.querySelector("#checkbox-temp").cloneNode(true));
 			$(this._completeel).children("#checkbox-temp").removeAttr("style").attr("id", "checkbox")
 			var state = { "#background": { "fill": "#fff", "stroke": "#646464" }, "#checkout": { "display": "inherit" }, "#checkfill": { "height": "0.5rem" } };
 			var preclk = (itm) => {
@@ -32,7 +32,8 @@ class Task {
 			}
 			var postclk = (itm) => {
 				if (itm._clickedState == 1) {
-					itm._element.find("#checkfill").css("display", "inherit");
+					itm._element.find("#checkfill").css("display", "inline");
+					itm._restoreStyle["#checkfill"]["height"] = "0px";
 				}
 			}
 			this._svg = new SVG({ "element": $(this._completeel).find("svg"), "clickToggle": 1, "clickStyle": state, "preClick": preclk, "postClick": postclk });
@@ -40,7 +41,7 @@ class Task {
 			$(this._taskel).appendTo(this._element);
 			this._task = obj.task;
 			this._bucket = obj.bucket;
-			this._bodyel = jQuery('<div/>', { id: "body", "class": 'card-body bg-dark' });
+			this._bodyel = jQuery('<div/>', { id: "body", "class": 'card-body' });
 			this._descel = jQuery('<h5/>', { id: "desc", "class": 'card-title bg-gray text-white p-2 text-center rounded-lg' }).html(obj.description).appendTo(this._bodyel);
 			this._desc = obj.description;
 			this._groupel = jQuery('<ul/>', { id: "group", "class": 'list-group list-group-flush mb-3 wsn' });

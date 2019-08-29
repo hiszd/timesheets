@@ -106,6 +106,9 @@ svg #background {
 html {
   scroll-behavior: smooth; }
 
+button, button:active, button:focus, a, a:active, a:focus {
+  outline: none; }
+
 .border-top-bottom-gray {
   border-bottom: solid 1px #646464 !important;
   border-top: solid 1px #646464 !important; }
@@ -167,11 +170,21 @@ html {
 
 .card:last-child {
   margin-bottom: 1rem; }
-
-.card > .card-body > #desc {
+.card .card-body {
+  background-color: #343a40;
+  -moz-transition: background-color .2s ease;
+  -ms-transition: background-color .2s ease;
+  -webkit-transition: background-color .2s ease;
+  transition: background-color .2s ease; }
+.card .card-header {
+  background-color: #282828;
+  -moz-transition: background-color .2s ease;
+  -ms-transition: background-color .2s ease;
+  -webkit-transition: background-color .2s ease;
+  transition: background-color .2s ease; }
+.card .card-body #desc {
   overflow: hidden; }
-
-.card > #task {
+.card #task {
   overflow: hidden; }
 
 .task-text {
@@ -181,6 +194,7 @@ html {
   display: inline-block; }
 
 .closebutton {
+  border: none;
   border-radius: .5rem !important;
   opacity: 1;
   padding: 0;
@@ -304,22 +318,63 @@ html {
   box-shadow: 0 5px 3px #3c3c3c; }
 
 .hovergrow {
+  overflow: hidden;
   box-shadow: 3px 5px 2px #3c3c3c;
-  -moz-transform: translate(0, 0);
-  -ms-transform: translate(0, 0);
-  -webkit-transform: translate(0, 0);
-  transform: translate(0, 0);
   transition: box-shadow .15s 200ms ease, transform .15s 200ms ease; }
-  .hovergrow:hover {
-    box-shadow: 6px 1em 2px rgba(50, 50, 50, 0.5);
-    -moz-transform: translate(0, -1em);
-    -ms-transform: translate(0, -1em);
-    -webkit-transform: translate(0, -1em);
-    transform: translate(0, -1em);
-    -moz-transition: box-shadow .35s 0s ease, transform .35s 0s ease;
-    -ms-transition: box-shadow .35s 0s ease, transform .35s 0s ease;
-    -webkit-transition: box-shadow .35s 0s ease, transform .35s 0s ease;
-    transition: box-shadow .35s 0s ease, transform .35s 0s ease; }
+  .hovergrow:hover .card-header {
+    background-color: #353535; }
+  .hovergrow:hover .card-body {
+    background-color: #3f474e; }
+  .hovergrow #body a {
+    -moz-transform: translate(0, 5em);
+    -ms-transform: translate(0, 5em);
+    -webkit-transform: translate(0, 5em);
+    transform: translate(0, 5em);
+    -moz-transition: transform .5s .25s ease;
+    -ms-transition: transform .5s .25s ease;
+    -webkit-transition: transform .5s .25s ease;
+    transition: transform .5s .25s ease; }
+  .hovergrow #body button {
+    -moz-transform: translate(0, 5em);
+    -ms-transform: translate(0, 5em);
+    -webkit-transform: translate(0, 5em);
+    transform: translate(0, 5em);
+    -moz-transition: transform .9s .25s ease;
+    -ms-transition: transform .9s .25s ease;
+    -webkit-transition: transform .9s .25s ease;
+    transition: transform .9s .25s ease; }
+  .hovergrow #task button {
+    -moz-transform: translate(0, -4em);
+    -ms-transform: translate(0, -4em);
+    -webkit-transform: translate(0, -4em);
+    transform: translate(0, -4em);
+    -moz-transition: transform .5s .25s ease;
+    -ms-transition: transform .5s .25s ease;
+    -webkit-transition: transform .5s .25s ease;
+    transition: transform .5s .25s ease; }
+  .hovergrow:hover #body a {
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    -moz-transition: transform .5s .25s ease;
+    -ms-transition: transform .5s .25s ease;
+    -webkit-transition: transform .5s .25s ease;
+    transition: transform .5s .25s ease; }
+  .hovergrow:hover #body button {
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    -moz-transition: transform .9s .25s ease;
+    -ms-transition: transform .9s .25s ease;
+    -webkit-transition: transform .9s .25s ease;
+    transition: transform .9s .25s ease; }
+  .hovergrow:hover #task button {
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0); }
 
 .fadeinout {
   -moz-animation: fadeinout 1s linear infinite none;
