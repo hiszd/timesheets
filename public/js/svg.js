@@ -19,14 +19,14 @@ class SVG {
 			// $(this._element).find("path, rect, use, circle").forEach(function (itm, idx) {
 			// this._drawnElements.push(itm);
 			// });
-			if (argmap.clickToggle && argmap.clickState && argmap.clickTime) {
+			if (argmap.clickToggle && argmap.clickState) {
 				var state = argmap.clickState;  //JSON.parse(argmap.clickState);
 				$(this._element).click(() => {
 					Object.keys(state).forEach((itm, idx) => {
 						console.log(itm);
 						console.log($(this._element).find(itm));
 						var ele = $(this._element).find(itm);
-						ele.animate(state[itm], argmap.clickTime[idx]);
+						ele.css(state[itm]);
 					});
 				});
 			}

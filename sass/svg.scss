@@ -62,6 +62,7 @@ svg #background {
 		stroke-width:.65914;
 		//stroke:#646464;
 		stroke: #fff;
+		@include transition(fill .2s ease, stroke .2s ease);
 	}	& #checkfill {
 		display: none;
 		fill:#2a2;
@@ -69,13 +70,17 @@ svg #background {
 		stroke-linejoin:round;
 		stroke-width:.26458;
 		stroke:#646464;
+		@include transition(fill .2s ease, stroke .2s ease, display .2s ease);
 	}	& #checkout {
 		fill:#000000;
 		display: none;
+		@include transition(fill .2s ease, stroke .2s ease, display .2s ease);
 	} & #unchecked {
 		fill: #000;
+		@include transition(fill .2s ease, stroke .2s ease, display .2s ease);
 	} & #disabled {
 		fill: #000;
 		display: none;
+		@include transition(fill .2s ease, stroke .2s ease, display .2s ease);
 	}
 }

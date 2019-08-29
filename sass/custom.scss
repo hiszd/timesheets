@@ -32,6 +32,13 @@ $arrow-stroke2:rgba(70,70,70, 1);
 	transform: $property;
 }
 
+@mixin transition($opts) {
+	-moz-transition: #{$opts};
+	-ms-transition: #{$opts};
+	-webkit-transition: #{$opts};
+	transition: #{$opts};
+}
+
 @mixin animation($name, $speed, $easing, $delay, $direction: none) {
 	-moz-animation: $name $speed $easing $delay $direction;
 	-ms-animation: $name $speed $easing $delay $direction;
@@ -64,12 +71,12 @@ html {
 		border: 2px solid $b-gray;
 	}
 	&:hover {
-		border: 2px solid $b-gray;
-	}
-}
-
-.text-black {
-	color: #000;
+		border: 2px solid $b-gray;transition: color .2s linear, text-decoration .2s linear
+	}transition: color .2s linear, text-decoration .2s linear
+}transition: color .2s linear, text-decoration .2s linear
+transition: color .2s linear, text-decoration .2s linear
+.text-black {transition: color .2s linear, text-decoration .2s linear
+	color: #000;transition: color .2s linear, text-decoration .2s linear
 }
 
 .bg-light-gray {
@@ -301,12 +308,12 @@ html {
 
 .hovergrow {
 	box-shadow: 3px 5px 2px rgba(60, 60, 60, 1);
-	transform: translate(0,0);
+	@include transform(translate(0,0));
 	transition: box-shadow .15s 200ms ease, transform .15s 200ms ease;
 	&:hover {
 		box-shadow: 6px 1em 2px rgba(50, 50, 50, .5);
-		transform: translate(0,-1em);
-		transition: box-shadow .35s 0s ease, transform .35s 0s ease;
+		@include transform(translate(0,-1em));
+		@include transition(box-shadow .35s 0s ease, transform .35s 0s ease);
 	}
 }
 
