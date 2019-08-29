@@ -168,12 +168,6 @@ html {
 	margin-top: .3rem;
 	//border: 2px solid #999 !important;
 	transition: color .2s linear, text-decoration .2s linear, opacity .2s linear, background-color .1s linear, border .15s linear;
-	&:hover {
-		background-color: #7b7;
-		text-decoration: none;
-		opacity: .75;
-		border: 0 !important;
-	}
 }
 
 %group {

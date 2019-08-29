@@ -198,11 +198,6 @@ html {
   margin-left: 5px;
   margin-top: .3rem;
   transition: color .2s linear, text-decoration .2s linear, opacity .2s linear, background-color .1s linear, border .15s linear; }
-  .closebutton:hover {
-    background-color: #7b7;
-    text-decoration: none;
-    opacity: .75;
-    border: 0 !important; }
 
 .group, .group:last-child {
   border-left: solid 1px #000;
