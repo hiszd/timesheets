@@ -1,6 +1,6 @@
 class Task {
 	constructor(argmap) {
-		if (argmap.selector) {
+		if (argmap.selector) { // If the element already exists and we need to use that then fill all the data
 			this._element = $(argmap.selector);
 			this._id = $(this._element).data('taskinfo').id;
 			this._bucketel = $(this._element).find('#bucket');
@@ -15,30 +15,46 @@ class Task {
 			this._notes = $(this._element).data('taskinfo').notes;
 			this._descel = $(this._element).find('#desc');
 			this._desc = $(this._element).data('taskinfo').description;
+			this._taskinfo = JSON.stringify($(this._element).data('taskinfo'));
 			return this;
-		} else if (argmap.object) {
-			var obj = JSON.parse(argmap.object);
+		} else if (argmap.object) { // If the element does not exist and we are constructing one from scratch
+			var obj = JSON.parse(argmap.object); // Element data(argmap.object) is in key: value format so we need to convert to JSON
 			this._id = obj.id;
-			this._element = jQuery('<div/>', { id: obj.id, "class": 'card hovergrow mr-3 border-1-gray', "data-taskinfo": JSON.stringify(obj) });
-			this._taskel = jQuery('<div/>', { id: "task", "class": 'card-header bg-gray text-white text-1-5' })
-			$(this._taskel).append(jQuery('<span/>', { "class": 'task-text' }).html(obj.task));
-			this._completeel = jQuery('<button/>', { id: 'complete', "class": 'closebutton' }).append(document.querySelector("#checkbox-temp").cloneNode(true));
-			$(this._completeel).children("#checkbox-temp").removeAttr("style").attr("id", "checkbox")
-			var state = { "#background": { "fill": "#fff", "stroke": "#646464" }, "#checkout": { "display": "inherit" }, "#checkfill": { "height": "0.5rem" } };
+			this._element = jQuery('<div/>', { id: obj.id, "class": 'card hovergrow mr-3 border-1-gray', "data-taskinfo": JSON.stringify(obj) }); // Build the main element to put the others into
+			this._taskinfo = JSON.stringify(obj);
+			this._taskel = jQuery('<div/>', { id: "task", "class": 'card-header bg-gray text-white text-1-5' }) // Build the card-header
+			$(this._taskel).append(jQuery('<span/>', { "class": 'task-text' }).html(obj.task)); // Append the text itself
+			this._completeel = jQuery('<button/>', { id: 'complete', "class": 'closebutton' }).append(document.querySelector("#checkbox-temp").cloneNode(true)); // Build and append the container and checkbox
+			$(this._completeel).children("#checkbox-temp").removeAttr("style").attr("id", "checkbox"); // Make element visable and give it a proper id
+			var state = { "#background": { "fill": "#fff", "stroke": "#646464" }, "#checkout": { "display": "inherit" }, "#checkfill": { "height": "0.5rem" } };// Build configuration for SVG animation to be passed later
+			// Build function for handling setup before element is clicked
 			var preclk = (itm) => {
 				if (itm._clickedState == 1) {
 					itm._element.find("#checkfill").css("display", "none");
 				}
 			}
+			// Build function for handling tear-down after element is clicked
 			var postclk = (itm) => {
 				if (itm._clickedState == 1) {
 					itm._element.find("#checkfill").css("display", "inline");
 					itm._restoreStyle["#checkfill"]["height"] = "0px";
+					var info_wrk = this.info;
+					info_wrk.status = "Closed";
+					this.updateInfo(info_wrk);
+				} else if (itm._clickedState == 0) {
+					var info_wrk = this.info;
+					info_wrk.status = "Open";
+					this.updateInfo(info_wrk);
 				}
 			}
+			// Initialize class for SVG handling and pass our pre-built information through
 			this._svg = new SVG({ "element": $(this._completeel).find("svg"), "clickToggle": 1, "clickStyle": state, "preClick": preclk, "postClick": postclk });
+			// Append our SVG to the header
 			$(this._taskel).append(this._completeel);
+			// Append the header to the card
 			$(this._taskel).appendTo(this._element);
+
+			// Build the body of the card
 			this._task = obj.task;
 			this._bucket = obj.bucket;
 			this._bodyel = jQuery('<div/>', { id: "body", "class": 'card-body' });
@@ -64,6 +80,30 @@ class Task {
 
 	updateInfo(info) {
 		$(this._element).attr('data-taskinfo', JSON.stringify(info));
+		var taskinfo = JSON.parse(this._taskinfo);
+		if (info != taskinfo) {
+			console.log(info.status + ", " + taskinfo.status);
+			if (info.id != taskinfo.id) {
+				this.id = taskinfo.id;
+			} else if (info.bucket != taskinfo.bucket) {
+				this.bucket = taskinfo.bucket;
+			} else if (info.task != taskinfo.task) {
+				this.task = taskinfo.task;
+			} else if (info.status != taskinfo.status) {
+				this.status = taskinfo.status;
+			} else if (info.time != taskinfo.time) {
+				this.time = taskinfo.time;
+			} else if (info.notes != taskinfo.notes) {
+				this.notes = taskinfo.notes;
+			} else if (info.desc != taskinfo.desc) {
+				this.desc = taskinfo.desc;
+			}
+		}
+		this._taskinfo = JSON.stringify(info);
+	}
+
+	get info() {
+		return JSON.parse(this._taskinfo);
 	}
 
 	get element() {
