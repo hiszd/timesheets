@@ -1,11 +1,11 @@
 const fs = require('fs');
-const {tableDoesExist, itemDoesExist, addItem, conditionInput, conditionOutput} = require('../lib/lib');
+const { tableDoesExist, itemDoesExist, addItem, conditionInput, conditionOutput } = require('../lib/lib');
 
 module.exports = {
 	addTaskPage: (req, res) => {
 		res.render('add-task.ejs', {
 			title: 'Welcome to Solidesk | Add a new task'
-			,message: ''
+			, message: ''
 		});
 	},
 	addTask: (req, res) => {
@@ -16,17 +16,18 @@ module.exports = {
 		let time = conditionInput(req.body.time);
 		let notes = conditionInput(req.body.notes);
 		let description = conditionInput(req.body.description);
+		let complete = conditionInput(req.body.complete);
 
-		if(itemDoesExist(db,"tasks","task",task)) {
+		if (itemDoesExist(db, "tasks", "task", task)) {
 			message = 'Task already exists';
 			res.render('add-task.ejs', {
 				message,
 				title: 'Welcome to Solidesk | Add a new task'
 			});
 		} else {
-			let query = 'INSERT INTO `tasks` (bucket, task, status, time, notes, description) VALUES ("'+bucket+'", "'+task+'", "'+stats+'", "'+time+'", "'+notes+'", "'+description+'");';
-			db.query(query, (err,result) => {
-				if(err) {return res.status(500).send(err);}
+			let query = 'INSERT INTO `tasks` (bucket, task, status, time, notes, description, complete) VALUES ("' + bucket + '", "' + task + '", "' + stats + '", "' + time + '", "' + notes + '", "' + description + '", "' + complete + '");';
+			db.query(query, (err, result) => {
+				if (err) { return res.status(500).send(err); }
 				res.redirect('/');
 			});
 		}
@@ -38,15 +39,15 @@ module.exports = {
 			if (err) {
 				return res.status(500).send(err);
 			}
-			if(!result[0]) {console.log("Task Not Found");}
+			if (!result[0]) { console.log("Task Not Found"); }
 			result[0].bucket = conditionOutput(result[0].bucket);
 			result[0].task = conditionOutput(result[0].task);
 			result[0].description = conditionOutput(result[0].description);
 			result[0].notes = conditionOutput(result[0].notes);
 			res.render('edit-task.ejs', {
 				title: 'Edit  Task'
-				,task: result[0]
-				,message: ''
+				, task: result[0]
+				, message: ''
 			});
 		});
 	},
@@ -57,7 +58,7 @@ module.exports = {
 			if (err) {
 				return res.status(500).send(err);
 			}
-			res.writeHead(200, {'Content-Type': 'text/json'});
+			res.writeHead(200, { 'Content-Type': 'text/json' });
 			res.end(JSON.stringify(result[0]));
 		});
 	},
@@ -67,7 +68,7 @@ module.exports = {
 			if (err) {
 				return res.status(500).send(err);
 			}
-			res.writeHead(200, {'Content-Type': 'text/json'});
+			res.writeHead(200, { 'Content-Type': 'text/json' });
 			res.end(JSON.stringify(result));
 		});
 	},
@@ -79,8 +80,9 @@ module.exports = {
 		let time = conditionInput(req.body.time);
 		let notes = conditionInput(req.body.notes);
 		let description = conditionInput(req.body.description);
+		let complete = conditionInput(req.body.complete);
 
-		let query = 'UPDATE `tasks` SET `time` = "' + time + '", `bucket` = "' + bucket + '", `status` = "' + stats + '", `task` = "' + task + '", `notes` = "' + notes + '", `description` = "' + description + '" WHERE `tasks`.`id` = "' + id + '";';
+		let query = 'UPDATE `tasks` SET `time` = "' + time + '", `bucket` = "' + bucket + '", `status` = "' + stats + '", `task` = "' + task + '", `notes` = "' + notes + '", `description` = "' + description + '", `complete` = "' + complete + '" WHERE `tasks`.`id` = "' + id + '";';
 		db.query(query, (err, result) => {
 			if (err) {
 				return res.status(500).send(err);
