@@ -2,26 +2,26 @@ class Task {
 	constructor(argmap) {
 		if (argmap.selector) { // If the element already exists and we need to use that then fill all the data
 			this._element = $(argmap.selector);
-			this._id = $(this._element).data('taskinfo').id;
+			this._taskinfo = JSON.parse($(this._element).data('taskinfo'));
+			this._id = this._taskinfo.id;
 			this._bucketel = $(this._element).find('#bucket');
-			this._bucket = $(this._element).data('taskinfo').bucket;
+			this._bucket = this._taskinfo.bucket;
 			this._taskel = $(this._element).find('#task');
-			this._task = $(this._element).data('taskinfo').task;
+			this._task = this._taskinfo.task;
 			this._statusel = $(this._element).find('#status');
-			this._status = $(this._element).data('taskinfo').status;
+			this._status = this._taskinfo.status;
 			this._timeel = $(this._element).find('#time');
-			this._time = $(this._element).data('taskinfo').time;
+			this._time = this._taskinfo.time;
 			this._notesel = $(this._element).find('#notes');
-			this._notes = $(this._element).data('taskinfo').notes;
+			this._notes = this._taskinfo.notes;
 			this._descel = $(this._element).find('#desc');
-			this._desc = $(this._element).data('taskinfo').description;
-			this._taskinfo = JSON.stringify($(this._element).data('taskinfo'));
+			this._desc = this._taskinfo.description;
 			return this;
 		} else if (argmap.object) { // If the element does not exist and we are constructing one from scratch
 			var obj = JSON.parse(argmap.object); // Element data(argmap.object) is in key: value format so we need to convert to JSON
 			this._id = obj.id;
 			this._element = jQuery('<div/>', { id: obj.id, "class": 'card hovergrow mr-3 border-1-gray', "data-taskinfo": JSON.stringify(obj) }); // Build the main element to put the others into
-			this._taskinfo = JSON.stringify(obj);
+			this._taskinfo = obj;
 			this._taskel = jQuery('<div/>', { id: "task", "class": 'card-header bg-gray text-white text-1-5' }) // Build the card-header
 			$(this._taskel).append(jQuery('<span/>', { "class": 'task-text' }).html(obj.task)); // Append the text itself
 			this._completeel = jQuery('<button/>', { id: 'complete', "class": 'closebutton' }).append(document.querySelector("#checkbox-temp").cloneNode(true)); // Build and append the container and checkbox
@@ -38,11 +38,11 @@ class Task {
 				if (itm._clickedState == 1) {
 					itm._element.find("#checkfill").css("display", "inline");
 					itm._restoreStyle["#checkfill"]["height"] = "0px";
-					var info_wrk = this.info;
+					var info_wrk = this.taskinfo;
 					info_wrk.status = "Closed";
 					this.updateInfo(info_wrk);
 				} else if (itm._clickedState == 0) {
-					var info_wrk = this.info;
+					var info_wrk = this.taskinfo;
 					info_wrk.status = "Open";
 					this.updateInfo(info_wrk);
 				}
@@ -79,90 +79,171 @@ class Task {
 	}
 
 	updateInfo(info) {
-		$(this._element).attr('data-taskinfo', JSON.stringify(info));
-		var taskinfo = JSON.parse(this._taskinfo);
+		var taskinfo = this.taskinfo;
 		if (info != taskinfo) {
-			console.log(info.status + ", " + taskinfo.status);
 			if (info.id != taskinfo.id) {
-				this.id = taskinfo.id;
+				this.id = info.id;
 			} else if (info.bucket != taskinfo.bucket) {
-				this.bucket = taskinfo.bucket;
+				this.bucket = info.bucket;
 			} else if (info.task != taskinfo.task) {
-				this.task = taskinfo.task;
+				this.task = info.task;
 			} else if (info.status != taskinfo.status) {
-				this.status = taskinfo.status;
+				this.status = info.status;
 			} else if (info.time != taskinfo.time) {
-				this.time = taskinfo.time;
+				this.time = info.time;
 			} else if (info.notes != taskinfo.notes) {
-				this.notes = taskinfo.notes;
+				this.notes = info.notes;
 			} else if (info.desc != taskinfo.desc) {
-				this.desc = taskinfo.desc;
+				this.desc = info.desc;
 			}
 		}
-		this._taskinfo = JSON.stringify(info);
+		this.taskinfo = info;
 	}
 
-	get info() {
-		return JSON.parse(this._taskinfo);
+	get taskinfo() {
+		if (JSON.parse($(this._element).attr('data-taskinfo')) == this._taskinfo) {
+			return JSON.parse($(this._element).attr('data-taskinfo'));
+		} else {
+			this._taskinfo = JSON.parse($(this._element).attr('data-taskinfo'));
+			return JSON.parse($(this._element).attr('data-taskinfo'));
+		}
+	}
+
+	set taskinfo(info) {
+		$(this._element).attr('data-taskinfo', JSON.stringify(info));
+		this._taskinfo = info;
 	}
 
 	get element() {
 		return this._element;
 	}
 
+	set element(no) {
+		return;
+	}
+
 	get id() {
-		return this._id;
+		if (this._taskinfo.id == this._id) {
+			return this._id;
+		} else {
+			this._id = this._taskinfo.id;
+			return this._taskinfo.id;
+		}
 	}
 
 	set id(no) {
-		this._id = no; $(this._element).attr('id', no); $(this._element).data('taskinfo').id = no;
+		this._id = no;
+		$(this._element).attr('id', no);
+		var info = this.taskinfo;
+		info.id = no;
+		this.taskinfo = info;
 	}
 
 	get bucket() {
-		return this._bucket
+		if (this._taskinfo.bucket == this._bucket && this._bucketel.text() == this._bucket) {
+			return this._bucket;
+		} else {
+			this._bucket = this._taskinfo.bucket;
+			this._bucketel.text(this._taskinfo.bucket);
+			return this._taskinfo.bucket;
+		}
 	}
 
 	set bucket(no) {
-		this._bucket = no; this._bucketel.text(no); $(this._element).data('taskinfo').bucket = no;
+		this._bucket = no;
+		this._bucketel.text(no);
+		var info = this.taskinfo;
+		info.bucket = no;
+		this.taskinfo = info;
 	}
 
 	get task() {
-		return this._task;
+		if (this._taskinfo.task == this._task && this._taskel.text() == this._task) {
+			return this._task;
+		} else {
+			this._task = this._taskinfo.task;
+			this._taskel.text(this._taskinfo.task);
+			return this._taskinfo.task;
+		}
 	}
 
 	set task(no) {
-		this._task = no; $(this._taskel).text(no); let info = $(this._element).data('taskinfo'); info.task = no; this.updateInfo(info); console.log(info);
+		this._task = no;
+		$(this._taskel).text(no);
+		var info = this.taskinfo;
+		info.task = no;
+		this.taskinfo = info;
 	}
 
 	get status() {
-		return this._status;
+		if (this._taskinfo.status == this._status && this._statusel.text() == this._status) {
+			return this._status;
+		} else {
+			this._status = this._taskinfo.status;
+			this._statusel.text(this._taskinfo.status);
+			return this._taskinfo.status;
+		}
 	}
 
 	set status(no) {
-		this._status = no; this._statusel.text(no); let info = $(this._element).data('taskinfo'); info.status = no; this.updateInfo(info);
+		this._status = no;
+		this._statusel.text(no);
+		var info = this.taskinfo;
+		info.status = no;
+		this.taskinfo = info;
 	}
 
 	get time() {
-		return this._times;
+		if (this._taskinfo.time == this._time && this._timeel.text() == this._time) {
+			return this._time;
+		} else {
+			this._time = this._taskinfo.time;
+			this._timeel.text(this._taskinfo.time);
+			return this._taskinfo.time;
+		}
 	}
 
 	set time(no) {
-		this._time = no; this._timeel.text(no); let info = $(this._element).data('taskinfo'); info.time = no; this.updateInfo(info);
+		this._time = no;
+		this._timeel.text(no);
+		var info = this.taskinfo;
+		info.time = no;
+		this.taskinfo = info;
 	}
 
 	get notes() {
-		return this._notes;
+		if (this._taskinfo.notes == this._notes && this._notesel.text() == this._notes) {
+			return this._notes;
+		} else {
+			this._notes = this._taskinfo.notes;
+			this._notesel.text(this._taskinfo.notes);
+			return this._taskinfo.notes;
+		}
 	}
 
 	set notes(no) {
-		this._notes = no; this._notesel.text(no); let info = $(this._element).data('taskinfo'); info.notes = no; this.updateInfo(info);
+		this._notes = no;
+		this._notesel.text(no);
+		var info = this.taskinfo;
+		info.notes = no;
+		this.taskinfo = info;
 	}
 
 	get desc() {
-		return this._desc;
+		if (this._taskinfo.description == this._desc && this._descel.text() == this._desc) {
+			return this._desc;
+		} else {
+			this._desc = this._taskinfo.description;
+			this._descel.text(this._taskinfo.description);
+			return this._taskinfo.description;
+		}
 	}
 
 	set desc(no) {
-		this._desc = no; this._descel.text(no); let info = $(this._element).data('taskinfo'); info.description = no; this.updateInfo(info);
+		this._desc = no;
+		this._descel.text(no);
+		var info = this.taskinfo;
+		info.description = no;
+		this.taskinfo = info;
 	}
 }

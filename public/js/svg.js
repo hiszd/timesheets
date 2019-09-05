@@ -57,7 +57,7 @@ class SVG {
 
 	set state(state) {
 		if (state == 0) {
-			console.log(JSON.stringify(this._restoreStyle) + "\n" + JSON.stringify(this._newStyle));
+			//console.log(JSON.stringify(this._restoreStyle) + "\n" + JSON.stringify(this._newStyle));
 			Object.keys(this._restoreStyle).forEach((itm, idx) => {
 				var ele = $(this._element).find(itm);
 				ele.css(this._restoreStyle[itm]);
