@@ -2,7 +2,7 @@ class Task {
 	constructor(argmap) {
 		if (argmap.selector) { // If the element already exists and we need to use that then fill all the data
 			this._element = $(argmap.selector);
-			this._taskinfo = JSON.parse($(this._element).data('taskinfo'));
+			this._taskinfo = $(this._element).attr('data-taskinfo');
 			this._id = this._taskinfo.id;
 			this._bucketel = $(this._element).find('#bucket');
 			this._bucket = this._taskinfo.bucket;
@@ -50,6 +50,9 @@ class Task {
 			// Initialize class for SVG handling and pass our pre-built information through
 			this._svg = new SVG({ "element": $(this._completeel).find("svg"), "clickToggle": 1, "clickStyle": state, "preClick": preclk, "postClick": postclk });
 			// Append our SVG to the header
+			if (obj.status == "Closed") {
+				this._svg.state = 1;
+			}
 			$(this._taskel).append(this._completeel);
 			// Append the header to the card
 			$(this._taskel).appendTo(this._element);
@@ -74,30 +77,50 @@ class Task {
 			$(this._bodyel).append(jQuery('<a/>', { "href": '/delete/' + obj.id, "class": 'btn btn-sm btn-danger border border-dark' }).html("Delete"));
 			$(this._bodyel).append(jQuery('<button/>', { "type": 'button', "class": 'btn btn-sm btn-warning border border-dark', "data-toggle": 'modal', "data-target": '#editModal', "data-id": obj.id }).html("Edit"));
 			$(this._element).append(this._bodyel);
+			this._bob = makeObserver(this._element, (mutationsList, observer) => {
+				for (let mutation of mutationsList) {
+					if (mutation.type === 'attributes') {
+						console.log('The ' + mutation.attributeName + ' attribute was modified.');
+						if (mutation.attributeName == "data-taskinfo") {
+							//this.updateInfo();
+						}
+					}
+				}
+			});
 			return this;
 		}
 	}
 
 	updateInfo(info) {
 		var taskinfo = this.taskinfo;
-		if (info != taskinfo) {
-			if (info.id != taskinfo.id) {
-				this.id = info.id;
-			} else if (info.bucket != taskinfo.bucket) {
-				this.bucket = info.bucket;
-			} else if (info.task != taskinfo.task) {
-				this.task = info.task;
-			} else if (info.status != taskinfo.status) {
-				this.status = info.status;
-			} else if (info.time != taskinfo.time) {
-				this.time = info.time;
-			} else if (info.notes != taskinfo.notes) {
-				this.notes = info.notes;
-			} else if (info.desc != taskinfo.desc) {
-				this.desc = info.desc;
+		if (info == undefined) {
+			this.id = taskinfo.id;
+			this.bucket = taskinfo.bucket;
+			this.task = taskinfo.task;
+			this.status = taskinfo.status;
+			this.time = taskinfo.time;
+			this.notes = taskinfo.notes;
+			this.desc = taskinfo.description;
+		} else {
+			if (info != taskinfo) {
+				if (info.id != taskinfo.id) {
+					this.id = info.id;
+				} else if (info.bucket != taskinfo.bucket) {
+					this.bucket = info.bucket;
+				} else if (info.task != taskinfo.task) {
+					this.task = info.task;
+				} else if (info.status != taskinfo.status) {
+					this.status = info.status;
+				} else if (info.time != taskinfo.time) {
+					this.time = info.time;
+				} else if (info.notes != taskinfo.notes) {
+					this.notes = info.notes;
+				} else if (info.desc != taskinfo.desc) {
+					this.desc = info.description;
+				}
 			}
+			this.taskinfo = info;
 		}
-		this.taskinfo = info;
 	}
 
 	get taskinfo() {

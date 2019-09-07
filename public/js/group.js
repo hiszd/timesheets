@@ -17,13 +17,17 @@ class TaskGroup {
 			return this._element;
 		} if (argmap.tasks && argmap.id) {
 			var tasks = JSON.parse(argmap.tasks);
+			this._tasks = [];
 			this._groupInfo = tasks;
 			var ele = jQuery('<div/>', { id: argmap.id, "class": 'bg-secondary group' });
 			this._header = jQuery('<div/>', { id: 'head', "class": 'group-header' }).html(argmap.id).appendTo(ele);
-			tasks.forEach(function (itm, idx) {
+			var eatask = (itm, idx) => {
 				var task = new Task({ "object": JSON.stringify(itm) })
+				this._tasks.push(task);
 				$(ele).append(task.element);
-			});
+				// task._bob.observe(document.getElementById(task._id), { attributes: true });
+			}
+			tasks.forEach(eatask);
 			this._bookend = jQuery('<div/>', { "class": 'bookend align-items-center' });
 			this._cont = jQuery('<div/>', { "class": 'bookend-cont align-items-center row' });
 			this._arrowcont = jQuery('<div/>', { "class": 'bookend-arrow row' });
@@ -35,7 +39,7 @@ class TaskGroup {
 			this._bookend.append(this._cont);
 			ele.append(this._bookend);
 			this._element = ele;
-			return this._element;
+			return this;
 		}
 	}
 

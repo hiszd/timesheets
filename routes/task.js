@@ -16,7 +16,6 @@ module.exports = {
 		let time = conditionInput(req.body.time);
 		let notes = conditionInput(req.body.notes);
 		let description = conditionInput(req.body.description);
-		let complete = conditionInput(req.body.complete);
 
 		if (itemDoesExist(db, "tasks", "task", task)) {
 			message = 'Task already exists';
@@ -25,7 +24,7 @@ module.exports = {
 				title: 'Welcome to Solidesk | Add a new task'
 			});
 		} else {
-			let query = 'INSERT INTO `tasks` (bucket, task, status, time, notes, description, complete) VALUES ("' + bucket + '", "' + task + '", "' + stats + '", "' + time + '", "' + notes + '", "' + description + '", "' + complete + '");';
+			let query = 'INSERT INTO `tasks` (bucket, task, status, time, notes, description) VALUES ("' + bucket + '", "' + task + '", "' + stats + '", "' + time + '", "' + notes + '", "' + description + '");';
 			db.query(query, (err, result) => {
 				if (err) { return res.status(500).send(err); }
 				res.redirect('/');

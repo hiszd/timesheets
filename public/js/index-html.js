@@ -195,8 +195,12 @@ var sortCards = function (sort) {
 	});
 	wrapper[0].innerHTML = null;
 	Object.keys(groups).forEach(function (itm, idx) {
-		var cont = new TaskGroup({ "tasks": JSON.stringify(groups[itm]), "id": itm });
-		$("#cont").append(cont);
+		var grp = new TaskGroup({ "tasks": JSON.stringify(groups[itm]), "id": itm });
+		$("#cont").append(grp.element);
+		console.log(grp._tasks);
+		grp._tasks.forEach((itm, idx) => {
+			itm._bob.observe(document.getElementById(itm._id), { attributes: true });
+		});
 	});/*
 	arr.forEach(function (idx) {
 		elements.appendChild(items[idx].cloneNode(true));
@@ -296,6 +300,15 @@ $(document).ready(function () {
 			console.log("Done: " + this.id);
 			$(this).find(".bookend").css("display", "inherit");
 		}
+	});
+	$(".group > .card").each((idx, val) => {
+		this._bob = makeObserver(this._element, (mutationsList, observer) => {
+			for (let mutation of mutationsList) {
+				if (mutation.type === 'attributes') {
+					console.log('The ' + mutation.attributeName + ' attribute was modified.');
+				}
+			}
+		});
 	});
 	// $(".bookend").hover(scrollVerticallyDown, function() {$(this.parentElement).stop();console.log("Stopped "+ this.parentElement.id)});
 	// $(".bookend").bind("mouseenter",function() {this.parentElement.iid = setInterval(scrollVerticallyDown(this),10);});
