@@ -40,11 +40,11 @@ class Task {
 					itm._restoreStyle["#checkfill"]["height"] = "0px";
 					var info_wrk = this.taskinfo;
 					info_wrk.status = "Closed";
-					this.updateInfo(info_wrk);
+					this.taskinfo = info_wrk;
 				} else if (itm._clickedState == 0) {
 					var info_wrk = this.taskinfo;
 					info_wrk.status = "Open";
-					this.updateInfo(info_wrk);
+					this.taskinfo = info_wrk;
 				}
 			}
 			// Initialize class for SVG handling and pass our pre-built information through
@@ -82,7 +82,7 @@ class Task {
 					if (mutation.type === 'attributes') {
 						console.log('The ' + mutation.attributeName + ' attribute was modified.');
 						if (mutation.attributeName == "data-taskinfo") {
-							//this.updateInfo();
+							this.updateElements();
 						}
 					}
 				}
@@ -91,36 +91,15 @@ class Task {
 		}
 	}
 
-	updateInfo(info) {
+	updateElements() {
 		var taskinfo = this.taskinfo;
-		if (info == undefined) {
-			this.id = taskinfo.id;
-			this.bucket = taskinfo.bucket;
-			this.task = taskinfo.task;
-			this.status = taskinfo.status;
-			this.time = taskinfo.time;
-			this.notes = taskinfo.notes;
-			this.desc = taskinfo.description;
-		} else {
-			if (info != taskinfo) {
-				if (info.id != taskinfo.id) {
-					this.id = info.id;
-				} else if (info.bucket != taskinfo.bucket) {
-					this.bucket = info.bucket;
-				} else if (info.task != taskinfo.task) {
-					this.task = info.task;
-				} else if (info.status != taskinfo.status) {
-					this.status = info.status;
-				} else if (info.time != taskinfo.time) {
-					this.time = info.time;
-				} else if (info.notes != taskinfo.notes) {
-					this.notes = info.notes;
-				} else if (info.desc != taskinfo.desc) {
-					this.desc = info.description;
-				}
-			}
-			this.taskinfo = info;
-		}
+		this.id = taskinfo.id;
+		this.bucket = taskinfo.bucket;
+		this.task = taskinfo.task;
+		this.status = taskinfo.status;
+		this.time = taskinfo.time;
+		this.notes = taskinfo.notes;
+		this.desc = taskinfo.description;
 	}
 
 	get taskinfo() {
@@ -133,8 +112,26 @@ class Task {
 	}
 
 	set taskinfo(info) {
-		$(this._element).attr('data-taskinfo', JSON.stringify(info));
-		this._taskinfo = info;
+		/*$(this._element).attr('data-taskinfo', JSON.stringify(info));
+		this._taskinfo = info;*/
+		if (info != this._taskinfo) {
+			if (info.id != this._id) {
+				this.id = info.id;
+			} else if (info.bucket != taskinfo._bucket) {
+				this.bucket = info.bucket;
+			} else if (info.task != taskinfo._task) {
+				this.task = info.task;
+			} else if (info.status != taskinfo._status) {
+				this.status = info.status;
+			} else if (info.time != taskinfo._time) {
+				this.time = info.time;
+			} else if (info.notes != taskinfo._notes) {
+				this.notes = info.notes;
+			} else if (info.desc != taskinfo._desc) {
+				this.desc = info.description;
+			}
+			$(this._element).attr('data-taskinfo', JSON.stringify(info))
+		}
 	}
 
 	get element() {
@@ -157,27 +154,20 @@ class Task {
 	set id(no) {
 		this._id = no;
 		$(this._element).attr('id', no);
-		var info = this.taskinfo;
-		info.id = no;
-		this.taskinfo = info;
 	}
 
 	get bucket() {
-		if (this._taskinfo.bucket == this._bucket && this._bucketel.text() == this._bucket) {
+		if (this._taskinfo.bucket == this._bucket) {
 			return this._bucket;
 		} else {
 			this._bucket = this._taskinfo.bucket;
-			this._bucketel.text(this._taskinfo.bucket);
 			return this._taskinfo.bucket;
 		}
 	}
 
 	set bucket(no) {
 		this._bucket = no;
-		this._bucketel.text(no);
-		var info = this.taskinfo;
-		info.bucket = no;
-		this.taskinfo = info;
+		//this._bucketel.text(no);
 	}
 
 	get task() {
@@ -193,9 +183,6 @@ class Task {
 	set task(no) {
 		this._task = no;
 		$(this._taskel).text(no);
-		var info = this.taskinfo;
-		info.task = no;
-		this.taskinfo = info;
 	}
 
 	get status() {
@@ -211,9 +198,6 @@ class Task {
 	set status(no) {
 		this._status = no;
 		this._statusel.text(no);
-		var info = this.taskinfo;
-		info.status = no;
-		this.taskinfo = info;
 	}
 
 	get time() {
@@ -229,9 +213,6 @@ class Task {
 	set time(no) {
 		this._time = no;
 		this._timeel.text(no);
-		var info = this.taskinfo;
-		info.time = no;
-		this.taskinfo = info;
 	}
 
 	get notes() {
@@ -247,9 +228,6 @@ class Task {
 	set notes(no) {
 		this._notes = no;
 		this._notesel.text(no);
-		var info = this.taskinfo;
-		info.notes = no;
-		this.taskinfo = info;
 	}
 
 	get desc() {
@@ -265,8 +243,5 @@ class Task {
 	set desc(no) {
 		this._desc = no;
 		this._descel.text(no);
-		var info = this.taskinfo;
-		info.description = no;
-		this.taskinfo = info;
 	}
 }
