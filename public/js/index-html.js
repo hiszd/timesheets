@@ -11,37 +11,37 @@ var getDat = function (dat) {
 	switch (dat) {
 		case "bucket":
 			var buckets = [];
-			for (i = 0; i < item.length; i++) {
+			for (var i of item) {
 				buckets[i] = item[i].bucket;
 			}
 			return buckets;
 		case "task":
 			var tasks = [];
-			for (i = 0; i < item.length; i++) {
+			for (var i of item) {
 				tasks[i] = item[i].task;
 			}
 			return tasks;
 		case "status":
 			var status = [];
-			for (i = 0; i < item.length; i++) {
+			for (var i of item) {
 				status[i] = item[i].status;
 			}
 			return status;
 		case "time":
 			var times = [];
-			for (i = 0; i < item.length; i++) {
+			for (var i of item) {
 				times[i] = item[i].times;
 			}
 			return times;
 		case "notes":
 			var notes = [];
-			for (i = 0; i < item.length; i++) {
+			for (var i of item) {
 				notes[i] = item[i].notes;
 			}
 			return notes;
 		case "desc":
 			var descs = [];
-			for (i = 0; i < item.length; i++) {
+			for (var i of item) {
 				descs[i] = item[i].description;
 			}
 			return descs;
@@ -57,8 +57,27 @@ var arrange = function (oldi, newi) {
 				arr[i] = j;
 			}
 		}
+		/*for (var i = 0; i < newi.length; i++) {
+			for (var j = 0; j < oldi.length; j++) {
+				if (newi[i].id == oldi[j].id) {
+					arr[i] = j;
+				}
+			}*/
 	}
 	return arr;
+};
+var sortAll = function (a, b) {
+	var datA = a[type].toUpperCase();
+	var datB = b[type].toUpperCase();
+	var comparison = 0;
+	if (datA > datB) {
+		comparison = 1;
+	} else if (datA < datB) {
+		comparison = -1;
+	} else if (datA == datB) {
+		comparison = 0;
+	}
+	return comparison;
 };
 var sortb = function (a, b) {
 	var datA = a.bucket.toUpperCase();
@@ -139,44 +158,53 @@ var sortd = function (a, b) {
 	return comparison;
 };
 var sortCards = function (sort) {
+	var dir = sort[(sort.length - 1)];
+	sort = sort.slice(0, (sort.length - 1));
+	console.log(`${sort} & ${dir}`);
 	var itemso = getDat(),
 		itemsn;
 	switch (sort) {
-		case "bucketa":
-			itemsn = getDat().sort(sortb);
+		case "bucket":
+			if (dir == "a") {
+				itemsn = getDat().sort(sortb);
+			} else {
+				itemsn = getDat().sort(sortb).reverse();
+			}
 			break;
-		case "bucketd":
-			itemsn = getDat().sort(sortb).reverse();
+		case "task":
+			if (dir == "a") {
+				itemsn = getDat().sort(sortt);
+			} else {
+				itemsn = getDat().sort(sortt).reverse();
+			}
 			break;
-		case "taska":
-			itemsn = getDat().sort(sortt);
+		case "status":
+			if (dir == "a") {
+				itemsn = getDat().sort(sorts);
+			} else {
+				itemsn = getDat().sort(sorts).reverse();
+			}
 			break;
-		case "taskd":
-			itemsn = getDat().sort(sortt).reverse();
+		case "time":
+			if (dir == "a") {
+				itemsn = getDat().sort(sortti);
+			} else {
+				itemsn = getDat().sort(sortti).reverse();
+			}
 			break;
-		case "statusa":
-			itemsn = getDat().sort(sorts);
+		case "notes":
+			if (dir == "a") {
+				itemsn = getDat().sort(sortn);
+			} else {
+				itemsn = getDat().sort(sortn).reverse();
+			}
 			break;
-		case "statusd":
-			itemsn = getDat().sort(sorts).reverse();
-			break;
-		case "timea":
-			itemsn = getDat().sort(sortti);
-			break;
-		case "timed":
-			itemsn = getDat().sort(sortti).reverse();
-			break;
-		case "notesa":
-			itemsn = getDat().sort(sortn);
-			break;
-		case "notesd":
-			itemsn = getDat().sort(sortn).reverse();
-			break;
-		case "desca":
-			itemsn = getDat().sort(sortd);
-			break;
-		case "descd":
-			itemsn = getDat().sort(sortd).reverse();
+		case "desc":
+			if (dir == "a") {
+				itemsn = getDat().sort(sortd);
+			} else {
+				itemsn = getDat().sort(sortd).reverse();
+			}
 			break;
 	}
 	var arr = arrange(itemso, itemsn);

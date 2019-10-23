@@ -93,13 +93,15 @@ class Task {
 
 	updateElements() {
 		var taskinfo = this.taskinfo;
-		this.id = taskinfo.id;
-		this.bucket = taskinfo.bucket;
-		this.task = taskinfo.task;
-		this.status = taskinfo.status;
-		this.time = taskinfo.time;
-		this.notes = taskinfo.notes;
-		this.desc = taskinfo.description;
+		({
+			id: this.id = this.id,
+			bucket: this.bucket = this.bucket,
+			task: this.task = this.task,
+			status: this.status = this.status,
+			time: this.time = this.time,
+			notes: this.notes = this.notes,
+			description: this.desc = this.desc
+		} = taskinfo || {});
 	}
 
 	get taskinfo() {
@@ -114,24 +116,16 @@ class Task {
 	set taskinfo(info) {
 		/*$(this._element).attr('data-taskinfo', JSON.stringify(info));
 		this._taskinfo = info;*/
-		if (info != this._taskinfo) {
-			if (info.id != this._id) {
-				this.id = info.id;
-			} else if (info.bucket != taskinfo._bucket) {
-				this.bucket = info.bucket;
-			} else if (info.task != taskinfo._task) {
-				this.task = info.task;
-			} else if (info.status != taskinfo._status) {
-				this.status = info.status;
-			} else if (info.time != taskinfo._time) {
-				this.time = info.time;
-			} else if (info.notes != taskinfo._notes) {
-				this.notes = info.notes;
-			} else if (info.desc != taskinfo._desc) {
-				this.desc = info.description;
-			}
-			$(this._element).attr('data-taskinfo', JSON.stringify(info))
-		}
+		({
+			id: this.id = this.id,
+			bucket: this.bucket = this.bucket,
+			task: this.task = this.task,
+			status: this.status = this.status,
+			time: this.time = this.time,
+			notes: this.notes = this.notes,
+			description: this.desc = this.desc
+		} = info || {});
+		$(this._element).attr('data-taskinfo', JSON.stringify(info))
 	}
 
 	get element() {
