@@ -160,7 +160,6 @@ var sortd = function (a, b) {
 var sortCards = function (sort) {
 	var dir = sort[(sort.length - 1)];
 	sort = sort.slice(0, (sort.length - 1));
-	console.log(`${sort} & ${dir}`);
 	var itemso = getDat(),
 		itemsn;
 	switch (sort) {
@@ -222,24 +221,31 @@ var sortCards = function (sort) {
 		}
 	});
 	wrapper[0].innerHTML = null;
-	Object.keys(groups).forEach(function (itm, idx) {
-		var grp = new TaskGroup({ "tasks": JSON.stringify(groups[itm]), "id": itm });
+	Object.keys(groups).forEach((itm, idx) => {
+		var grp = new TaskGroup({
+			"tasks": JSON.stringify(groups[itm]),
+			"id": itm
+		});
 		$("#cont").append(grp.element);
 		console.log(grp._tasks);
 		grp._tasks.forEach((itm, idx) => {
-			itm._bob.observe(document.getElementById(itm._id), { attributes: true });
+			itm._bob.observe(document.getElementById(itm._id), {
+				attributes: true
+			});
 		});
-	});/*
-	arr.forEach(function (idx) {
-		elements.appendChild(items[idx].cloneNode(true));
 	});
-	wrapper[0].innerHTML = null;
-	wrapper[0].appendChild(elements);*/
+	/*
+		arr.forEach(function (idx) {
+			elements.appendChild(items[idx].cloneNode(true));
+		});
+		wrapper[0].innerHTML = null;
+		wrapper[0].appendChild(elements);*/
 	return 1;
 };
 
 function grabForm(ele) {
-	var params, formData = {}, url, id;
+	var params, formData = {},
+		url, id;
 	params = $(ele).serializeArray();
 	formData = {};
 	$.each(params, function (i, val) {
@@ -272,7 +278,9 @@ var updateTask = function (id) {
 };
 var addTask = function () {
 	var data = grabForm("#add-task");
-	var card = new Task({ "object": data });
+	var card = new Task({
+		"object": data
+	});
 	console.log(card);
 	$("#cont").append(card);
 	document.getElementById("add-task").reset();
@@ -291,11 +299,16 @@ var overflow = function () {
 		}
 	});
 }
+
 function scrollHorizontally(e) {
 	e = window.event || e;
 	var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
 	//  document.getElementById('cont').scrollLeft -= (delta * 40); // Multiplied by 40
-	this.scrollBy({ top: ((delta * 40) * -1), left: 0, behavior: 'smooth' });
+	this.scrollBy({
+		top: ((delta * 40) * -1),
+		left: 0,
+		behavior: 'smooth'
+	});
 	e.preventDefault();
 }
 
@@ -304,18 +317,26 @@ function scrollVertically(e) {
 	var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
 	var changescroll = this.scrollTop;
 	changescroll += (delta * 80); // Multiplied by 80
-	this.scrollBy({ top: ((delta * 100) * -1), left: 0, behavior: 'smooth' });
+	this.scrollBy({
+		top: ((delta * 100) * -1),
+		left: 0,
+		behavior: 'smooth'
+	});
 	e.preventDefault();
 }
+
 function scrollVerticallyDown() {
 	var self = this.parentElement;
 	console.log(self);
-	var offset = 80, distancePerSec = 500;
+	var offset = 80,
+		distancePerSec = 500;
 	var delta = (self.scrollTop + offset);
 	console.log(delta + "|" + self.clientHeight + "|" + body.clientHeight + "|" + this.clientHeight);
 	var animationDuration = (delta / distancePerSec) * 1000;
 
-	$(self).animate({ scrollTop: delta }, animationDuration, 'linear');
+	$(self).animate({
+		scrollTop: delta
+	}, animationDuration, 'linear');
 	// self.scrollBy({top: delta, left: 0, behavior: 'smooth'});
 }
 $(document).ready(function () {
@@ -470,7 +491,9 @@ $(document).ready(function () {
 });
 
 var showPage = function () {
-	$("#loader").animate({ "opacity": "0" }, 400, function () {
+	$("#loader").animate({
+		"opacity": "0"
+	}, 400, function () {
 		$(this).css("display", "none");
 	});
 };

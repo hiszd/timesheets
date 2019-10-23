@@ -3,25 +3,28 @@ $card-header-bg: #282828;
 $b-gray: rgba(100, 100, 100, 1);
 $dark-gray: rgba(40, 40, 40, 1);
 $light-gray: rgba(70, 70, 70, 1);
-$bookend-bg: rgba(200,200,200, .7);
-$bookend-fg: rgba(200,200,200, 1);
-$arrow-fg:rgba(100,100,100, 1);
+$bookend-bg: rgba(200, 200, 200, .7);
+$bookend-fg: rgba(200, 200, 200, 1);
+$arrow-fg:rgba(100, 100, 100, 1);
 // $arrow-fill:rgba(200,200,250, 1);
 $arrow-fill: #343a40;
-$arrow-bg:rgba(200,200,200, 1);
-$arrow-stroke1:rgba(0,0,0, 0.5);
-$arrow-stroke2:rgba(70,70,70, 1);
+$arrow-bg:rgba(200, 200, 200, 1);
+$arrow-stroke1:rgba(0, 0, 0, 0.5);
+$arrow-stroke2:rgba(70, 70, 70, 1);
 
 @mixin keyframes($name) {
 	@-webkit-keyframes #{$name} {
 		@content;
 	}
+
 	@-moz-keyframes #{$name} {
 		@content;
 	}
+
 	@-ms-keyframes #{$name} {
 		@content;
 	}
+
 	@keyframes #{$name} {
 		@content;
 	}
@@ -41,11 +44,11 @@ $arrow-stroke2:rgba(70,70,70, 1);
 	transition: #{$opts};
 }
 
-@mixin animation($name, $speed, $easing, $delay, $direction: none) {
-	-moz-animation: $name $speed $easing $delay $direction;
-	-ms-animation: $name $speed $easing $delay $direction;
-	-webkit-animation: $name $speed $easing $delay $direction;
-	animation: $name $speed $easing $delay $direction;
+@mixin animation($opts) {
+	-moz-animation: #{$opts};
+	-ms-animation: #{$opts};
+	-webkit-animation: #{$opts};
+	animation: #{$opts};
 }
 
 @import "svg";
@@ -54,7 +57,12 @@ html {
 	scroll-behavior: smooth;
 }
 
-button, button:active, button:focus, a, a:active, a:focus {
+button,
+button:active,
+button:focus,
+a,
+a:active,
+a:focus {
 	outline: none;
 }
 
@@ -73,9 +81,11 @@ button, button:active, button:focus, a, a:active, a:focus {
 
 .border-1-gray {
 	border: 2px solid $b-gray;
+
 	&:active {
 		border: 2px solid $b-gray;
 	}
+
 	&:hover {
 		border: 2px solid $b-gray;
 	}
@@ -93,7 +103,7 @@ button, button:active, button:focus, a, a:active, a:focus {
 	background-color: $dark-gray;
 }
 
-.page-wrapper > nav {
+.page-wrapper>nav {
 	caret-color: transparent;
 }
 
@@ -110,7 +120,7 @@ button, button:active, button:focus, a, a:active, a:focus {
 	margin-top: 10px;
 }
 
-.task-group > .row {
+.task-group>.row {
 	flex-wrap: nowrap;
 	height: 100%;
 	overflow: scroll;
@@ -134,21 +144,26 @@ button, button:active, button:focus, a, a:active, a:focus {
 
 .card {
 	@extend %card;
+
 	&:last-child {
 		@extend %card;
 		margin-bottom: 1rem;
 	}
+
 	& .card-body {
 		background-color: $card-body-bg;
 		@include transition("background-color .2s ease");
 	}
+
 	& .card-header {
 		background-color: $card-header-bg;
 		@include transition("background-color .2s ease");
 	}
+
 	& .card-body #desc {
 		overflow: hidden;
 	}
+
 	& #task {
 		overflow: hidden;
 	}
@@ -198,6 +213,7 @@ button, button:active, button:focus, a, a:active, a:focus {
 
 .group {
 	@extend %group;
+
 	&:last-child {
 		@extend %group;
 		border-right: solid 1px #000;
@@ -209,8 +225,8 @@ button, button:active, button:focus, a, a:active, a:focus {
 	border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
 	padding: .75rem 1.25rem;
 	margin: 0;
-	background-color: rgba(0,0,0,.3);
-	border-bottom: 1px solid rgba(0,0,0,.125);
+	background-color: rgba(0, 0, 0, .3);
+	border-bottom: 1px solid rgba(0, 0, 0, .125);
 }
 
 .bookend {
@@ -239,7 +255,7 @@ button, button:active, button:focus, a, a:active, a:focus {
 	position: absolute;
 }
 
-.bookend:hover > .bookend-cont {
+.bookend:hover>.bookend-cont {
 	height: 1.5rem;
 }
 
@@ -248,7 +264,7 @@ button, button:active, button:focus, a, a:active, a:focus {
 	//border-radius: 50%;
 	//margin-top: 2rem;
 	//background-color: $bookend-fg;
-	transform: translate(0,-1em);
+	transform: translate(0, -1em);
 	margin: 0 auto !important;
 	display: flex;
 	align-items: center !important;
@@ -294,7 +310,7 @@ button, button:active, button:focus, a, a:active, a:focus {
 	z-index: 10000;
 }
 
-.wsn > .list-group-item {
+.wsn>.list-group-item {
 	max-height: 1.75em;
 	overflow: hidden;
 	transition: max-height .5s ease;
@@ -305,7 +321,7 @@ button, button:active, button:focus, a, a:active, a:focus {
 	max-height: 6em !important;
 }
 
-.wsn > .list-group-item > em {
+.wsn>.list-group-item>em {
 	text-overflow: ellipsis;
 }
 
@@ -318,33 +334,46 @@ button, button:active, button:focus, a, a:active, a:focus {
 	box-shadow: 3px 5px 2px rgba(60, 60, 60, 1);
 	// @include transform(translate(0,0));
 	transition: box-shadow .15s 200ms ease, transform .15s 200ms ease;
+
 	// box-shadow: 6px 1em 2px rgba(50, 50, 50, .5);
 	// @include transform(translate(0,-1em));
 	// @include transition("box-shadow .35s 0s ease, transform .35s 0s ease");
 	&:hover .card-header {
 		background-color: lighten($card-header-bg, 5%);
-	} &:hover .card-body {
+	}
+
+	&:hover .card-body {
 		background-color: lighten($card-body-bg, 5%);
 	}
+
 	& #body a {
-		@include transform(translate(0,5em));
-		@include transition("transform .5s .25s ease");
-	} & #body button {
-		@include transform(translate(0,5em));
-		@include transition("transform .9s .25s ease");
-	} & #task button {
-		@include transform(translate(0,-4em));
+		@include transform(translate(0, 5em));
 		@include transition("transform .5s .25s ease");
 	}
+
+	& #body button {
+		@include transform(translate(0, 5em));
+		@include transition("transform .9s .25s ease");
+	}
+
+	& #task button {
+		@include transform(translate(0, -4em));
+		@include transition("transform .5s .25s ease");
+	}
+
 	&:hover {
-		#body a{
-			@include transform(translate(0,0));
+		#body a {
+			@include transform(translate(0, 0));
 			@include transition("transform .5s .25s ease");
-		} #body button {
-			@include transform(translate(0,0));
+		}
+
+		#body button {
+			@include transform(translate(0, 0));
 			@include transition("transform .9s .25s ease");
-		} #task button {
-			@include transform(translate(0,0));
+		}
+
+		#task button {
+			@include transform(translate(0, 0));
 		}
 	}
 }
@@ -366,7 +395,7 @@ button, button:active, button:focus, a, a:active, a:focus {
 /* Add animation to "page content" */
 .animate-bottom {
 	@include transform(translate(0, -3em));
-	@include animation(animatebottom, 700ms, linear, 1s, forwards);
+	@include animation(animatebottom 700ms linear 1s forwards);
 }
 
 @include keyframes(animatebottom) {
