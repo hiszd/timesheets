@@ -1,26 +1,20 @@
 const {conditionOutput} = require('../lib/lib');
 module.exports = {
 	getHomePage: (req, res, next) => {
-		let query = "SELECT * FROM `tasks` ORDER BY bucket ASC"; // query database to get all the players
+		let query = "SELECT * FROM `"+req.params.user+"` ORDER BY time ASC"; // query database to get all the timesheets
 		res.charset = "UTF-8";
 		res.set({ 'content-type': 'text/html; charset=utf-8' });
 		// execute query
 		db.query(query, (err, result) => {
 			if (err) {
 				res.render('error.ejs', {
-					title: 'Welcome to SoliDesk | ERROR'
+					title: 'Welcome to Timesheets | ERROR'
 					,error: err
 				});
 				console.log("index.js-"+err);
 			} else {
-				result.forEach(function(itm, i) {
-					itm.bucket = conditionOutput(itm.bucket);
-					itm.task = conditionOutput(itm.task);
-					itm.description = conditionOutput(itm.description);
-					itm.notes = conditionOutput(itm.notes);
-				});
 				res.render('index.ejs', {
-					title: 'Welcome to SoliDesk | View Tasks'
+					title: 'Welcome to Timesheets | View Hours'
 					,tasks: result
 				});
 			}

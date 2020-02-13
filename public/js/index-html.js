@@ -254,10 +254,11 @@ function grabForm(ele) {
 	return JSON.stringify(formData);
 }
 
-var updateTask = function (id) {
+var updateTask = function (id, user) {
 	$.ajax({
-		url: "http://" + window.location.hostname + ":3000/get/" + id,
+		url: "http://" + window.location.hostname + ":3000/get/",
 		type: 'get',
+		data: {id: id, user: user},
 		dataType: 'json',
 		async: true,
 		cache: false,

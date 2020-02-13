@@ -9,11 +9,11 @@ const {
   getHomePage
 } = require('./routes/index');
 const {
-  addTaskPage,
-  addTask,
+  addHoursPage,
+  addHours,
   deleteTask,
   editTask,
-  editTaskPage,
+  editHoursPage,
   getTask,
   getTasks
 } = require('./routes/task');
@@ -21,8 +21,36 @@ const {
   tableDoesExist,
   itemDoesExist
 } = require('./lib/lib');
+const {
+  getLoginPage,
+  Login
+} = require('./routes/login');
 
 const port = 3000;
+
+const login = mysql.createConnection({
+  host: "localhost",
+  user: "base",
+  password: "csi7701!",
+  database: "admin",
+  port: 3306
+});
+
+// connect to database
+login.connect((err) => {
+  if (err) {
+    throw err;
+  }
+  console.log('Connected to database');
+  var query = "SELECT * FROM users;";
+  login.query(query, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    console.log("Table Setup.");
+  });
+});
+global.login = login;
 
 // create connection to database
 // the mysql.createConnection function takes in a configuration object which contains host, user, password and the database name.
@@ -30,7 +58,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "password",
-  database: "solidesk1",
+  database: "timesheets1",
   port: 3306
 });
 
@@ -40,13 +68,6 @@ db.connect((err) => {
     throw err;
   }
   console.log('Connected to database');
-  var query = "CREATE TABLE IF NOT EXISTS `tasks` ( `id` int(32) NOT NULL AUTO_INCREMENT, `bucket` varchar(255) NOT NULL, `task` varchar(255) NOT NULL, `status` varchar(255) NOT NULL, `time` varchar(255) NOT NULL, `notes` varchar(255) NOT NULL, `description` varchar(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
-  db.query(query, (err, result) => {
-    if (err) {
-      throw err;
-    }
-    console.log("Table Setup.");
-  });
 });
 global.db = db;
 
@@ -62,12 +83,14 @@ app.use(express.static(path.join(__dirname, 'public'))); // configure express to
 
 // routes for the app
 app.get('/', getHomePage);
-app.get('/edit/:id', editTaskPage);
-app.get('/add', addTaskPage);
+app.get('/edit/:id', editHoursPage);
+app.get('/add', addHoursPage);
 app.get('/delete/:id', deleteTask);
 app.get('/get/:id', getTask);
 app.get('/get/', getTasks);
-app.post('/add', addTask);
+app.get('/login', getLoginPage);
+app.post('/userlogin', Login);
+app.post('/add', addHours);
 app.post('/edit/:id', editTask);
 
 // set the app to listen on the port

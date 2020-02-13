@@ -19,7 +19,7 @@
 	<div id="loader" class="text-dark bg-light vh-100 vw-100 row">
 		<p class="lead inline-block fadeinout">Loading...</p>
 		<div class="spinner-border text-dark"></div>
-	</div>
+	</div>	
 	<div id="addModal" class="modal fade" tabindex="-1">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -134,26 +134,11 @@
 	</div>
 	<div class="page-wrapper animate-bottom">
 		<nav class="navbar navbar-dark bg-dark mb-0 bottom-shadow">
-			<span class="navbar-brand mb-0 h1"><a href="/"><strong>Soli</strong><strong style="color: red">Desk</strong>
-					<em>Tasks</em></a></span>
+			<span class="navbar-brand mb-0 h1"><a href="/"><strong>Time</strong><strong style="color: red">Sheet</strong>
+					<em>Hours</em></a></span>
 			<span class="m-0 float-right">
-				<p class="align-middle text-dark d-inline">Sort: </p>
-				<select id="sort" class="form-control bg-dark text-light mr-2 align-middle d-inline-block hw-normal"
-					onchange="sortCards(this.options[this.selectedIndex].value)">
-					<option value="bucketa">Bucket ASC</option>
-					<option value="bucketd">Bucket DES</option>
-					<option value="taska">Task ASC</option>
-					<option value="taskd">Task DES</option>
-					<option value="statusa">Status ASC</option>
-					<option value="statusd">Status DES</option>
-					<option value="timea">Time ASC</option>
-					<option value="timed">Time DES</option>
-					<option value="notesa">Notes ASC</option>
-					<option value="notesd">Notes DES</option>
-					<option value="desca">Description ASC</option>
-					<option value="descd">Description DES</option>
-				</select>
-				<a class="text-primary align-middle" href="" data-toggle="modal" data-target="#addModal"
-					title="Add a New Task">Add a Task</a>
+				<% if(!users) { %>
+				<a class="text-primary align-middle" href="" data-toggle="modal" data-target="#addModal" title="Add a New Task">Add a Task</a>
+				<% } %>
 			</span>
 		</nav>

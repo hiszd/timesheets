@@ -2,13 +2,13 @@ const fs = require('fs');
 const { tableDoesExist, itemDoesExist, addItem, conditionInput, conditionOutput } = require('../lib/lib');
 
 module.exports = {
-	addTaskPage: (req, res) => {
-		res.render('add-task.ejs', {
-			title: 'Welcome to Solidesk | Add a new task'
+	addHoursPage: (req, res) => {
+		res.render('add-hours.ejs', {
+			title: 'Welcome to Timesheets | Add new hours'
 			, message: ''
 		});
 	},
-	addTask: (req, res) => {
+	addHours: (req, res) => {
 		let message = '';
 		let bucket = conditionInput(req.body.bucket);
 		let stats = conditionInput(req.body.status);
@@ -17,42 +17,37 @@ module.exports = {
 		let notes = conditionInput(req.body.notes);
 		let description = conditionInput(req.body.description);
 
-		if (itemDoesExist(db, "tasks", "task", task)) {
+		if (itemDoesExist(db, req.params.user, "id", req.body.id)) {
 			message = 'Task already exists';
-			res.render('add-task.ejs', {
+			res.render('add-entry.ejs', {
 				message,
-				title: 'Welcome to Solidesk | Add a new task'
+				title: 'Welcome to Timesheets | Add new hours'
 			});
 		} else {
-			let query = 'INSERT INTO `tasks` (bucket, task, status, time, notes, description) VALUES ("' + bucket + '", "' + task + '", "' + stats + '", "' + time + '", "' + notes + '", "' + description + '");';
+			let query = 'INSERT INTO `'+req.params.user+'` (bucket, task, status, time, notes, description) VALUES ("' + bucket + '", "' + task + '", "' + stats + '", "' + time + '", "' + notes + '", "' + description + '");';
 			db.query(query, (err, result) => {
 				if (err) { return res.status(500).send(err); }
 				res.redirect('/');
 			});
 		}
 	},
-	editTaskPage: (req, res) => {
+	editHoursPage: (req, res) => {
 		let id = req.params.id;
-		let query = "SELECT * FROM `tasks` WHERE id = '" + id + "' ";
+		let query = "SELECT * FROM `"+req.params.user+"` WHERE id = '" + id + "' ";
 		db.query(query, (err, result) => {
 			if (err) {
 				return res.status(500).send(err);
 			}
 			if (!result[0]) { console.log("Task Not Found"); }
-			result[0].bucket = conditionOutput(result[0].bucket);
-			result[0].task = conditionOutput(result[0].task);
-			result[0].description = conditionOutput(result[0].description);
-			result[0].notes = conditionOutput(result[0].notes);
-			res.render('edit-task.ejs', {
-				title: 'Edit  Task'
+			res.render('edit-entry.ejs', {
+				title: 'Edit  Hours'
 				, task: result[0]
 				, message: ''
 			});
 		});
 	},
 	getTask: (req, res) => {
-		let id = req.params.id;
-		let query = "SELECT * FROM `tasks` WHERE id = '" + id + "' ";
+		let query = "SELECT * FROM `"+req.params.user+"` WHERE id = '" + req.params.id + "' ";
 		db.query(query, (err, result) => {
 			if (err) {
 				return res.status(500).send(err);
@@ -62,7 +57,7 @@ module.exports = {
 		});
 	},
 	getTasks: (req, res) => {
-		let query = "SELECT * FROM `tasks`;";
+		let query = "SELECT * FROM `"+req.params.user+"`;";
 		db.query(query, (err, result) => {
 			if (err) {
 				return res.status(500).send(err);
