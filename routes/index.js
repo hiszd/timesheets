@@ -10,12 +10,14 @@ module.exports = {
 				res.render('error.ejs', {
 					title: 'Welcome to Timesheets | ERROR'
 					,error: err
+					,users: null
 				});
 				console.log("index.js-"+err);
 			} else {
 				res.render('index.ejs', {
 					title: 'Welcome to Timesheets | View Hours'
 					,tasks: result
+					,users: null
 				});
 			}
 			res.end();
