@@ -1,3 +1,6 @@
+var add_minutes = (dt, min) => {
+	return new Date(dt.getTime() + (minutes*60000));
+};
 var checkLogin = function (user, passwd) {
 	$.ajax({
 		url: "http://" + window.location.hostname + ":3000/userlogin/",
@@ -14,7 +17,10 @@ var checkLogin = function (user, passwd) {
 				$("#message-text").show(300);
 				setTimeout(() => {
 					$("#message-text").hide(200);
-					window.location = "http://" + window.location.hostname + ":3000/"
+					var exdate = add_minutes(new Date(), 30);
+					document.cookie="csiloggedin=yes; expires=" + exdate.toUTCString() + "; path=/; domain="+window.location.hostname;
+
+					window.location = "http://" + window.location.hostname + ":3000/?user=hiszd"
 				}, 3000);
 			} else if(data.result == 0) {
 				$("#message-text").addClass("text-danger");

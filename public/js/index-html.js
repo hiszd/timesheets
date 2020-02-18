@@ -340,6 +340,14 @@ function scrollVerticallyDown() {
 	}, animationDuration, 'linear');
 	// self.scrollBy({top: delta, left: 0, behavior: 'smooth'});
 }
+var isLoggedIn = () => {
+	var log = getCookie("csiloggedin");
+	if(log != "") {
+		return 1;
+	} else {
+		return 0;
+	}
+};
 $(document).ready(function () {
 	if ($("#cont").find("#noitem").length == 0) {
 		sortCards($("#sort").val());
@@ -462,6 +470,12 @@ $(document).ready(function () {
 	});
 	$(".page-wrapper").show();
 	$("#page").show();
+	if(isLoggedIn()) {
+		setTimeout(showPage, 800);
+		setTimeout(overflow, 100);
+	} else if(!isLoggedIn()) {
+		window.location = "http://" + window.location.hostname + ":3000/login"
+	}
 	setTimeout(showPage, 800);
 	setTimeout(overflow, 100);
 	if (document.querySelector('.group').addEventListener) {

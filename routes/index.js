@@ -1,7 +1,11 @@
 const {conditionOutput} = require('../lib/lib');
 module.exports = {
 	getHomePage: (req, res, next) => {
-		let query = "SELECT * FROM `"+req.params.user+"` ORDER BY time ASC"; // query database to get all the timesheets
+		if(req.query.user != "") {
+			let query = "SELECT * FROM `"+req.query.user+"` ORDER BY time ASC"; // query database to get all the timesheets
+		} else {
+			let query = "SHOW TABLES;";
+		}
 		res.charset = "UTF-8";
 		res.set({ 'content-type': 'text/html; charset=utf-8' });
 		// execute query
@@ -17,7 +21,7 @@ module.exports = {
 				res.render('index.ejs', {
 					title: 'Welcome to Timesheets | View Hours'
 					,tasks: result
-					,users: null
+					,users: req.query.user
 				});
 			}
 			res.end();
