@@ -106,7 +106,12 @@ svg #background {
 html {
   scroll-behavior: smooth; }
 
-button, button:active, button:focus, a, a:active, a:focus {
+button,
+button:active,
+button:focus,
+a,
+a:active,
+a:focus {
   outline: none; }
 
 .border-top-bottom-gray {
@@ -377,10 +382,10 @@ button, button:active, button:focus, a, a:active, a:focus {
     transform: translate(0, 0); }
 
 .fadeinout {
-  -moz-animation: fadeinout 1s linear infinite none;
-  -ms-animation: fadeinout 1s linear infinite none;
-  -webkit-animation: fadeinout 1s linear infinite none;
-  animation: fadeinout 1s linear infinite none; }
+  -moz-animation: fadeinout 1s linear infinite;
+  -ms-animation: fadeinout 1s linear infinite;
+  -webkit-animation: fadeinout 1s linear infinite;
+  animation: fadeinout 1s linear infinite; }
 
 @-webkit-keyframes fadeinout {
   from {

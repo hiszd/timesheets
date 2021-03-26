@@ -1,0 +1,37 @@
+<% include partials/header.ejs %>
+<div id="cont" class="container cont">
+		<p id="message-text" style="display: none;" class="text-center"><%= message %></p>
+		<form class="add-part-form" action="" method="post">
+			<div class="form-row">
+				<div class="form-group col-md-4">
+				</div>
+				<div class="form-group col-md-4">
+					<input id="username" type="text" class="form-control" name="username" id="username" placeholder="Username" required>
+				</div>
+				<div class="form-group col-md-4">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+				</div>
+				<div class="form-group col-md-4">
+					<input id="password" type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+				</div>
+				<div class="form-group col-md-4">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+				</div>
+				<div class="form-group col-md-4">
+					<button type="button" id="submit" class="btn btn-primary float-right">Login</button>
+				</div>
+				<div class="form-group col-md-4">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<script type='application/x-javascript' src='js/login-html.js'></script>
+</body>
+</html>
