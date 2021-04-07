@@ -21,43 +21,15 @@ const {
   tableDoesExist,
   itemDoesExist
 } = require('./lib/lib');
-const {
-  getLoginPage,
-  Login
-} = require('./routes/login');
 
 const port = 3000;
-
-const login = mysql.createConnection({
-  host: "localhost",
-  user: "base",
-  password: "csi7701!",
-  database: "admin",
-  port: 3306
-});
-
-// connect to database
-login.connect((err) => {
-  if (err) {
-    throw err;
-  }
-  console.log('Connected to database');
-  var query = "SELECT * FROM users;";
-  login.query(query, (err, result) => {
-    if (err) {
-      throw err;
-    }
-    console.log("Table Setup.");
-  });
-});
-global.login = login;
 
 // create connection to database
 // the mysql.createConnection function takes in a configuration object which contains host, user, password and the database name.
 const db = mysql.createConnection({
   host: "localhost",
-  user: "root",
-  password: "password",
+  user: "applet1",
+  password: "9iX$9re*bbdz&N&N",
   database: "timesheets1",
   port: 3306
 });
@@ -88,8 +60,6 @@ app.get('/add', addHoursPage);
 app.get('/delete/:id', deleteTask);
 app.get('/get/:id', getTask);
 app.get('/get/', getTasks);
-app.get('/login', getLoginPage);
-app.post('/userlogin', Login);
 app.post('/add', addHours);
 app.post('/edit/:id', editTask);
 

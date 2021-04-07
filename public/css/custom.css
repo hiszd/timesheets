@@ -1,453 +1,74 @@
-svg #arrow {
-  fill: #343a40;
-  stroke: #464646;
-  stroke-width: 1; }
+/*
+Error: Mixin animation takes 1 argument but 4 were passed.
+        on line 382 of sass/custom.scss, in `animation'
+        from line 382 of sass/custom.scss
 
-svg #outline {
-  stroke: none;
-  fill: none;
-  color: none; }
+377: 		}
+378: 	}
+379: }
+380: 
+381: .fadeinout {
+382: 	@include animation(fadeinout, 1s, linear, infinite);
+383: }
+384: 
+385: @include keyframes(fadeinout) {
+386: 	from {
+387: 		opacity: 1;
 
-svg .outline {
-  stroke-width: 0.8;
-  stroke: rgba(0, 0, 0, 0.5);
-  stroke-linejoin: round;
-  stroke-linecap: round;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000; }
-
-svg #background {
-  fill: #c8c8c8;
-  paint-order: fill stroke markers;
-  box-shadow: 2px 1px 1px black; }
-
-@keyframes border {
-  0% {
-    stroke-dashoffset: 1000; }
-  50% {
-    stroke-dashoffset: 0; }
-  100% {
-    stroke-dashoffset: 1000; } }
-#checkbox {
-  height: 1.5rem;
-  width: 2em; }
-  #checkbox #ic_check_box_24px, #checkbox #ic_check_box_outline_blank_24px, #checkbox #ic_indeterminate_check_box_24px {
-    stroke-width: .26458; }
-  #checkbox #background {
-    fill: #646464;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: .65914;
-    stroke: #fff;
-    -moz-transition: fill .5s ease, stroke .5s ease;
-    -ms-transition: fill .5s ease, stroke .5s ease;
-    -webkit-transition: fill .5s ease, stroke .5s ease;
-    transition: fill .5s ease, stroke .5s ease; }
-  #checkbox #checkfill {
-    height: 0;
-    fill: #2a2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: .26458;
-    stroke: #646464;
-    -moz-transition: fill .5s ease, stroke .5s ease, height 1s .25s ease-out;
-    -ms-transition: fill .5s ease, stroke .5s ease, height 1s .25s ease-out;
-    -webkit-transition: fill .5s ease, stroke .5s ease, height 1s .25s ease-out;
-    transition: fill .5s ease, stroke .5s ease, height 1s .25s ease-out; }
-  #checkbox #checkout {
-    fill: #000000;
-    display: none;
-    -moz-transition: fill .5s ease, stroke .5s ease, display .5s ease;
-    -ms-transition: fill .5s ease, stroke .5s ease, display .5s ease;
-    -webkit-transition: fill .5s ease, stroke .5s ease, display .5s ease;
-    transition: fill .5s ease, stroke .5s ease, display .5s ease; }
-  #checkbox #unchecked {
-    fill: #000;
-    -moz-transition: fill .5s ease, stroke .5s ease, display .5s ease;
-    -ms-transition: fill .5s ease, stroke .5s ease, display .5s ease;
-    -webkit-transition: fill .5s ease, stroke .5s ease, display .5s ease;
-    transition: fill .5s ease, stroke .5s ease, display .5s ease; }
-  #checkbox #disabled {
-    fill: #000;
-    display: none;
-    -moz-transition: fill .5s ease, stroke .5s ease, display .5s ease;
-    -ms-transition: fill .5s ease, stroke .5s ease, display .5s ease;
-    -webkit-transition: fill .5s ease, stroke .5s ease, display .5s ease;
-    transition: fill .5s ease, stroke .5s ease, display .5s ease; }
-
-@-webkit-keyframes click {
-  0% {
-    transform: scale(1); }
-  50% {
-    transform: scale(1.2); }
-  100% {
-    transform: scale(1); } }
-@-moz-keyframes click {
-  0% {
-    transform: scale(1); }
-  50% {
-    transform: scale(1.2); }
-  100% {
-    transform: scale(1); } }
-@-ms-keyframes click {
-  0% {
-    transform: scale(1); }
-  50% {
-    transform: scale(1.2); }
-  100% {
-    transform: scale(1); } }
-@keyframes click {
-  0% {
-    transform: scale(1); }
-  50% {
-    transform: scale(1.2); }
-  100% {
-    transform: scale(1); } }
-html {
-  scroll-behavior: smooth; }
-
-button, button:active, button:focus, a, a:active, a:focus {
-  outline: none; }
-
-.border-top-bottom-gray {
-  border-bottom: solid 1px #646464 !important;
-  border-top: solid 1px #646464 !important; }
-
-.border-top-gray {
-  border-top: solid 1px #646464 !important; }
-
-.border-gray {
-  border-color: #646464 !important; }
-
-.border-1-gray {
-  border: 2px solid #646464; }
-  .border-1-gray:active {
-    border: 2px solid #646464; }
-  .border-1-gray:hover {
-    border: 2px solid #646464; }
-
-.text-black {
-  color: #000; }
-
-.bg-light-gray {
-  background-color: #464646; }
-
-.bg-gray {
-  background-color: #282828; }
-
-.page-wrapper > nav {
-  caret-color: transparent; }
-
-.table-wrapper {
-  margin-top: 50px; }
-
-.add-part-form {
-  margin-top: 50px; }
-
-.index-wrapper {
-  height: 93vh;
-  margin-top: 10px; }
-
-.task-group > .row {
-  flex-wrap: nowrap;
-  height: 100%;
-  overflow: scroll;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap; }
-
-.card, .card:last-child {
-  box-sizing: content-box;
-  caret-color: transparent;
-  display: block;
-  flex-shrink: 0;
-  float: none;
-  height: min-content;
-  margin-top: 1rem;
-  overflow-x: hidden;
-  width: 400px;
-  margin-left: 1rem; }
-
-.card:last-child {
-  margin-bottom: 1rem; }
-.card .card-body {
-  background-color: #343a40;
-  -moz-transition: background-color .2s ease;
-  -ms-transition: background-color .2s ease;
-  -webkit-transition: background-color .2s ease;
-  transition: background-color .2s ease; }
-.card .card-header {
-  background-color: #282828;
-  -moz-transition: background-color .2s ease;
-  -ms-transition: background-color .2s ease;
-  -webkit-transition: background-color .2s ease;
-  transition: background-color .2s ease; }
-.card .card-body #desc {
-  overflow: hidden; }
-.card #task {
-  overflow: hidden; }
-
-.task-text {
-  overflow: hidden;
-  width: 88%;
-  color: #fff;
-  display: inline-block; }
-
-.closebutton {
-  border: none;
-  border-radius: .5rem !important;
-  opacity: 1;
-  padding: 0;
-  background-color: transparent;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  float: right;
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1;
-  text-shadow: 0 1px 0 #fff;
-  color: #aaa;
-  width: 10%;
-  margin-left: 5px;
-  margin-top: .3rem;
-  transition: color .2s linear, text-decoration .2s linear, opacity .2s linear, background-color .1s linear, border .15s linear; }
-
-.group, .group:last-child {
-  border-left: solid 1px #000;
-  box-shadow: 5px 5px 2px #3c3c3c;
-  margin-right: 1rem;
-  max-height: 90vh;
-  max-width: 500px;
-  min-height: none;
-  overflow: hidden;
-  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
-  position: relative;
-  caret-color: transparent; }
-
-.group:last-child {
-  border-right: solid 1px #000;
-  margin-right: none; }
-
-.group-header {
-  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
-  padding: .75rem 1.25rem;
-  margin: 0;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
-
-.bookend {
-  display: none;
-  background-color: transparent;
-  min-height: 2.5rem;
-  max-height: 2.5rem;
-  min-width: 100%;
-  padding: 0;
-  padding-top: .75rem;
-  margin: 0;
-  bottom: 0;
-  position: sticky; }
-
-.bookend-cont {
-  display: flex;
-  margin: 0 !important;
-  background-color: rgba(200, 200, 200, 0.7);
-  height: 2.5rem;
-  min-width: 100%;
-  position: relative;
-  transition: height .15s ease;
-  width: 100%;
-  bottom: 0;
-  position: absolute; }
-
-.bookend:hover > .bookend-cont {
-  height: 1.5rem; }
-
-.bookend-arrow {
-  transform: translate(0, -1em);
-  margin: 0 auto !important;
-  display: flex;
-  align-items: center !important;
-  width: 3rem;
-  height: 3rem;
-  background-color: transparent;
-  position: relative; }
-
-.rounded-lg {
-  border-radius: .5rem !important; }
-
-.rounded-left-lg {
-  border-bottom-left-radius: .5rem !important;
-  border-top-left-radius: .5rem !important; }
-
-.hw-normal {
-  height: auto;
-  width: auto; }
-
-.vh-100 {
-  height: 100vh; }
-
-.vw-100 {
-  width: 100vw; }
-
-.text-1-5 {
-  font-size: 1.5rem; }
-
-#loader {
-  height: 100vh;
-  margin: none;
-  padding-left: 50%;
-  padding-top: 25%;
-  position: absolute;
-  width: 100vw;
-  z-index: 10000; }
-
-.wsn > .list-group-item {
-  max-height: 1.75em;
-  overflow: hidden;
-  transition: max-height .5s ease;
-  white-space: normal !important; }
-
-.overhover {
-  max-height: 6em !important; }
-
-.wsn > .list-group-item > em {
-  text-overflow: ellipsis; }
-
-.bottom-shadow {
-  box-shadow: 0 5px 3px #3c3c3c; }
-
-.hovergrow {
-  overflow: hidden;
-  box-shadow: 3px 5px 2px #3c3c3c;
-  transition: box-shadow .15s 200ms ease, transform .15s 200ms ease; }
-  .hovergrow:hover .card-header {
-    background-color: #353535; }
-  .hovergrow:hover .card-body {
-    background-color: #3f474e; }
-  .hovergrow #body a {
-    -moz-transform: translate(0, 5em);
-    -ms-transform: translate(0, 5em);
-    -webkit-transform: translate(0, 5em);
-    transform: translate(0, 5em);
-    -moz-transition: transform .5s .25s ease;
-    -ms-transition: transform .5s .25s ease;
-    -webkit-transition: transform .5s .25s ease;
-    transition: transform .5s .25s ease; }
-  .hovergrow #body button {
-    -moz-transform: translate(0, 5em);
-    -ms-transform: translate(0, 5em);
-    -webkit-transform: translate(0, 5em);
-    transform: translate(0, 5em);
-    -moz-transition: transform .9s .25s ease;
-    -ms-transition: transform .9s .25s ease;
-    -webkit-transition: transform .9s .25s ease;
-    transition: transform .9s .25s ease; }
-  .hovergrow #task button {
-    -moz-transform: translate(0, -4em);
-    -ms-transform: translate(0, -4em);
-    -webkit-transform: translate(0, -4em);
-    transform: translate(0, -4em);
-    -moz-transition: transform .5s .25s ease;
-    -ms-transition: transform .5s .25s ease;
-    -webkit-transition: transform .5s .25s ease;
-    transition: transform .5s .25s ease; }
-  .hovergrow:hover #body a {
-    -moz-transform: translate(0, 0);
-    -ms-transform: translate(0, 0);
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
-    -moz-transition: transform .5s .25s ease;
-    -ms-transition: transform .5s .25s ease;
-    -webkit-transition: transform .5s .25s ease;
-    transition: transform .5s .25s ease; }
-  .hovergrow:hover #body button {
-    -moz-transform: translate(0, 0);
-    -ms-transform: translate(0, 0);
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
-    -moz-transition: transform .9s .25s ease;
-    -ms-transition: transform .9s .25s ease;
-    -webkit-transition: transform .9s .25s ease;
-    transition: transform .9s .25s ease; }
-  .hovergrow:hover #task button {
-    -moz-transform: translate(0, 0);
-    -ms-transform: translate(0, 0);
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0); }
-
-.fadeinout {
-  -moz-animation: fadeinout 1s linear infinite none;
-  -ms-animation: fadeinout 1s linear infinite none;
-  -webkit-animation: fadeinout 1s linear infinite none;
-  animation: fadeinout 1s linear infinite none; }
-
-@-webkit-keyframes fadeinout {
-  from {
-    opacity: 1; }
-  to {
-    opacity: .1; } }
-@-moz-keyframes fadeinout {
-  from {
-    opacity: 1; }
-  to {
-    opacity: .1; } }
-@-ms-keyframes fadeinout {
-  from {
-    opacity: 1; }
-  to {
-    opacity: .1; } }
-@keyframes fadeinout {
-  from {
-    opacity: 1; }
-  to {
-    opacity: .1; } }
-/* Add animation to "page content" */
-.animate-bottom {
-  -moz-transform: translate(0, -3em);
-  -ms-transform: translate(0, -3em);
-  -webkit-transform: translate(0, -3em);
-  transform: translate(0, -3em);
-  -moz-animation: animatebottom 700ms linear 1s forwards;
-  -ms-animation: animatebottom 700ms linear 1s forwards;
-  -webkit-animation: animatebottom 700ms linear 1s forwards;
-  animation: animatebottom 700ms linear 1s forwards; }
-
-@-webkit-keyframes animatebottom {
-  0% {
-    transform: translate(0, -3em); }
-  60% {
-    transform: translate(0, 1em); }
-  75% {
-    transform: translate(0, 1.5em); }
-  100% {
-    transform: translate(0, 0); } }
-@-moz-keyframes animatebottom {
-  0% {
-    transform: translate(0, -3em); }
-  60% {
-    transform: translate(0, 1em); }
-  75% {
-    transform: translate(0, 1.5em); }
-  100% {
-    transform: translate(0, 0); } }
-@-ms-keyframes animatebottom {
-  0% {
-    transform: translate(0, -3em); }
-  60% {
-    transform: translate(0, 1em); }
-  75% {
-    transform: translate(0, 1.5em); }
-  100% {
-    transform: translate(0, 0); } }
-@keyframes animatebottom {
-  0% {
-    transform: translate(0, -3em); }
-  60% {
-    transform: translate(0, 1em); }
-  75% {
-    transform: translate(0, 1.5em); }
-  100% {
-    transform: translate(0, 0); } }
-
-/*# sourceMappingURL=custom.css.map */
+Backtrace:
+sass/custom.scss:382:in `animation'
+sass/custom.scss:382
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:57:in `perform_arguments'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:358:in `block in visit_mixin'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:98:in `block in with_mixin'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:135:in `with_frame'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:98:in `with_mixin'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:346:in `visit_mixin'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `block in with_base'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:135:in `with_frame'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `with_base'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:440:in `block (2 levels) in visit_rule'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:440:in `map'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:179:in `with_environment'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:438:in `visit_rule'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `block in with_base'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:135:in `with_frame'
+/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `with_base'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `map'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:179:in `with_environment'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:166:in `visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `block in visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:186:in `visit_root'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:157:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:10:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/root_node.rb:36:in `css_tree'
+/usr/lib/ruby/vendor_ruby/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/usr/lib/ruby/vendor_ruby/sass/engine.rb:389:in `_render_with_sourcemap'
+/usr/lib/ruby/vendor_ruby/sass/engine.rb:307:in `render_with_sourcemap'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:462:in `update_stylesheet'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:209:in `each'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:294:in `watch'
+/usr/lib/ruby/vendor_ruby/sass/plugin.rb:109:in `method_missing'
+/usr/lib/ruby/vendor_ruby/sass/exec/sass_scss.rb:354:in `watch_or_update'
+/usr/lib/ruby/vendor_ruby/sass/exec/sass_scss.rb:51:in `process_result'
+/usr/lib/ruby/vendor_ruby/sass/exec/base.rb:50:in `parse'
+/usr/lib/ruby/vendor_ruby/sass/exec/base.rb:18:in `parse!'
+/usr/bin/sass:8:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Mixin animation takes 1 argument but 4 were passed.\A         on line 382 of sass/custom.scss, in `animation'\A         from line 382 of sass/custom.scss\A \A 377: 		}\A 378: 	}\A 379: }\A 380: \A 381: .fadeinout {\A 382: 	@include animation(fadeinout, 1s, linear, infinite);\A 383: }\A 384: \A 385: @include keyframes(fadeinout) {\A 386: 	from {\A 387: 		opacity: 1;"; }
